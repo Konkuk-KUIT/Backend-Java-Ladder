@@ -2,7 +2,7 @@ package ladder;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
 
@@ -17,6 +17,49 @@ class LadderTest {
 
         //then
         assertNotNull(ladder);
+    }
+
+    @Test
+    void 사다리_사람_예외_처리_확인() {
+        //when
+        int numberOfPerson = 3;
+        Ladder ladder = new Ladder(1, numberOfPerson);
+
+        //given
+        int nthOfPerson = 4;
+
+        //then
+        assertThrows(IllegalArgumentException.class, ()->ladder.run(nthOfPerson));
+    }
+
+    @Test
+    void 사다리_결과_확인() {
+        //when
+        int numberOfPerson = 4;
+        int row = 3;
+        Ladder ladder = new Ladder(row, numberOfPerson);
+
+        ladder.drawLine(0,0);
+        ladder.drawLine(1,1);
+        ladder.drawLine(2,0);
+
+        //given
+        int nthOfPerson = 0;
+
+        //then
+        assertEquals(2, ladder.run(nthOfPerson));
+
+        //given
+        nthOfPerson = 1;
+
+        //then
+        assertEquals(1, ladder.run(nthOfPerson));
+
+        //given
+        nthOfPerson = 2;
+
+        //then
+        assertEquals(0, ladder.run(nthOfPerson));
     }
 
 }
