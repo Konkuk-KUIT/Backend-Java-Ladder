@@ -12,10 +12,10 @@ class LadderTest {
     void ladderCreatedConfirm() {
         //given
         int numberOfRow = 3;
-        int numberOfPerson = 5;
+        int numberOfCulumn = 5;
 
         //when
-        Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
+        Ladder ladder = new Ladder(numberOfRow, numberOfCulumn);
         //then
         assertNotNull(ladder);
     }
@@ -25,15 +25,15 @@ class LadderTest {
     void testLadderReachesDestination(){
         //given
         int numberOfRow = 3;
-        int numberOfPerson = 5;
+        int numberOfCulumn = 5;
 
         //when
-        Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
+        Ladder ladder = new Ladder(numberOfRow, numberOfCulumn);
         //then
         int result = ladder.run(1);
         assertThat(result).isGreaterThan(0);
         assertThat(result).isInstanceOf(Integer.class);
-        assertThat(result).isBetween(0, numberOfPerson - 1);
+        assertThat(result).isBetween(0, numberOfCulumn - 1);
     }
 
 }

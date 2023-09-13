@@ -12,31 +12,34 @@ public class Ladder {
     }
 
     //사다리게임 진행 메서드
-    public int run(int selectedColumn){
-        //범위 벗어나면 예외 발생
-        if (selectedColumn < 1 || selectedColumn > ladder.length) {
-            throw new IllegalArgumentException("Invalid selected row");
+    public int run(int selectedColumn) {
+        // 범위 벗어나면 예외 발생
+        if (selectedColumn < 1 || selectedColumn > ladder[0].length) {
+            throw new IllegalArgumentException("Invalid selected column");
         }
-        //인덱스는 0부터 시작이라 1빼기
-        int currentCulumn = selectedColumn-1;
-        //아래로 이동하면서 사다리게임 진행
-        //보통 사다리 게임에서 왼쪽먼저 확인 하므로 조건문으로 왼쪽먼저 확인
-        //왜 row냐 면 row의 길이가 즉 사다리 높이임
-        for(int row = 0 ; row < ladder.length; row++){
-            //왼쪽으로 갈수있는 선(1로 표시)이 있다면 currentCulmn을 1줄여서 이동합니다.
-            if(currentCulumn > 0 && ladder[row][currentCulumn-1]==1){
-                currentCulumn--;
+
+        int currentColumn = selectedColumn - 1;
+        int currentRow = 0; // 초기 행 설정
+        //for문 대신 while문 사용
+        while (currentRow < ladder.length) {
+            // 오른쪽으로 갈 수 있는 선(1로 표시)이 있다면 오른쪽 열로 이동
+            if (currentColumn < ladder[0].length - 1 && ladder[currentRow][currentColumn] == 1) {
+                currentColumn++;
             }
-            //왼쪽으로 갈수있는 선(1로 표시)이 있다면 currentCulmn을 1증가시켜서 이동합니다.
-            if(currentCulumn< ladder[0].length-1 && ladder[row][currentCulumn]==1){
-                currentCulumn++;
+            // 왼쪽으로 갈 수 있는 선(1로 표시)이 있다면 왼쪽 열로 이동
+            if (currentColumn > 0 && ladder[currentRow][currentColumn - 1] == 1) {
+                currentColumn--;
             }
+            // 다음 행으로 이동
+            currentRow++;
         }
-        //리턴값은 1증가시켜서 반환함으로써 실제 게임상의 열을 반환
-        return currentCulumn + 1;
+
+        // 리턴값은 1을 더한 값을 반환하여 실제 게임 상의 열을 반환
+        return currentColumn + 1;
     }
 
     //가로선 그리는 함수
+    //가로선은 왼쪽으로만 그려짐..오른쪽 선은 어떻게 구현허지..?
     public void drawLine(int row, int column){
         //범위 벗어나면 예외 발생
         if (row < 1 || row > ladder.length || column < 1 || column > ladder[0].length) {
