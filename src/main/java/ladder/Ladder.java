@@ -21,12 +21,15 @@ public class Ladder {
         int currentColumn = selectedColumn - 1;
         int currentRow = 0; // 초기 행 설정
         //for문 대신 while문 사용
+        //for문 뭔가 코드가 한눈에 안들어와서..
         while (currentRow < ladder.length) {
             // 오른쪽으로 갈 수 있는 선(1로 표시)이 있다면 오른쪽 열로 이동
+            // 현재 들어있는 값이 1인지를 확인
             if (currentColumn < ladder[0].length - 1 && ladder[currentRow][currentColumn] == 1) {
                 currentColumn++;
             }
             // 왼쪽으로 갈 수 있는 선(1로 표시)이 있다면 왼쪽 열로 이동
+            // 현재 열 왼쪽에 들어있는 값이 1인지를 확인
             if (currentColumn > 0 && ladder[currentRow][currentColumn - 1] == 1) {
                 currentColumn--;
             }
@@ -39,7 +42,8 @@ public class Ladder {
     }
 
     //가로선 그리는 함수
-    //가로선은 왼쪽으로만 그려짐..오른쪽 선은 어떻게 구현허지..?
+    //가로선은 왼쪽으로만 그려짐
+    //draw에서 왼쪽오른쪽 선택해서 그리게 하면 코드 구조가 복잡해진다고 생각
     public void drawLine(int row, int column){
         //범위 벗어나면 예외 발생
         if (row < 1 || row > ladder.length || column < 1 || column > ladder[0].length) {
