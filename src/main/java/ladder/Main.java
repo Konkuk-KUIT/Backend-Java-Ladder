@@ -12,8 +12,9 @@ public class Main {
         Ladder ladder = new Ladder(numberOfRow, numberOfColumn);
 
         ladder.drawLine(2,1);
-        ladder.drawLine(3,1);
-        //ladder.drawLine(4,1);
+//        ladder.drawLine(3,1);
+//        ladder.drawLine(4,1);
+//        ladder.drawLine(5,1);
         int player1=ladder.run(1);
         System.out.println(player1 );
 
