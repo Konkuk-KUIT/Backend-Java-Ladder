@@ -57,4 +57,20 @@ class LadderTest {
         assertEquals("사다리를 그릴 수 없는 좌표를 설정하였습니다.", exception.getMessage());
         assertArrayEquals(ladder.getLadder(), target_ladder);
     }
+
+    @Test
+    @DisplayName("사다리 도착지점")
+    void run_ladder(){
+        // draw_ladder_leg() 함수에서 작성한 사다리와 동일
+        Ladder.LegPoint legPoint_1 = new Ladder.LegPoint(3, 1, 0, 4);
+        Ladder.LegPoint legPoint_2 = new Ladder.LegPoint(2, 4, 1, 3);
+
+        ladder.drawLine(legPoint_1);
+        ladder.drawLine(legPoint_2);
+        int dest_1 = ladder.run(0);
+        int dest_2 = ladder.run(1);
+
+        assertEquals(dest_1, 0);
+        assertEquals(dest_2, 3);
+    }
 }
