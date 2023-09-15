@@ -33,9 +33,7 @@ public class Ladder {
     public void movedFlag(int row,int column){
         ladder[row][column]=0;
     }
-    //사다리게임 진행 메서드
-    //IllegalArgumentException을 사용하여 적절하지 못한 값을 매서드가 받았을때 강제로 예외발생
-    //3번 이상 nesting 된 코드는 똥이다 -Linux Kernel coding style guid-
+    //사다리게임 진행 메서드, IllegalArgumentException을 사용하여 적절하지 못한 값을 매서드가 받았을때 강제로 예외발생, 3번 이상 nesting 된 코드는 똥이다 -Linux Kernel coding style guid-
     public int run(int selectedColumn) {
         // 범위 벗어나면 예외 발생
         if (!isValidColumn(selectedColumn)) {
@@ -47,13 +45,11 @@ public class Ladder {
         while (currentRow < ladder.length) {
             // 오른쪽으로 갈 수 있는 선(1로 표시)이 있다면 오른쪽 열로 이동
             if (canMoveRight(currentRow, currentColumn)) {
-                //이동하면서 비활성화
                 movedFlag(currentRow,currentColumn);
                 currentColumn++;
             }
             // 왼쪽으로 갈 수 있는 선(1로 표시)이 있다면 왼쪽 열로 이동
             if (canMoveLeft(currentRow, currentColumn)) {
-                //이동하면서 비활성화
                 movedFlag(currentRow,currentColumn-1);
                 currentColumn--;
             }
@@ -66,8 +62,7 @@ public class Ladder {
         return currentColumn + 1;
     }
 
-    //가로선 그리는 함수, 가로선은 왼쪽으로만 그려짐
-    //draw에서 왼쪽오른쪽 선택해서 그리게 하면 코드 구조가 복잡해진다고 생각
+    //가로선 그리는 함수, 가로선은 왼쪽으로만 그려짐 (draw에서 왼쪽오른쪽 선택해서 그리게 하면 코드 구조가 복잡해진다고 생각)
     public void drawLine(int row, int column){
         //범위 벗어나면 예외 발생
         if (row < 1 || row > ladder.length || column < 1 || column > ladder[0].length) {
