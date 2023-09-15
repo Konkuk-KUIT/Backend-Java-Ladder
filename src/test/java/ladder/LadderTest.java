@@ -20,6 +20,19 @@ class LadderTest {
     }
 
     @Test
+    void 사다리_사람_예외_처리_확인() {
+        //when
+        int numberOfPerson = 3;
+        Ladder ladder = new Ladder(1, numberOfPerson);
+
+        //given
+        int nthOfPerson = 4;
+
+        //then
+        assertThrows(IllegalArgumentException.class, ()->ladder.run(nthOfPerson));
+    }
+
+    @Test
     void 사다리_결과_확인() {
         //when
         int numberOfPerson = 4;
