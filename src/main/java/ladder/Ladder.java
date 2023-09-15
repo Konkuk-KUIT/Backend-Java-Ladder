@@ -4,13 +4,18 @@ public class Ladder {
 
     //좌표값으로 나타내기위해 이차원 배열
     //캡슐화, 외부에서 접근 못하게 private로 선언
-    private final int[][] ladder;
+    private final Integer[][] ladder;
     private static final int CREATED_COLUMN = 1;
 
     //인스턴스 생성
-    //좌표값에해당하는 배열의 값에 1이 들어있으면 가로선 존재
+    //좌표값에해당하는 배열의 값에 CREATED_COLUMN이 들어있으면 가로선 존재
     public Ladder(int numberOfRows, int numberOfColumns) {
-        ladder = new int[numberOfRows][numberOfColumns];
+        ladder = new Integer[numberOfRows][numberOfColumns];
+        for (int i = 0; i < numberOfRows; i++) {
+            for (int j = 0; j < numberOfColumns; j++) {
+                ladder[i][j] = 0;
+            }
+        }
     }
 
     public int getLadder(int row,int column){
