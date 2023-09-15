@@ -8,8 +8,8 @@ public class Ladder {
 
     //인스턴스 생성
     //좌표값에해당하는 배열의 값에 1이 들어있으면 가로선 존재
-    public Ladder(int numberOfRows, int numberOfColumnsPerRow) {
-        ladder = new int[numberOfRows][numberOfColumnsPerRow];
+    public Ladder(int numberOfRows, int numberOfColumns) {
+        ladder = new int[numberOfRows][numberOfColumns];
     }
     public int getLadder(int row,int column){
         return ladder[row][column];
