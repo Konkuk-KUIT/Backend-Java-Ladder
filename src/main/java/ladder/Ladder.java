@@ -35,12 +35,12 @@ public class Ladder {
     }
     //사다리게임 진행 메서드
     //IllegalArgumentException을 사용하여 적절하지 못한 값을 매서드가 받았을때 강제로 예외발생
+    //3번 이상 nesting 된 코드는 똥이다 -Linux Kernel coding style guid-
     public int run(int selectedColumn) {
         // 범위 벗어나면 예외 발생
         if (!isValidColumn(selectedColumn)) {
             throw new IllegalArgumentException("Invalid selected column");
         }
-
         int currentColumn = selectedColumn - 1;
         int currentRow = 0; // 초기 행 설정
 
