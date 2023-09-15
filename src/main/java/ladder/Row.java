@@ -46,8 +46,27 @@ public class Row {
     }
 
     private void validateDrawLinePosition(int startPosition) {
-        if (startPosition >= row.length - 1 || startPosition < 0 || row[startPosition] == Direction.LEFT.getValue() || row[startPosition + 1] == Direction.RIGHT.getValue()) {
+        if (isInvalidPosition(startPosition)
+            || isLineAtPosition(startPosition)
+            || isLineAtNextPosition(startPosition)
+            || isLineAtPrevPosition(startPosition)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private boolean isInvalidPosition(int position) {
+        return position >= row.length - 1 || position < 0;
+    }
+
+    private boolean isLineAtPosition(int position) {
+        return row[position] == Direction.RIGHT.getValue() || row[position + 1] == Direction.LEFT.getValue();
+    }
+
+    private boolean isLineAtNextPosition(int position) {
+        return row[position + 1] == Direction.RIGHT.getValue();
+    }
+
+    private boolean isLineAtPrevPosition(int position) {
+        return row[position] == Direction.LEFT.getValue();
     }
 }

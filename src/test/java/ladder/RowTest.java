@@ -143,4 +143,15 @@ class RowTest {
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(0));
     }
+
+    @Test
+    void 사다리_그리기_선_중복_예외() {
+        //when
+        int numberOfPerson = 3;
+        Row row = new Row(numberOfPerson);
+        row.drawLine(0);
+
+        //then
+        assertThrows(IllegalArgumentException.class, () -> row.drawLine(0));
+    }
 }
