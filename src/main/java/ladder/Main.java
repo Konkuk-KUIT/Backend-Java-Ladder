@@ -12,11 +12,15 @@ public class Main {
         Ladder ladder = new Ladder(numberOfRow, numberOfColumn);
 
         ladder.drawLine(1,1);
-        ladder.drawLine(4,1);
-        ladder.drawLine(5,1);
-        ladder.drawLine(6,1);
-        int player1=ladder.run(1);
-        System.out.println(player1 );
-
+        ladder.drawLine(2,1);
+        ladder.drawLine(3,2);
+        ladder.drawLine(1,3);
+        ladder.drawLine(4,3);
+        int player1=ladder.run(2);
+        int player2=ladder.run(4);
+        int player3=ladder.run(1);
+        System.out.println("p1 : "+player1);
+        System.out.println("p2 : "+player2);
+        System.out.println("p3 : "+player3);
     }
 }

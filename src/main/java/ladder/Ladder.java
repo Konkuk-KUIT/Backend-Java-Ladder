@@ -6,14 +6,14 @@ public class Ladder {
     //캡슐화, 외부에서 접근 못하게 private로 선언
     private final Integer[][] ladder;
     private static final int CREATED_COLUMN = 1;
-
+    private static final int FLAGED_COLUMN = 0;
     //인스턴스 생성
     //좌표값에해당하는 배열의 값에 CREATED_COLUMN이 들어있으면 가로선 존재
     public Ladder(int numberOfRows, int numberOfColumns) {
         ladder = new Integer[numberOfRows][numberOfColumns];
         for (int i = 0; i < numberOfRows; i++) {
             for (int j = 0; j < numberOfColumns; j++) {
-                ladder[i][j] = 0;
+                ladder[i][j] = 2;
             }
         }
     }
@@ -38,9 +38,16 @@ public class Ladder {
     }
     //이동한 가로선 비활성
     public void movedFlag(int row,int column){
-        ladder[row][column]=0;
+        ladder[row][column]=FLAGED_COLUMN;
     }
-    //사다리게임 진행 메서드, IllegalArgumentException을 사용하여 적절하지 못한 값을 매서드가 받았을때 강제로 예외발생, 3번 이상 nesting 된 코드는 똥이다 -Linux Kernel coding style guid-
+
+    public boolean leftFlag(int row,int column) {
+            return column >0 &&ladder[row][column-1]==FLAGED_COLUMN;
+        }
+    public boolean rightFlag(int row,int column){
+        return  column < ladder[0].length && ladder[row][column]==FLAGED_COLUMN;
+    }
+    //사다리게임 진행 메서드, IllegalArgumentException을 사용하여 적절하지 못한 값을 매서드가 받았을때 강제로 예외발생
     //들어온 값에만 예외를 처리했는데 current도 로직에 들어가서 문제될수있으므로 조건문으로 진입 막기
     public int run(int selectedColumn) {
         // 범위 벗어나면 예외 발생
@@ -49,7 +56,6 @@ public class Ladder {
         }
         int currentColumn = selectedColumn - 1;
         int currentRow = 0; // 초기 행 설정
-
         while (currentRow < ladder.length) {
             // 오른쪽으로 갈 수 있는 선(1로 표시)이 있다면 오른쪽 열로 이동
             if (canMoveRight(currentRow, currentColumn)) {
@@ -63,6 +69,12 @@ public class Ladder {
             }
             // 오른쪽, 왼쪽 모두 이동할 수 없으면 세로로 이동
             if(!canMove(currentRow,currentColumn)){
+                if(leftFlag(currentRow,currentColumn)){
+                    ladder[currentRow][currentColumn-1]=CREATED_COLUMN;
+                }
+                if(rightFlag(currentRow,currentColumn)){
+                    ladder[currentRow][currentColumn]=CREATED_COLUMN;
+                }
                 currentRow++;
             }
         }
