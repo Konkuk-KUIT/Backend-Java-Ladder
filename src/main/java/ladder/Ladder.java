@@ -5,6 +5,7 @@ public class Ladder {
     //좌표값으로 나타내기위해 이차원 배열
     //캡슐화, 외부에서 접근 못하게 private로 선언
     private final int[][] ladder;
+    private static final int CREATED_COLUMN = 1;
 
     //인스턴스 생성
     //좌표값에해당하는 배열의 값에 1이 들어있으면 가로선 존재
@@ -21,11 +22,11 @@ public class Ladder {
     }
     // 현재 들어있는 값이 1인지를 확인
     private boolean canMoveRight(int row,int column){
-        return column < ladder[0].length && ladder[row][column] == 1;
+        return column < ladder[0].length && ladder[row][column] == CREATED_COLUMN;
     }
     // 현재 열 왼쪽에 들어있는 값이 1인지를 확인
     private boolean canMoveLeft(int row,int column){
-        return column >0 && ladder[row][column-1] == 1;
+        return column >0 && ladder[row][column-1] == CREATED_COLUMN;
     }
     private boolean canMove(int row,int column){
         return canMoveRight(row,column) || canMoveLeft(row,column);
@@ -70,6 +71,6 @@ public class Ladder {
         if (row < 1 || row > ladder.length || column < 1 || column > ladder[0].length) {
             throw new IllegalArgumentException("Invalid row or position");
         }
-        ladder[row - 1][column - 1] = 1;
+        ladder[row - 1][column - 1] = CREATED_COLUMN;
     }
 }
