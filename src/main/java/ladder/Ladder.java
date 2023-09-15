@@ -66,8 +66,7 @@ public class Ladder {
         return currentColumn + 1;
     }
 
-    //가로선 그리는 함수
-    //가로선은 왼쪽으로만 그려짐
+    //가로선 그리는 함수, 가로선은 왼쪽으로만 그려짐
     //draw에서 왼쪽오른쪽 선택해서 그리게 하면 코드 구조가 복잡해진다고 생각
     public void drawLine(int row, int column){
         //범위 벗어나면 예외 발생
