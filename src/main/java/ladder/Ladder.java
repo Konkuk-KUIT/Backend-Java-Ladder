@@ -3,8 +3,6 @@ package ladder;
 public class Ladder {
 
     private final int[][] rows;
-//    private Integer pos_X;
-//    private Integer pos_Y;
     private Integer goal;
 
     public Ladder(int numberOfRow, int numberOfPerson) {
