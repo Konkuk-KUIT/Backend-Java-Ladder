@@ -62,12 +62,16 @@ public class Ladder {
 
                 if(rows[i][position-2] == 1){
                     position -= 1;
+                    System.out.print("위치4 : ");
+                    System.out.println(position);
+                    continue;
                 }
                 if(rows[i][position] == 1){
                     position += 1;
+                    System.out.print("위치4 : ");
+                    System.out.println(position);
+                    continue;
                 }
-                System.out.print("위치4 : ");
-                System.out.println(position);
             }
         }
 

@@ -56,6 +56,6 @@ class LadderTest {
         ladder.drawLine(5,1);
         ladder.drawLine(4,2);
 
-        assertEquals(1, ladder.run(3));
+        assertEquals(2, ladder.run(1));
     }
 }
