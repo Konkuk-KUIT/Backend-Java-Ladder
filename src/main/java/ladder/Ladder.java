@@ -11,6 +11,9 @@ public class Ladder {
     public Ladder(int numberOfRows, int numberOfColumnsPerRow) {
         ladder = new int[numberOfRows][numberOfColumnsPerRow];
     }
+    public int getLadder(int row,int column){
+        return ladder[row][column];
+    }
     //유효성 검사
     private boolean isValidColumn(int column) {
         return column >= 1 && column <= ladder[0].length;
@@ -26,7 +29,12 @@ public class Ladder {
     private boolean canMove(int row,int column){
         return column >0 && ladder[row][column-1] == 1&&column < ladder[0].length - 1 && ladder[row][column] == 1;
     }
+    //이동한 가로선 비활성
+    public void movedFlag(int row,int column){
+        ladder[row][column]=0;
+    }
     //사다리게임 진행 메서드
+    //IllegalArgumentException을 사용하여 적절하지 못한 값을 매서드가 받았을때 강제로 예외발생
     public int run(int selectedColumn) {
         // 범위 벗어나면 예외 발생
         if (!isValidColumn(selectedColumn)) {
@@ -39,12 +47,14 @@ public class Ladder {
         while (currentRow < ladder.length) {
             // 오른쪽으로 갈 수 있는 선(1로 표시)이 있다면 오른쪽 열로 이동
             if (canMoveRight(currentRow, currentColumn)) {
-                ladder[currentRow][currentColumn]=0;
+                //이동하면서 비활성화
+                movedFlag(currentRow,currentColumn);
                 currentColumn++;
             }
             // 왼쪽으로 갈 수 있는 선(1로 표시)이 있다면 왼쪽 열로 이동
             if (canMoveLeft(currentRow, currentColumn)) {
-                ladder[currentRow][currentColumn-1]=0;
+                //이동하면서 비활성화
+                movedFlag(currentRow,currentColumn-1);
                 currentColumn--;
             }
             // 오른쪽, 왼쪽 모두 이동할 수 없으면 세로로 이동
@@ -52,7 +62,6 @@ public class Ladder {
                 currentRow++;
             }
         }
-
         // 리턴값은 1을 더한 값을 반환하여 실제 게임 상의 열을 반환
         return currentColumn + 1;
     }
