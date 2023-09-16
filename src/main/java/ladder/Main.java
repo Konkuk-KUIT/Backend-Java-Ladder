@@ -17,7 +17,7 @@ public class Main {
         ladder.drawLine(1,3);
         ladder.drawLine(4,3);
         int player1=ladder.run(2);
-        int player2=ladder.run(4);
+        int player2=ladder.run(3);
         int player3=ladder.run(1);
         System.out.println("p1 : "+player1);
         System.out.println("p2 : "+player2);

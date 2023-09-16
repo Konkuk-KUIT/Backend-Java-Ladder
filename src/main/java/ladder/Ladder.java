@@ -29,7 +29,7 @@ public class Ladder {
     private boolean canMoveRight(int row,int column){
         return column < ladder[0].length && ladder[row][column] == CREATED_COLUMN;
     }
-    // 현재 열 왼쪽에 들어있는 값이 1인지를 확인
+    /* 현재 열 왼쪽에 들어있는 값이 1인지를 확인*/
     private boolean canMoveLeft(int row,int column){
         return column >0 && ladder[row][column-1] == CREATED_COLUMN;
     }
@@ -47,8 +47,37 @@ public class Ladder {
     public boolean rightFlag(int row,int column){
         return  column < ladder[0].length && ladder[row][column]==FLAGED_COLUMN;
     }
-    //사다리게임 진행 메서드, IllegalArgumentException을 사용하여 적절하지 못한 값을 매서드가 받았을때 강제로 예외발생
-    //들어온 값에만 예외를 처리했는데 current도 로직에 들어가서 문제될수있으므로 조건문으로 진입 막기
+    //가로이동
+    public int moveColumn(int row,int column){
+        // 오른쪽으로 갈 수 있는 선(1로 표시)이 있다면 오른쪽 열로 이동
+        if (canMoveRight(row, column)) {
+            movedFlag(row,column);
+            column++;
+        }
+        // 왼쪽으로 갈 수 있는 선(1로 표시)이 있다면 왼쪽 열로 이동
+        if(canMoveLeft(row,column)) {
+            movedFlag(row, column - 1);
+            column--;
+        }
+        return column;
+    }
+    //세로 이동 메서드
+    public int moveRow(int row,int column){
+        // 오른쪽, 왼쪽 모두 이동할 수 없으면 세로로 이동
+        if(!canMove(row,column)){
+            if(leftFlag(row,column)){
+                ladder[row][column-1]=CREATED_COLUMN;
+            }
+            if(rightFlag(row,column)){
+                ladder[row][column]=CREATED_COLUMN;
+            }
+            row++;
+        }
+        return row;
+    }
+
+    /*사다리게임 진행 메서드, IllegalArgumentException을 사용하여 적절하지 못한 값을 매서드가 받았을때 강제로 예외발생
+    들어온 값에만 예외를 처리했는데 current도 로직에 들어가서 문제될수있으므로 조건문으로 진입 막기*/
     public int run(int selectedColumn) {
         // 범위 벗어나면 예외 발생
         if (!isValidColumn(selectedColumn)) {
@@ -57,32 +86,14 @@ public class Ladder {
         int currentColumn = selectedColumn - 1;
         int currentRow = 0; // 초기 행 설정
         while (currentRow < ladder.length) {
-            // 오른쪽으로 갈 수 있는 선(1로 표시)이 있다면 오른쪽 열로 이동
-            if (canMoveRight(currentRow, currentColumn)) {
-                movedFlag(currentRow,currentColumn);
-                currentColumn++;
-            }
-            // 왼쪽으로 갈 수 있는 선(1로 표시)이 있다면 왼쪽 열로 이동
-            if (canMoveLeft(currentRow, currentColumn)) {
-                movedFlag(currentRow,currentColumn-1);
-                currentColumn--;
-            }
-            // 오른쪽, 왼쪽 모두 이동할 수 없으면 세로로 이동
-            if(!canMove(currentRow,currentColumn)){
-                if(leftFlag(currentRow,currentColumn)){
-                    ladder[currentRow][currentColumn-1]=CREATED_COLUMN;
-                }
-                if(rightFlag(currentRow,currentColumn)){
-                    ladder[currentRow][currentColumn]=CREATED_COLUMN;
-                }
-                currentRow++;
-            }
+            currentColumn=moveColumn(currentRow,currentColumn);
+            currentRow=moveRow(currentRow,currentColumn);
         }
         // 리턴값은 1을 더한 값을 반환하여 실제 게임 상의 열을 반환
         return currentColumn + 1;
     }
 
-    //가로선 그리는 함수, 가로선은 오른쪽으로만 그려짐 (draw에서 왼쪽오른쪽 선택해서 그리게 하면 코드 구조가 복잡해진다고 생각)
+    /*가로선 그리는 함수, 가로선은 오른쪽으로만 그려짐 (draw에서 왼쪽오른쪽 선택해서 그리게 하면 코드 구조가 복잡해진다고 생각)*/
     public void drawLine(int row, int column){
         //범위 벗어나면 예외 발생
         if (row < 1 || row > ladder.length || column < 1 || column > ladder[0].length) {
