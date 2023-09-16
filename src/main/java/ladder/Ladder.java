@@ -5,9 +5,10 @@ public class Ladder {
     //좌표값으로 나타내기위해 이차원 배열
     //캡슐화, 외부에서 접근 못하게 private로 선언
     private final Integer[][] ladder;
+    private static final int EMPTY_COLUMN = 2;
     private static final int CREATED_COLUMN = 1;
     private static final int FLAGED_COLUMN = 0;
-    private static final int EMPTY_COLUMN = 2;
+
 
 
     //인스턴스 생성
