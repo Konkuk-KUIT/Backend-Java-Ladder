@@ -76,6 +76,7 @@ public class Ladder {
         return row;
     }
 
+
     /*사다리게임 진행 메서드, IllegalArgumentException을 사용하여 적절하지 못한 값을 매서드가 받았을때 강제로 예외발생
     들어온 값에만 예외를 처리했는데 current도 로직에 들어가서 문제될수있으므로 조건문으로 진입 막기*/
     public int run(int selectedColumn) {
