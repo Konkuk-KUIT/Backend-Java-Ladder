@@ -20,11 +20,11 @@ public class Ladder {
 
     public void drawLine(int startColumn, int row) {
         checkRowRange(row);
-        rows[row].drawLine(startColumn);
+        rows[row-1].drawLine(startColumn);
     }
 
     private void checkRowRange(int row) {
-        if (row >= rows.length) { //범위 체크
+        if (row-1 > rows.length-1) { //범위 체크
             throw new RuntimeException();
         }
     }
