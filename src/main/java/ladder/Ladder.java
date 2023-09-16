@@ -7,13 +7,16 @@ public class Ladder {
     private final Integer[][] ladder;
     private static final int CREATED_COLUMN = 1;
     private static final int FLAGED_COLUMN = 0;
+    private static final int EMPTY_COLUMN = 2;
+
+
     //인스턴스 생성
     //좌표값에해당하는 배열의 값에 CREATED_COLUMN이 들어있으면 가로선 존재
     public Ladder(int numberOfRows, int numberOfColumns) {
         ladder = new Integer[numberOfRows][numberOfColumns];
         for (int i = 0; i < numberOfRows; i++) {
             for (int j = 0; j < numberOfColumns; j++) {
-                ladder[i][j] = 2;
+                ladder[i][j] = EMPTY_COLUMN;
             }
         }
     }
