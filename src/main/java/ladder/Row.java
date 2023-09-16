@@ -36,19 +36,19 @@ public class Row {
 
     private void validateNumberOfPerson(int numberOfPerson) {
         if (numberOfPerson < 1) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("참여 인원은 1명 이상이어야 합니다.");
         }
     }
 
     private void validatePosition(int position) {
         if (position >= row.length || position < 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("유효하지 않은 위치입니다.");
         }
     }
 
     private void validateDrawLinePosition(int startPosition) {
         if (startPosition >= row.length - 1 || startPosition < 0 || row[startPosition] == -1 || row[startPosition + 1] == 1) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("사다리를 그릴 수 없는 위치입니다.");
         }
     }
 }
