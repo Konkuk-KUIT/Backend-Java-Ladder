@@ -59,7 +59,7 @@ class LadderTest {
         Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
 
         //then
-        assertThrows(Exception.class, ()->ladder.drawLine(4, 1));
+        assertThrows(Exception.class, ()->ladder.drawLine(5, 1));
     }
 
 }
