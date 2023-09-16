@@ -9,8 +9,6 @@ public class Ladder {
     private static final int CREATED_COLUMN = 1;
     private static final int FLAGED_COLUMN = 0;
 
-
-
     //인스턴스 생성
     //좌표값에해당하는 배열의 값에 CREATED_COLUMN이 들어있으면 가로선 존재
     public Ladder(int numberOfRows, int numberOfColumns) {
@@ -25,7 +23,11 @@ public class Ladder {
     public int getLadder(int row,int column){
         return ladder[row][column];
     }
-    //유효성 검사
+    /* 선택 행 유효성 검사 */
+    private boolean isValidRow(int row, int column){
+        return row >0 && row <=ladder.length && column >0 &&column <=ladder[0].length;
+    }
+    /* 선택 열 유효성 검사 */
     private boolean isValidColumn(int column) {
         return column >0 && column <= ladder[0].length;
     }
@@ -51,6 +53,7 @@ public class Ladder {
     public boolean rightFlag(int row,int column){
         return  column < ladder[0].length && ladder[row][column]==FLAGED_COLUMN;
     }
+
     //가로이동
     public int moveColumn(int row,int column){
         // 오른쪽으로 갈 수 있는 선(1로 표시)이 있다면 오른쪽 열로 이동
@@ -101,7 +104,7 @@ public class Ladder {
     /*가로선 그리는 함수, 가로선은 오른쪽으로만 그려짐 (draw에서 왼쪽오른쪽 선택해서 그리게 하면 코드 구조가 복잡해진다고 생각)*/
     public void drawLine(int row, int column){
         //범위 벗어나면 예외 발생
-        if (row < 1 || row > ladder.length || column < 1 || column > ladder[0].length) {
+        if (!isValidRow(row,column)) {
             throw new IllegalArgumentException("Invalid row or position");
         }
         ladder[row - 1][column - 1] = CREATED_COLUMN;
