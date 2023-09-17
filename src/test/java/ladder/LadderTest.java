@@ -39,13 +39,14 @@ class LadderTest {
     @DisplayName("다리 생성 확인")
     void drawLine() {
         //given
-        int posY = 2;
+        int posYE = 6;
         int posX = 3;
+        int posY = 2;
         //when
-        ladder.drawLine(posY, posX);
+
         //then
-        assertEquals(1, ladder.getRows()[posY][posX]);
-        assertEquals(1, ladder.getRows()[posY][posX + 1]);
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> ladder.drawLine(posYE, posX));
+        assertThrows(RuntimeException.class, () -> ladder.drawLine(posY, posX));
     }
     @Test
     @DisplayName("사다리 이용 확인")
