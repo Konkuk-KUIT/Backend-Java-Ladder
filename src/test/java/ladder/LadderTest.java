@@ -2,8 +2,7 @@ package ladder;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
 
@@ -37,7 +36,7 @@ class LadderTest {
         assertEquals(1, ladder.rowsCheck(row, col+1));
 
 //        중복된 선을 긋는 경우 -> RuntimeException발생
-//        ladder.drawLine(row, col+1);
+        assertThrows(Exception.class, ()->ladder.drawLine(row,col+1));
     }
 
     @Test
@@ -48,9 +47,8 @@ class LadderTest {
         Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
 //        사라리 선 긋기
 //        1. 아무 선도 안그어 졌을때
-//        assertEquals(2, ladder.run(2));
+        assertEquals(2, ladder.run(2));
 //        2. 여러 선을 그어졌을 때
-//        given
         ladder.drawLine(1,1);
         ladder.drawLine(3,1);
         ladder.drawLine(5,1);

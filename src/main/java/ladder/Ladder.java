@@ -37,8 +37,6 @@ public class Ladder {
 
         for(int i=0; i<rows.length; i++){
             if(rows[i][position-1] == 0){
-                System.out.print("위치1 : ");
-                System.out.println(position);
                 continue;
             }
             if(rows[i][position-1] == 1){
@@ -47,29 +45,21 @@ public class Ladder {
                     if(rows[i][position] == 1){
                         position += 1;
                     }
-                    System.out.print("위치2 : ");
-                    System.out.println(position);
                     continue;
                 }
                 if(position == rows[0].length){
                     if(rows[i][position-2] == 1){
                         position -= 1;
                     }
-                    System.out.print("위치3 : ");
-                    System.out.println(position);
                     continue;
                 }
 
                 if(rows[i][position-2] == 1){
                     position -= 1;
-                    System.out.print("위치4 : ");
-                    System.out.println(position);
                     continue;
                 }
                 if(rows[i][position] == 1){
                     position += 1;
-                    System.out.print("위치4 : ");
-                    System.out.println(position);
                     continue;
                 }
             }
