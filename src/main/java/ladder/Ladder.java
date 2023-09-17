@@ -4,9 +4,9 @@ public class Ladder {
 
     public static void main(String[] args) {
         Ladder ladder = new Ladder(5, 4);  // 5 rows, 4 columns
-        ladder.drawLine(1, 1);
-        ladder.drawLine(3, 2);
-        System.out.println(ladder.run(1));
+        ladder.drawLine(0, 0);
+        ladder.drawLine(2, 1);
+        System.out.println(ladder.run(0));
     }
 
     private final int[][] rows;
@@ -43,9 +43,9 @@ public class Ladder {
 
     public int run(int startPosition) {
         int position = startPosition;
-        for (int i = 1; i < rows.length; i++) {
+        for (int i = 0; i < rows.length; i++) {
             // 왼쪽에 존재하는지 확인
-            if (position > 1 && rows[i][position - 1] == 1) {
+            if (position > 0 && rows[i][position - 1] == 1) {
                 position--;
                 continue;
             }
