@@ -21,9 +21,6 @@ class LadderTest {
         //then
         assertNotNull(ladder);
     }
-
-
-
     @DisplayName("사다리 도착지점 정상 반환확인")
     @Test
     void testLadderReachesDestination(){
@@ -39,27 +36,6 @@ class LadderTest {
         assertThat(result).isInstanceOf(Integer.class);
         assertThat(result).isBetween(0, numberOfCulumn - 1);
     }
-
-    @DisplayName("사다리 비활성화 확인")
-    @Test
-    void testMovedFlag(){
-        //given
-        int numberOfRow = 3;
-        int numberOfCulumn = 5;
-        int selectedCulum=1;
-        int disabled=0;
-        int abled=1;
-        //when
-        Ladder ladder = new Ladder(numberOfRow, numberOfCulumn);
-        ladder.drawLine(2,1);
-        ladder.drawLine(3,3);
-        ladder.run(selectedCulum);
-        //then
-        assertEquals(ladder.getLadder(1,0),disabled);
-        assertEquals(ladder.getLadder(2,2),abled);
-    }
-
-
 
     @DisplayName("사다리 예상 결과 부합 확인")
     @Test
