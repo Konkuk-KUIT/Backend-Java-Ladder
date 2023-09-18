@@ -23,7 +23,7 @@ public class Ladder {
     public int run(int selectedColumn) {
         /* 범위 벗어나면 예외 발생*/
         if (!LadderMove.isValidColumn(selectedColumn)) {
-            throw new IllegalArgumentException("Invalid selected column");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_RUN_POSITION.getMessage());
         }
         int currentColumn = selectedColumn - 1;
         int currentRow = 0; // 초기 행 설정
@@ -38,7 +38,7 @@ public class Ladder {
     public void drawLine(int row, int column){
         /*범위 벗어나면 예외 발생*/
         if (!LadderMove.isValidRow(row,column)) {
-            throw new IllegalArgumentException("Invalid row or position");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_DRAW_POSITION.getMessage());
         }
         ladder[row - 1][column - 1] = Direction.CREATED_COLUMN.getValue();
     }
