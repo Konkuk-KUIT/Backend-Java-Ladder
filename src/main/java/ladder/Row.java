@@ -19,7 +19,14 @@ public class Row {
     }
 
     public void drawLine(int startColumn) {
+        checkDrawable(startColumn);
         row[startColumn-1] = 1;
         row[startColumn] = -1;
+    }
+
+    private void checkDrawable(int startColumn) { //선을 그릴 수 있는 상황인지 체크
+        if (row[startColumn-1]!=0 || row[startColumn]!=0){
+            throw new RuntimeException();
+        }
     }
 }
