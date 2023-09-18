@@ -5,6 +5,9 @@ public class Ladder {
     private final Row[] rows;
 
     public Ladder(int numberOfRow, int numberOfPerson) {
+        if (numberOfRow<=0 || numberOfPerson<=0) { //범위 체크
+            throw new RuntimeException();
+        }
         rows = new Row[numberOfRow];
         for (int i=0; i< numberOfRow; i++){
             rows[i] = new Row(numberOfPerson);
