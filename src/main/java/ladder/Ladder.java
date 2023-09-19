@@ -1,51 +1,27 @@
 package ladder;
 
+import java.awt.*;
+
 public class Ladder {
 
-    /*
-    사다리에 다리를 놓기 위한 좌표정보
-    fromRow, fromColumn : 시작점의 y, x 좌표
-    toRow, toColumn : 도착점의 y, x좌표
-     */
-    public static class LegPoint{
-        private final int fromRow;
-        private final int fromColumn;
-        private final int toRow;
-        private final int toColumn;
-
-        public LegPoint(int fromRow, int fromColumn, int toRow, int toColumn){
-            this.fromRow = fromRow;
-            this.fromColumn = fromColumn;
-            this.toRow = toRow;
-            this.toColumn = toColumn;
-        }
-    }
-
-    private final int[][] rows;
-
-    public int[][] getLadder(){
-        return rows;
-    }
+    private final Node[][] ladder;
 
     public Ladder(int numberOfRow, int numberOfPerson) {
-        rows = new int[numberOfRow][numberOfPerson];
+        ladder = new Node[numberOfRow][numberOfPerson];
+        for (int y=0; y<numberOfRow; y++){
+            for (int x=0; x<numberOfPerson; x++){
+                ladder[y][x] = Node.of(Direction.NONE);
+            }
+        }
     }
 
-    /*
-    LegPoint의 좌표정보를 활용해서 시작점과 끝점이 서로의 위치를 가리킬 수 있도록 한다.
-    위치는 y*width + x 형태로 표현하여 2차원 배열의 특정 위치를 int형 정수로 나타낼 수 있도록 인코딩
-     */
-    public void drawLine(LegPoint legPoint){
-        int from = legPoint.fromRow * rows[0].length + legPoint.fromColumn + 1;
-        int to = legPoint.toRow * rows[0].length + legPoint.toColumn + 1;
 
-        // 잘못된 위치좌표로 인해 다리를 그릴 수 없는 경우 RuntimeException
-        if (!validate_legPoints(legPoint)){
-            throw new RuntimeException("사다리를 그릴 수 없는 좌표를 설정하였습니다.");
+    public void drawLine(Point position, Direction direction) {
+        Point crossed_point = new Point(position.x + direction.getDirection(), position.y);
+        if (is_validate_position(position, crossed_point)) {
+            this.ladder[position.y][position.x] = Node.of(direction);
+            this.ladder[crossed_point.y][crossed_point.x] = Node.of(direction.reverse());
         }
-
-        rows[legPoint.fromRow][legPoint.fromColumn] = to;
-        rows[legPoint.toRow][legPoint.toColumn] = from;
     }
 
     /*
@@ -53,11 +29,27 @@ public class Ladder {
     x좌표의 경우 0 ~ width 안에 들어오면 통과
     y좌표의 경우 가장 아래쪽은 도착지점이므로 사다리를 연결할 수 없다. 따라서 0 ~ height-1 안에 들어와야 통과
      */
-    private boolean validate_legPoints(LegPoint legPoint){
-        return 0 <= legPoint.toRow && legPoint.toRow < rows.length - 1
-                && 0 <= legPoint.fromRow && legPoint.fromRow < rows.length - 1
-                && 0 <= legPoint.toColumn && legPoint.toColumn < rows[0].length
-                && 0 <= legPoint.fromColumn && legPoint.fromColumn < rows[0].length;
+    private boolean is_validate_position(Point position, Point crossed_point){
+        return check_boundary(position, crossed_point) && check_overlapping(position, crossed_point);
+    }
+
+    // 다리가 연결될 양쪽 노드가 유효한 범위안에 있는지 체크
+    private boolean check_boundary(Point position, Point crossed_point){
+        if (0 <= position.x && position.x < ladder[0].length
+                && 0 <= position.y && position.y < ladder.length
+                && 0 <= crossed_point.y && crossed_point.y < ladder.length
+                && 0 <= crossed_point.x & crossed_point.x < ladder[0].length){
+            return true;
+        }
+        throw new ArrayIndexOutOfBoundsException("사다리 범위 밖으로는 다리를 그릴 수 없습니다.");
+    }
+
+    // 다리가 연결될 양쪽 노드 중 하나라도 겹치는 부분이 있는지 체크
+    private boolean check_overlapping(Point position, Point crossed_point){
+        if (this.ladder[position.y][position.x].is_NONE() && this.ladder[crossed_point.y][crossed_point.x].is_NONE()){
+            return true;
+        }
+        throw new IllegalArgumentException("해당 지점에는 이미 사다리가 존재합니다.");
     }
 
     /*
@@ -67,19 +59,17 @@ public class Ladder {
     public int run(int start_point){
         int y = 0;
         int x = start_point;
-        while(y < rows.length-1){
-            int destination = rows[y][x];
-            if (destination == 0){
+        while(y < ladder.length){
+            Node cur_position = ladder[y][x];
+            Point dir = cur_position.move();    // 다음으로 이동할 방향 (y, x) 형태로 반환
+            // 이동방향에 따라 좌표 업데이트
+            y += dir.y;
+            x += dir.x;
+            // 서로서로를 가리켜서 무한루프에 빠지기 때문에 좌우 이동인 경우 다음 위치를 바로 한칸 내려주어야 한다. 따라서 y좌표에서 1을 더해줌
+            if (!cur_position.is_NONE()){
                 y += 1;
-                continue;
             }
-            // y, x 에 목적지 좌표를 찍을 수 있도록 디코딩,
-            // 서로서로를 가리켜서 무한루프에 빠지기 때문에 다음 위치를 바로 한칸 내려주어야 한다. 따라서 y좌표에서 1을 빼줌
-            y = (destination-1) / rows[0].length + 1;
-            x = (destination-1) % rows[0].length;
         }
         return x;
     }
-
-    // TODO: 사다리가 교차하여 무한루프에 빠지는 경우 예외처리
 }
