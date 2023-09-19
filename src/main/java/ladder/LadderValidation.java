@@ -1,19 +1,20 @@
 package ladder;
 
 public class LadderValidation extends Ladder {
-
+    /* 선택 행,열 유효성 검사 */
     public LadderValidation(int numberOfRows, int numberOfColumns) {
         super(numberOfRows, numberOfColumns);
     }
-
-    /*좌표값에해당하는 배열의 값에 CREATED_COLUMN이 들어있으면 가로선 존재*/
-    /* 선택 행 유효성 검사 */
-    public static boolean isValidRow(int row, int column){
-        return row >0 && row <=Ladder.ladder.length && column >0 &&column <=ladder[0].length;
+    public static void isValidRow(int row, int column){
+        if (!(row >0 && row <=Ladder.ladder.length && column >0 &&column <=ladder[0].length)) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_DRAW_POSITION.getMessage());
+        }
     }
     /* 선택 열 유효성 검사 */
-    public static boolean isValidClumn(int column){
-        return column >0 && column <= ladder[0].length;
+    public static void isValidClumn(int column){
+        if (!(column >0 && column <= ladder[0].length)){
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_RUN_POSITION.getMessage());
+        }
     }
     /* 현재 들어있는 값이 1인지를 확인*/
     static boolean canMoveRight(int row, int column){

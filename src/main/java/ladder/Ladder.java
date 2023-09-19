@@ -27,10 +27,7 @@ public class Ladder {
 
     /*사다리게임 진행 메서드,*/
     public int run(int selectedColumn) {
-        /* 범위 벗어나면 예외 발생*/
-        if (!LadderValidation.isValidClumn(selectedColumn)){
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_RUN_POSITION.getMessage());
-        }
+        LadderValidation.isValidClumn(selectedColumn);
         int currentColumn = selectedColumn - 1;
         int currentRow = 0; // 초기 행 설정
         while (currentRow < ladder.length) {
@@ -40,12 +37,11 @@ public class Ladder {
         /* 리턴값은 1을 더한 값을 반환하여 실제 게임 상의 열을 반환*/
         return currentColumn + 1;
     }
+
     /*가로선 그리는 함수, 가로선은 오른쪽으로만 그려짐 (draw에서 왼쪽오른쪽 선택해서 그리게 하면 코드 구조가 복잡해진다고 생각)*/
     public void drawLine(int row, int column){
         /*범위 벗어나면 예외 발생*/
-        if (!LadderValidation.isValidRow(row,column)) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_DRAW_POSITION.getMessage());
-        }
+        LadderValidation.isValidRow(row,column);
         ladder[row - 1][column - 1] = Direction.CREATED_COLUMN.getValue();
     }
 }
