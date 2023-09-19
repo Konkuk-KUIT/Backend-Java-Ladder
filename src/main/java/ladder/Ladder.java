@@ -1,7 +1,6 @@
 package ladder;
 
 public class Ladder {
-
     /*좌표값으로 나타내기위해 이차원 배열
     캡슐화, 외부에서 접근 못하게 private로 선언*/
     static Integer[][] ladder;
@@ -15,14 +14,21 @@ public class Ladder {
             }
         }
     }
-    public int getLadder(int row,int column){
-        return ladder[row][column];
+    /*사다리 전체 출력*/
+    public void printLadder(int row,int col){
+        for(row=0;row<ladder.length;row++){
+            for(col=0; col<ladder[0].length;col++){
+                System.out.print(ladder[row][col]);
+            }
+            System.out.println("");
+        }
+        System.out.println("");
     }
-    /*사다리게임 진행 메서드, IllegalArgumentException을 사용하여 적절하지 못한 값을 매서드가 받았을때 강제로 예외발생
-    들어온 값에만 예외를 처리했는데 current도 로직에 들어가서 문제될수있으므로 조건문으로 진입 막기*/
+
+    /*사다리게임 진행 메서드,*/
     public int run(int selectedColumn) {
         /* 범위 벗어나면 예외 발생*/
-        if (!LadderMove.isValidColumn(selectedColumn)) {
+        if (!LadderValidation.isValidClumn(selectedColumn)){
             throw new IllegalArgumentException(ExceptionMessage.INVALID_RUN_POSITION.getMessage());
         }
         int currentColumn = selectedColumn - 1;
@@ -37,7 +43,7 @@ public class Ladder {
     /*가로선 그리는 함수, 가로선은 오른쪽으로만 그려짐 (draw에서 왼쪽오른쪽 선택해서 그리게 하면 코드 구조가 복잡해진다고 생각)*/
     public void drawLine(int row, int column){
         /*범위 벗어나면 예외 발생*/
-        if (!LadderMove.isValidRow(row,column)) {
+        if (!LadderValidation.isValidRow(row,column)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_DRAW_POSITION.getMessage());
         }
         ladder[row - 1][column - 1] = Direction.CREATED_COLUMN.getValue();
