@@ -15,8 +15,8 @@ public class Ladder {
     public void drawLine(int row, int col) {
         validateIndex(row, col);
         validateLineDuplication(row, col);
-        this.rows[row][col] = 1;
-        this.rows[row][col + 1] = -1;
+        this.rows[row][col] = Direction.RIGHT.getValue();
+        this.rows[row][col + 1] = Direction.LEFT.getValue();
     }
 
     public int run(int idx) {
@@ -27,8 +27,8 @@ public class Ladder {
     }
 
     private int moveLine(int row, int col) {
-        if(rows[row][col] == 1) return col+1;
-        if(rows[row][col] == -1) return col-1;
+        if(rows[row][col] == Direction.RIGHT.getValue()) return col + Direction.RIGHT.getValue();
+        if(rows[row][col] == Direction.LEFT.getValue()) return col + Direction.LEFT.getValue();
         return col;
     }
 
