@@ -21,7 +21,7 @@ class LadderTest {
     @DisplayName("drawLine 메서드 테스트")
     @Test
     void 사다리_다리생성_확인(){
-        Ladder ladder= new Ladder(3 .5);
+        Ladder ladder= new Ladder(3,5);
 
         // 다리가 하나만 일 때
         ladder.drawLine(1, 3,4);
