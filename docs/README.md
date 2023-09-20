@@ -4,7 +4,7 @@
 1. Row에 관련된 로직을 Row 클래스 내부에서 정의
    1. drawLine 메소드
    2. run 메소드 
-   3. 
+   3. nextPosiotion 메소드
 2. Row에 관련된 예외처리를 Row 클래스 내부에서 처리
 
 ##2. 하드 코딩 상수 변경
