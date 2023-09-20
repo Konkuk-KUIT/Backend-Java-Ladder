@@ -4,45 +4,25 @@ import static ladder.ExceptionMessage.*;
 
 public class Ladder {
 
-    private final int[][] rows;
+    //private final int[][] rows;
+    private final Row[] rows;
 
-    public Ladder(int numberOfRow, int numberOfPerson) {
-        rows = new int[numberOfRow][numberOfPerson];
-    }
-
-    public int[][] getRows() {
-        return rows;
+    public Ladder(NaturalNumber numberOfRow, NaturalNumber numberOfPerson) {
+        rows = new Row[numberOfRow.getNumber()];
+        for(int i=0; i<numberOfRow.getNumber(); i++) {
+            rows[i] = new Row(numberOfPerson.getNumber());
+        }
     }
 
     public void drawLine(int row, int col) {
-        validateIndex(row, col);
-        validateLineDuplication(row, col);
-        this.rows[row][col] = Direction.RIGHT.getValue();
-        this.rows[row][col + 1] = Direction.LEFT.getValue();
+        this.rows[row].drawLine(col);
     }
 
-    public int run(int idx) {
-        for (int i=0; i<rows.length; i++) {
-            idx = moveLine(i, idx);
-        }
-        return idx;
-    }
+//    public int run(int idx) {
+//        for (int i=0; i<rows.length; i++) {
+//            idx = moveLine(i, idx);
+//        }
+//        return idx;
+//    }
 
-    private int moveLine(int row, int col) {
-        if(rows[row][col] == Direction.RIGHT.getValue()) return col + Direction.RIGHT.getValue();
-        if(rows[row][col] == Direction.LEFT.getValue()) return col + Direction.LEFT.getValue();
-        return col;
-    }
-
-    private void validateIndex(int row, int col) {
-        if(row < 0 || col < 0 || row >= rows.length || col >= rows[0].length - 1) {
-            throw new IllegalArgumentException(INVALID_POSITION.getMessage());
-        }
-    }
-
-    private void validateLineDuplication(int row, int col) {
-        if(rows[row][col] != 0 || rows[row][col + 1] != 0) {
-            throw new IllegalArgumentException(LINE_DUPLICATION.getMessage());
-        }
-    }
 }
