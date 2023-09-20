@@ -1,5 +1,7 @@
 package ladder;
 
+import static ladder.ExceptionMessage.*;
+
 public class Ladder {
 
     private final int[][] rows;
@@ -34,13 +36,13 @@ public class Ladder {
 
     private void validateIndex(int row, int col) {
         if(row < 0 || col < 0 || row >= rows.length || col >= rows[0].length - 1) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_POSITION.getMessage());
         }
     }
 
     private void validateLineDuplication(int row, int col) {
         if(rows[row][col] != 0 || rows[row][col + 1] != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LINE_DUPLICATION.getMessage());
         }
     }
 }
