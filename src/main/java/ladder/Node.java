@@ -12,12 +12,12 @@ public class Node {
     public boolean is_NONE(){
         return this.direction == Direction.NONE;
     }
+    private boolean is_RIGHT() {return this.direction == Direction.RIGHT;}
+    private boolean is_LEFT() {return this.direction == Direction.LEFT;}
 
-    public Point move(){
-        if (is_NONE()){
-            return new Point(0, 1);
-        }
-        return new Point(this.direction.getDirection(), 0);
+    public void move(LadderPosition position){
+        if (is_RIGHT()) position.move_right();
+        if (is_LEFT()) position.move_left();
     }
 
     public static Node of(Direction direction){

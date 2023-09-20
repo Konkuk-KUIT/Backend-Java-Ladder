@@ -5,12 +5,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderSumulationTest {
 
-    private Ladder ladder;
+    private Node[][] ladder;
+    private LadderRunner ladderRunner;
 
     /*  LEFT : -1,  RIGHT : 1
     {{0, 0, 0, 0, 0},
@@ -21,12 +24,14 @@ public class LadderSumulationTest {
      */
     @BeforeEach
     void setup_ladder(){
-        ladder = new Ladder(5, 5);
-        ladder.drawLine(new Point(1, 1), Direction.LEFT);
-        ladder.drawLine(new Point(2, 1), Direction.RIGHT);
-        ladder.drawLine(new Point(3, 2), Direction.RIGHT);
-        ladder.drawLine(new Point(2, 3), Direction.LEFT);
-        ladder.drawLine(new Point(3, 4), Direction.LEFT);
+        LadderCreator ladderCreator = new LadderCreator(5, 5);
+        ladderCreator.drawLine(LadderPosition.of(1, 1), Direction.LEFT);
+        ladderCreator.drawLine(LadderPosition.of(1, 2), Direction.RIGHT);
+        ladderCreator.drawLine(LadderPosition.of(2, 3), Direction.RIGHT);
+        ladderCreator.drawLine(LadderPosition.of(3, 2), Direction.LEFT);
+        ladderCreator.drawLine(LadderPosition.of(4, 3), Direction.LEFT);
+        ladder = ladderCreator.getLadder();
+        ladderRunner = new LadderRunner(ladder);
     }
 
 
@@ -40,10 +45,60 @@ public class LadderSumulationTest {
         // when
         int[] results = new int[5];
         for (int idx = 0; idx < players.length; idx++){
-            results[idx] = ladder.run(players[idx]);
+            results[idx] = ladderRunner.run(players[idx]);
         }
 
         // then
         assertThat(results).isEqualTo(answers);
     }
+
+//    @Test
+//    @DisplayName("사다리 출력")
+//    void print_ladder(){
+//        // given
+//        int start = 0;
+//        OutputStream out = new ByteArrayOutputStream();
+//        final String ladder_print =
+//                        "0*  0   0  0  0 \n" +
+//                        "1  -1  1  -1  0 \n" +
+//                        "0   0   0   1  -1 \n" +
+//                        "0   0   0   0  0 \n" +
+//                        "\n" +
+//                        "1  -1*  0  0  0 \n" +
+//                        "0   1  -1  0  0 \n" +
+//                        "0   0   0  0  0 \n" +
+//                        "0   0   0  0  0 \n" +
+//                        "\n" +
+//                        "1  -1   0  0  0 \n" +
+//                        "0   1* -1  0  0 \n" +
+//                        "0   0   0  0  0 \n" +
+//                        "0   0   0  0  0 \n" +
+//                        "\n" +
+//                        "1  -1   0  0  0 \n" +
+//                        "0   1  -1* 0  0 \n" +
+//                        "0   0   0  0  0 \n" +
+//                        "0   0   0  0  0 \n" +
+//                        "\n" +
+//                        "1  -1   0  0  0 \n" +
+//                        "0   1  -1  0  0 \n" +
+//                        "0   0   0* 0  0 \n" +
+//                        "0   0   0  0  0 \n" +
+//                        "\n" +
+//                        "1  -1   0  0  0 \n" +
+//                        "0   1  -1  0  0 \n" +
+//                        "0   0   0  0* 0 \n" +
+//                        "0   0   0  0  0 \n" +
+//                        "\n" +
+//                        "1  -1   0  0  0 \n" +
+//                        "0   1  -1  0  0 \n" +
+//                        "0   0   0  0  0 \n" +
+//                        "0   0   0  0* 0 \n";
+//
+//
+//        // when
+//        int result = ladder.run(start);
+//
+//        // then
+//
+//    }
 }
