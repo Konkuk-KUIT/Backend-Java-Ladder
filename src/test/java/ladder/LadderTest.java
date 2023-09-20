@@ -2,26 +2,64 @@ package ladder;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
 
     @Test
     void 사다리_생성_확인() {
         //given
-        int numberOfRow = 4;
-        int numberOfPerson = 4;
+        int numberOfRow = 3;
+        int numberOfPerson = 5;
 
         //when
         Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
-        ladder.drawLine(1,1);
-        ladder.drawLine(2,2);
-        ladder.drawLine(3,1);
-        ladder.drawLine(3,3);
 
         //then
-        assertEquals(4,ladder.run(1));
+        assertNotNull(ladder);
+    }
+
+    @Test
+    void 사다리_사람_예외_처리_확인() {
+        //when
+        int numberOfPerson = 3;
+        Ladder ladder = new Ladder(1, numberOfPerson);
+
+        //given
+        int nthOfPerson = 4;
+
+        //then
+        assertThrows(IllegalArgumentException.class, ()->ladder.run(nthOfPerson));
+    }
+
+    @Test
+    void 사다리_결과_확인() {
+        //when
+        int numberOfPerson = 4;
+        int row = 3;
+        Ladder ladder = new Ladder(row, numberOfPerson);
+
+        ladder.drawLine(0,0);
+        ladder.drawLine(1,1);
+        ladder.drawLine(2,0);
+
+        //given
+        int nthOfPerson = 0;
+
+        //then
+        assertEquals(2, ladder.run(nthOfPerson));
+
+        //given
+        nthOfPerson = 1;
+
+        //then
+        assertEquals(1, ladder.run(nthOfPerson));
+
+        //given
+        nthOfPerson = 2;
+
+        //then
+        assertEquals(0, ladder.run(nthOfPerson));
     }
 
 }
