@@ -35,7 +35,8 @@ class LadderTest {
         testCol[selectCol - 1] = direction;
         testCol[selectCol -1 + direction] = direction * (-1);
 
-        assertArrayEquals(testCol, ladder.getRows()[selectRow - 1]);
+        assertEquals(direction, ladder.getDirection(selectRow, selectCol));
+        assertEquals(direction * (-1), ladder.getDirection(selectRow, selectCol + direction));
     }
 
     @Test

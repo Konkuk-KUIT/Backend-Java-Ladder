@@ -31,8 +31,8 @@ public class Ladder {
         this.rows[row - 1][col - 1 + direction] = direction * (-1);
     }
 
-    public int[][] getRows() {
-        return rows;
+    public int getDirection(int row, int col) {
+        return rows[row - 1][col - 1];
     }
 
     public int run(int startPos) {
