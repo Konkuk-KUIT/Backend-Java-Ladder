@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
     Ladder ladder;
-    LadderRun ladderRun;
+    LadderRunner ladderRun;
 
     @BeforeEach
     void beforeEach() {
@@ -19,7 +19,7 @@ class LadderTest {
         ladder.drawLine(4, 0);
         ladder.drawLine(5, 1);
         ladder.drawLine(4, 3);
-        ladderRun = new LadderRun(ladder);
+        ladderRun = new LadderRunner(ladder);
     }
 
     @Test

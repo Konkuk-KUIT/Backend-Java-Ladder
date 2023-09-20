@@ -1,9 +1,9 @@
 package ladder;
 
-public class LadderRun {
+public class LadderRunner {
     private final Ladder ladder;
 
-    public LadderRun(Ladder ladder) {
+    public LadderRunner(Ladder ladder) {
         this.ladder = ladder;
     }
 
