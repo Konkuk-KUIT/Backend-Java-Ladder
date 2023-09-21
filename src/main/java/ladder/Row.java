@@ -13,7 +13,7 @@ public class Row {
     }
 
     public void drawLine(Position startPosition) {
-        validatePosition(startPosition);
+        validateDrawLinePosition(startPosition);
         setDirectionAtPosition(startPosition, Direction.RIGHT);
         setDirectionAtPosition(startPosition.next(), Direction.LEFT);
     }
