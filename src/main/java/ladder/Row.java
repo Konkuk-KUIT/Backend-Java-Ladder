@@ -41,7 +41,7 @@ public class Row {
             throw new IllegalArgumentException(INVALID_DRAW_POSITION_EXIST.getMessage());
         }
         if(nodes[startPosition.getPosition()].isLeft()) {
-            throw new IllegalArgumentException(INVALID_DRAW_POSITION_EXIST.getMessage());
+            throw new IllegalArgumentException(INVALID_DRAW_POSITION_OVERLAP.getMessage());
         }
         if (nodes[startPosition.next().getPosition()].isRight()) {
             throw new IllegalArgumentException(INVALID_DRAW_POSITION_OVERLAP.getMessage());
