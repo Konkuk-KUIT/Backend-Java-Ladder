@@ -2,7 +2,7 @@ package ladder;
 
 public enum ExceptionMessage {
 
-    INVALID_LADDER_START_POSITION("사다리 위치는 자연수입니다."),
+    INVALID_LADDER_START_POSITION("사다리 위치는 0 이상 정수입니다."),
     INVALID_NUMBER_OF_PERSON("참여 인원은 2명 이상이어야 합니다."),
     INVALID_POSITION("유효하지 않은 위치입니다"),
     INVALID_DRAW_POSITION_OVERLAP("2개 이상의 다리는 연결할 수 없습니다"),

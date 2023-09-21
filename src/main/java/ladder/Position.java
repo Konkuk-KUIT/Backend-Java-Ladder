@@ -1,5 +1,6 @@
 package ladder;
 
+import static ladder.ExceptionMessage.INVALID_LADDER_START_POSITION;
 import static ladder.ExceptionMessage.INVALID_NATURAL_NUMBER;
 
 public class Position {
@@ -37,7 +38,7 @@ public class Position {
 
     private static void validatePosition(int position) {
         if (!isPosition(position)) {
-            throw new IllegalArgumentException(INVALID_NATURAL_NUMBER.getMessage());
+            throw new IllegalArgumentException(INVALID_LADDER_START_POSITION.getMessage());
         }
     }
 
