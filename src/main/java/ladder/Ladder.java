@@ -38,44 +38,17 @@ public class Ladder {
         return currentColumn + 1;
     }
 
-    /*사다리 전체 출력*/
-    public void printLadder(){
-        for(Integer[] row : ladder){
-            for(Integer value : row){
-                System.out.print(value);
-            }
-            System.out.println("");
-        }
-        System.out.println("");
-    }
-
     public void printPlayer(int selectedColumn) {
         LadderValidation.isValidClumn(selectedColumn);
-
-        //-1을 현재 위치로 대체할거라 초기화
+        //-1을 현재 위치로 대체할거라 복사
         Integer[][] clonedLadder = new Integer[ladder.length][];
-        for (int i = 0; i < ladder.length; i++) {
-            clonedLadder[i] = ladder[i].clone();
-        }
-
+        PrintLadder.copyLadder(clonedLadder);
         int currentColumn = selectedColumn - 1;
         int currentRow = 0;
-
         while (currentRow < ladder.length) {
             // 현재 위치를 반복해서 초기화 켜줌
             clonedLadder[currentRow][currentColumn] = Direction.PLAYER_COLUMN.getValue();
-
-            for(Integer[] row : clonedLadder){
-                for(Integer value : row){
-                    if (value == Direction.PLAYER_COLUMN.getValue()) {
-                        System.out.print("*"+value); // 현재 플레이어 위치 표시
-                    } else {
-                        System.out.print(value); // 빈 단계 표시
-                    }
-                }
-                System.out.println("");
-            }
-            System.out.println();
+            PrintLadder.printCurrentLadder(clonedLadder);
             // 사다리 지나가면 복구
             clonedLadder[currentRow][currentColumn] = ladder[currentRow][currentColumn];
             //사다리 이동

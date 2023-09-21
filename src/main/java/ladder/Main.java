@@ -10,7 +10,7 @@ public class Main {
 
         Ladder ladder = new Ladder(numberOfRow, numberOfColumn);
         System.out.println("========사다리 초기 생성=======");
-        ladder.printLadder();
+        PrintLadder.printLadder();
 
         ladder.drawLine(1,1);
         ladder.drawLine(2,1);
@@ -18,11 +18,11 @@ public class Main {
         ladder.drawLine(1,3);
         ladder.drawLine(4,3);
         System.out.println("========사다리 설정 완료=======");
-        ladder.printLadder();
+        PrintLadder.printLadder();
 
         System.out.println("==========게임 진행=========");
         int player1=ladder.run(2);
-        System.out.println("p1 : "+player1);
+        System.out.println("p1 : 2\n");
         ladder.printPlayer(2);
 
         System.out.println("========게임 최종 결과=======");
