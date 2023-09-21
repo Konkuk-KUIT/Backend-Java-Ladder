@@ -27,6 +27,18 @@ public class Row {
         nodes[startPosition.getValue()] = Node.of(direction);
     }
 
+    public void printRow(LadderPosition curLadderPosition) {
+        for(int i = 0; i < nodes.length; i++) {
+            nodes[i].printNode();
+            if(curLadderPosition.isSameCol(Position.of(i))) {
+                System.out.print("*");
+            }
+            System.out.print(" ");
+        }
+        System.out.println();
+    }
+
+
     private void validatePosition(Position position) {
         if (position.isBiggerThan(nodes.length - 1) || position.isSmallerThan(0)) {
             throw new IllegalArgumentException(INVALID_POSITION.getMessage());

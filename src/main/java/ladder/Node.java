@@ -26,6 +26,8 @@ public class Node {
         return direction == Direction.LEFT;
     }
 
+    public void printNode() { direction.printDirection(); }
+
     public static Node of(Direction direction) {
         return new Node(direction);
     }

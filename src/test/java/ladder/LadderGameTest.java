@@ -71,4 +71,39 @@ class LadderGameTest {
         assertEquals(0, ladderGame.run(position));
     }
 
+    @Test
+    void 사다리_출력_확인() {
+        //when
+        NaturalNumber numberOfRow = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
+        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+
+        LadderGame ladderGame = new LadderGame(ladderCreator);
+
+        ladderCreator.drawLine(Position.of(0),Position.of(0));
+        ladderCreator.drawLine(Position.of(1),Position.of(1));
+        ladderCreator.drawLine(Position.of(2),Position.of(0));
+
+        //given
+        int nthOfPerson = 0;
+        Position position = Position.of(nthOfPerson);
+
+        //then
+        assertEquals(2, ladderGame.printLadder(position));
+
+        //given
+        nthOfPerson = 1;
+        position = Position.of(nthOfPerson);
+
+        //then
+        assertEquals(1, ladderGame.run(position));
+
+        //given
+        nthOfPerson = 2;
+        position = Position.of(nthOfPerson);
+
+        //then
+        assertEquals(0, ladderGame.run(position));
+    }
+
 }

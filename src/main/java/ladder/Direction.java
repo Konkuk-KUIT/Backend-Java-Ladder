@@ -10,6 +10,8 @@ public enum Direction {
         this.value = value;
     }
 
+    public void printDirection() {System.out.print(value);}
+
     public int getValue() {
         return value;
     }
