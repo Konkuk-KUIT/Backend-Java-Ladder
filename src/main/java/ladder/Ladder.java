@@ -10,7 +10,7 @@ public class Ladder {
     public Ladder(NaturalNumber numberOfRow, NaturalNumber numberOfPerson) {
         rows = new Row[numberOfRow.getNumber()];
         for(int i=0; i<numberOfRow.getNumber(); i++) {
-            rows[i] = new Row(numberOfPerson.getNumber());
+            rows[i] = new Row(numberOfPerson);
         }
     }
 

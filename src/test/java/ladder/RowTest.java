@@ -11,7 +11,7 @@ public class RowTest {
     @Test
     void 라인_생성_확인() {
         //given
-        int numberOfPerson = 3;
+        NaturalNumber numberOfPerson = NaturalNumber.of(3);
         //when
         Row row = new Row(numberOfPerson);
         row.drawLine(0);
@@ -25,7 +25,7 @@ public class RowTest {
     void 라인_생성_인덱스_오류() {
 
         //given
-        int numberOfPerson = 3;
+        NaturalNumber numberOfPerson = NaturalNumber.of(3);
 
         //when
         Row row = new Row(numberOfPerson);
@@ -39,7 +39,7 @@ public class RowTest {
     void 라인_생성_중복_오류() {
 
         //given
-        int numberOfPerson = 4;
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
 
         //when
         Row row = new Row(numberOfPerson);
@@ -53,8 +53,7 @@ public class RowTest {
     @Test
     public void 라인_이동() {
         //given
-        int numberOfPerson = 4;
-
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
         //when
         Row row = new Row(numberOfPerson);
         row.drawLine(1);
