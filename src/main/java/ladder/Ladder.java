@@ -4,8 +4,7 @@ public class Ladder {
 
     /* 좌표값으로 나타내기위해 이차원 배열 */
     protected static Integer[][] ladder;
-    /*인스턴스 생성
-    좌표값에해당하는 배열의 값에 CREATED_COLUMN이 들어있으면 가로선 존재 */
+    /*인스턴스 생성, 좌표값에해당하는 배열의 값에 CREATED_COLUMN이 들어있으면 가로선 존재 */
     public Ladder(int numberOfRows, int numberOfColumns) {
         initLadder(numberOfRows,numberOfColumns);
     }
@@ -50,5 +49,41 @@ public class Ladder {
         System.out.println("");
     }
 
+    public void printPlayer(int selectedColumn) {
+        LadderValidation.isValidClumn(selectedColumn);
+
+        //-1을 현재 위치로 대체할거라 초기화
+        Integer[][] clonedLadder = new Integer[ladder.length][];
+        for (int i = 0; i < ladder.length; i++) {
+            clonedLadder[i] = ladder[i].clone();
+        }
+
+        int currentColumn = selectedColumn - 1;
+        int currentRow = 0;
+
+        while (currentRow < ladder.length) {
+            // 현재 위치를 반복해서 초기화 켜줌
+            clonedLadder[currentRow][currentColumn] = Direction.PLAYER_COLUMN.getValue();
+
+            for(Integer[] row : clonedLadder){
+                for(Integer value : row){
+                    if (value == Direction.PLAYER_COLUMN.getValue()) {
+                        System.out.print("*"+value); // 현재 플레이어 위치 표시
+                    } else {
+                        System.out.print(value); // 빈 단계 표시
+                    }
+                }
+                System.out.println("");
+            }
+            System.out.println();
+            // 사다리 지나가면 복구
+            clonedLadder[currentRow][currentColumn] = ladder[currentRow][currentColumn];
+            //사다리 이동
+            currentColumn = LadderMove.moveColumn(currentRow, currentColumn);
+            currentRow = LadderMove.moveRow(currentRow, currentColumn);
+        }
+
+        System.out.println("");
+    }
 
 }
