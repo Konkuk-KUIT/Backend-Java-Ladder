@@ -14,7 +14,7 @@ public class RowTest {
         NaturalNumber numberOfPerson = NaturalNumber.of(3);
         //when
         Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+        row.drawLine(Position.of(0));
 
         //then
         assertEquals(1, row.getRow()[0]);
@@ -31,8 +31,8 @@ public class RowTest {
         Row row = new Row(numberOfPerson);
 
         //then
-        assertThrows(Exception.class, () -> row.drawLine(2));
-        assertThrows(Exception.class, () -> row.drawLine(4));
+        assertThrows(Exception.class, () -> row.drawLine(Position.of(2)));
+        assertThrows(Exception.class, () -> row.drawLine(Position.of(4)));
     }
 
     @Test
@@ -43,11 +43,11 @@ public class RowTest {
 
         //when
         Row row = new Row(numberOfPerson);
-        row.drawLine(1);
+        row.drawLine(Position.of(1));
 
         //then
-        assertThrows(Exception.class, () -> row.drawLine(1));
-        assertThrows(Exception.class, () -> row.drawLine(2));
+        assertThrows(Exception.class, () -> row.drawLine(Position.of(1)));
+        assertThrows(Exception.class, () -> row.drawLine(Position.of(2)));
     }
 
     @Test
@@ -56,11 +56,11 @@ public class RowTest {
         NaturalNumber numberOfPerson = NaturalNumber.of(4);
         //when
         Row row = new Row(numberOfPerson);
-        row.drawLine(1);
+        row.drawLine(Position.of(1));
 
         //then
-        assertEquals(2, row.moveLine(1));
-        assertEquals(1, row.moveLine(2));
-        assertEquals(0, row.moveLine(0));
+        assertEquals(2, row.moveLine(Position.of(1)).getPosition());
+        assertEquals(1, row.moveLine(Position.of(2)).getPosition());
+        assertEquals(0, row.moveLine(Position.of(0)).getPosition());
     }
 }

@@ -30,15 +30,15 @@ class LadderTest {
         //when
         Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
 
-        ladder.drawLine(0,0);
-        ladder.drawLine(1,2);
-        ladder.drawLine(2,1);
+        ladder.drawLine(Position.of(0),Position.of(0));
+        ladder.drawLine(Position.of(1),Position.of(2));
+        ladder.drawLine(Position.of(2),Position.of(1));
 
         //then
-        assertEquals(2, ladder.run(0));
-        assertEquals(0, ladder.run(1));
-        assertEquals(3, ladder.run(2));
-        assertEquals(1, ladder.run(3));
+        assertEquals(2, ladder.run(Position.of(0)).getPosition());
+        assertEquals(0, ladder.run(Position.of(1)).getPosition());
+        assertEquals(3, ladder.run(Position.of(2)).getPosition());
+        assertEquals(1, ladder.run(Position.of(3)).getPosition());
     }
 
 }

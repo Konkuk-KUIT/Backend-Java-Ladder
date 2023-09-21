@@ -16,27 +16,40 @@ public class Row {
         return row;
     }
 
-    public void drawLine(int col) {
-        validateIndex(col);
-        validateLineDuplication(col);
-        row[col] = RIGHT.getValue();
-        row[col + 1] = LEFT.getValue();
+    public void drawLine(Position position) {
+        validateIndex(position);
+        validateLineDuplication(position);
+        setDirectionAtPosition(position, RIGHT);
+        setDirectionAtPosition(position.next(), LEFT);
     }
 
-    public int moveLine(int col) {
-        if (row[col] == RIGHT.getValue()) return col + RIGHT.getValue();
-        if (row[col] == LEFT.getValue()) return col + LEFT.getValue();
-        return col;
+    private void setDirectionAtPosition(Position position, Direction direction) {
+        row[position.getPosition()] = direction.getValue();
     }
 
-    private void validateIndex(int col) {
-        if (col < 0 || col >= row.length - 1) {
+    public Position moveLine(Position currentPosition) {
+        validateIndex(currentPosition);
+        if (isRight(currentPosition)) return currentPosition.next();
+        if (isLeft(currentPosition)) return currentPosition.prev();
+        return currentPosition;
+    }
+
+    private boolean isLeft(Position position) {
+        return row[position.getPosition()] == LEFT.getValue();
+    }
+
+    private boolean isRight(Position position) {
+        return row[position.getPosition()] == RIGHT.getValue();
+    }
+
+    private void validateIndex(Position position) {
+        if (position.getPosition() >= row.length) {
             throw new IllegalArgumentException(INVALID_POSITION.getMessage());
         }
     }
 
-    private void validateLineDuplication(int col) {
-        if (row[col] != 0 || row[col + 1] != 0) {
+    private void validateLineDuplication(Position position) {
+        if (row[position.getPosition()] != 0 || row[position.getPosition() + 1] != 0) {
             throw new IllegalArgumentException(LINE_DUPLICATION.getMessage());
         }
     }

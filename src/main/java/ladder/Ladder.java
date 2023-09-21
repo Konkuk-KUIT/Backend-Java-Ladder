@@ -14,15 +14,15 @@ public class Ladder {
         }
     }
 
-    public void drawLine(int row, int col) {
-        rows[row].drawLine(col);
+    public void drawLine(Position row, Position col) {
+        rows[row.getPosition()].drawLine(col);
     }
 
-    public int run(int col) {
+    public Position run(Position position) {
         for(int i=0; i<rows.length; i++) {
-            col = rows[i].moveLine(col);
+            position = rows[i].moveLine(position);
         }
-        return col;
+        return position;
     }
 
 }
