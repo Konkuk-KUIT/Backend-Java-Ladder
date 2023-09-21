@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.creator.LadderCreator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +16,8 @@ class LadderTest {
         NaturalNumber numberOfPerson = NaturalNumber.of(4);
 
         //when
-        Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
+        //Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
+        LadderCreator ladder = new LadderCreator(numberOfRow, numberOfPerson);
 
         //then
         assertNotNull(ladder);
@@ -28,17 +30,19 @@ class LadderTest {
         NaturalNumber numberOfPerson = NaturalNumber.of(4);
 
         //when
-        Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
+        //Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
+        LadderCreator ladder = new LadderCreator(numberOfRow, numberOfPerson);
+        LadderGame ladderGame = new LadderGame(ladder);
 
         ladder.drawLine(Position.of(0),Position.of(0));
         ladder.drawLine(Position.of(1),Position.of(2));
         ladder.drawLine(Position.of(2),Position.of(1));
 
         //then
-        assertEquals(2, ladder.run(Position.of(0)).getPosition());
-        assertEquals(0, ladder.run(Position.of(1)).getPosition());
-        assertEquals(3, ladder.run(Position.of(2)).getPosition());
-        assertEquals(1, ladder.run(Position.of(3)).getPosition());
+        assertEquals(2, ladderGame.run(Position.of(0)));
+        assertEquals(0, ladderGame.run(Position.of(1)));
+        assertEquals(3, ladderGame.run(Position.of(2)));
+        assertEquals(1, ladderGame.run(Position.of(3)));
     }
 
 }
