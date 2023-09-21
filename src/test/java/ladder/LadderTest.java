@@ -1,74 +1,67 @@
 package ladder;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
-    Ladder ladder;
-    LadderRunner ladderRun;
-
-    @BeforeEach
-    void beforeEach() {
-        ladder = new Ladder(6, 5);
-        ladder.drawLine(0, 0);
-        ladder.drawLine(1, 1);
-        ladder.drawLine(2, 3);
-        ladder.drawLine(4, 0);
-        ladder.drawLine(5, 1);
-        ladder.drawLine(4, 3);
-        ladderRun = new LadderRunner(ladder);
+    @Test
+    @DisplayName("사다리 생성")
+    void LadderCreate() {
+        //given
+        NaturalNumber numberOfRow = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(5);
+        //when
+        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        //then
+        assertNotNull(ladderCreator);
     }
 
     @Test
-    @DisplayName("사다리 생성 확인")
-    void Ladder() {
+    @DisplayName("사다리 크기 초과 입력")
+    void PeopleOverLadderSize() {
         //given
-        int numberOfRow = 3;
-        int numberOfPerson = 5;
+        NaturalNumber numberOfRow = NaturalNumber.of(1);
+        NaturalNumber numberOfPerson = NaturalNumber.of(3);
+        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        LadderGame ladderGame = new LadderGame(ladderCreator);
         //when
-        Ladder ladderr = new Ladder(numberOfRow, numberOfPerson);
+        int nthOfPerson = 4;
+        Position position = Position.of(nthOfPerson);
         //then
-        assertEquals(3, ladderr.getColumnL());
-        assertEquals(5, ladderr.getRowL());
+        assertThrows(IllegalArgumentException.class, () -> ladderGame.run(position));
     }
 
     @Test
-    @DisplayName("다리 생성 확인")
-    void drawLine() {
+    @DisplayName("사다리 실행 결과")
+    void LadderRun() {
         //given
-        int posYE = 6;
-        int posX = 3;
-        int posY = 2;
-        //when
+        NaturalNumber numberOfRow = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
+        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
 
-        //then
-        assertThrows(ArrayIndexOutOfBoundsException.class, () -> ladder.drawLine(posYE, posX));
-        assertThrows(RuntimeException.class, () -> ladder.drawLine(posY, posX));
-    }
-    @Test
-    @DisplayName("사다리 이용 확인")
-    void run() {
-        //given
-        int cur0 = 0;
-        int cur1 = 1;
-        int cur2 = 2;
-        int cur3 = 3;
-        int cur4 = 4;
-        //when
-        cur0 = ladderRun.run(cur0);
-        cur1 = ladderRun.run(cur1);
-        cur2 = ladderRun.run(cur2);
-        cur3 = ladderRun.run(cur3);
-        cur4 = ladderRun.run(cur4);
-        //then
-        assertEquals(1, cur0);
-        assertEquals(2, cur1);
-        assertEquals(0, cur2);
-        assertEquals(3, cur3);
-        assertEquals(4, cur4);
+        LadderGame ladderGame = new LadderGame(ladderCreator);
 
+        ladderCreator.drawLine(Position.of(0), Position.of(0));
+        ladderCreator.drawLine(Position.of(1), Position.of(1));
+        ladderCreator.drawLine(Position.of(2), Position.of(0));
+        //when
+        int nthOfPerson = 0;
+        Position position = Position.of(nthOfPerson);
+        //then
+        assertEquals(2, ladderGame.run(position));
+
+        //when
+        nthOfPerson = 1;
+        position = Position.of(nthOfPerson);
+        //then
+        assertEquals(1, ladderGame.run(position));
+
+        //when
+        nthOfPerson = 2;
+        position = Position.of(nthOfPerson);
+        //then
+        assertEquals(0, ladderGame.run(position));
     }
 }
