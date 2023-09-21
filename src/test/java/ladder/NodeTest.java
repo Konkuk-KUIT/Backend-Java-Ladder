@@ -53,7 +53,7 @@ class NodeTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("우측 노드 확인")
     void checkRight() {
         //given
         assertTrue(rightNode.isRight());
@@ -64,7 +64,7 @@ class NodeTest {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("좌측 노드 확인")
     void checkLeft() {
         //given
         assertTrue(leftNode.isLeft());
