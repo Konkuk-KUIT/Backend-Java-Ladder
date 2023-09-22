@@ -28,4 +28,8 @@ public class Node {
     public static Node of(Direction direction) {
         return new Node(direction);
     }
+
+    public String printNode() {
+        return String.valueOf(direction.getValue());
+    }
 }

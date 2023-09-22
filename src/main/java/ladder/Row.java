@@ -18,6 +18,25 @@ public class Row {
         setDirectionAtPosition(startPosition.next(), Direction.LEFT);
     }
 
+    public String printRow() {
+        StringBuilder result = new StringBuilder(nodes[0].printNode());
+        for (int i = 1; i < nodes.length; i++) {
+            result.append(" ");
+            result.append(nodes[i].printNode());
+        }
+        return result.toString();
+    }
+    public String printRow(Position position) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < nodes.length; i++) {
+            result.append(nodes[i].printNode());
+            if (i == position.getPosition()) {
+                result.append("*");
+            }
+            result.append(" ");
+        }
+        return result.toString();
+    }
     public Position nextPosition(Position currentPosition) {
         validatePosition(currentPosition);
         return nodes[currentPosition.getPosition()].move(currentPosition);

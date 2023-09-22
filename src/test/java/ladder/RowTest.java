@@ -159,4 +159,10 @@ class RowTest {
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(Position.of(0)));
     }
+
+    @Test
+    @DisplayName("다리 자동 생성")
+    void drawRandomLine() {
+
+    }
 }

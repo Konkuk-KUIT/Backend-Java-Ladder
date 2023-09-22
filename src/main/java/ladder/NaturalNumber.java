@@ -11,6 +11,10 @@ public class NaturalNumber {
         this.number = number;
     }
 
+    public int random(int number) {
+        return (int) (Math.random() * number);
+    }
+
     public int getNumber() {
         return number;
     }
@@ -28,4 +32,5 @@ public class NaturalNumber {
     private static boolean isNaturalNumber(int number) {
         return number >= 1;
     }
+
 }
