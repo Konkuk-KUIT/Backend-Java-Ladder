@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.creator.LadderCreator;
+import ladder.creator.LadderSize;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,6 +19,23 @@ class LadderGameTest {
 
         //then
         assertNotNull(ladderCreator);
+    }
+
+    @Test
+    void 사다리_자동_생성_라인_수_확인() {
+        NaturalNumber numberOfRow = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
+
+        LadderSize ladderSize = new LadderSize(numberOfRow, numberOfPerson);
+
+        assertEquals(NaturalNumber.of(3*4*0.3).getNumber(),ladderSize.getNumberOfLine().getNumber());
+    }
+
+    @Test
+    void 사다리_가로줄_자동_랜덤_생성_확인() {
+        NaturalNumber numberOfRow = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
+        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
     }
 
     @Test
