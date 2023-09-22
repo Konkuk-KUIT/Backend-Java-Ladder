@@ -19,7 +19,7 @@ public class LadderCreator {
     }
 
     public void autoDrawLine() {
-        int numberOfDrewLines = 0; //NaturalNumber를 0부터라 못 썼음.
+        int numberOfDrewLines = 0; // 0부터라 NaturalNumber를 못 썼음.
         while (numberOfDrewLines < ladderSize.getNumberOfLineToDraw().getNumber()) {
             numberOfDrewLines += autoDrawALine();
         }
@@ -39,7 +39,7 @@ public class LadderCreator {
         }
     }
             
-    public void drawLine(NaturalNumber row, Position position, Direction direction) {
+    private void drawLine(NaturalNumber row, Position position, Direction direction) {
         rows[row.getNumber() - 1].drawLine(position, direction);
     }
 
