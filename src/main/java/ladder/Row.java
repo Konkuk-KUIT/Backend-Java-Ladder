@@ -28,18 +28,25 @@ public class Row {
     }
 
     public void printRow(Boolean isCurPosInRow, LadderPosition curLadderPosition) {
-        for(int i = 0; i < nodes.length; i++) {
-//            nodes[i].printNode();
-            String nodeStr = String.format("%4s", nodes[i].toString());
 
-            if(isCurPosInRow && curLadderPosition.isColPositionSame(Position.of(i))) {
-                nodeStr += "*";
-            }
-
-
-            System.out.print(nodeStr);
+        for(int elementIdx = 0; elementIdx < nodes.length; elementIdx++) {
+            System.out.print(elementToString(isCurPosInRow, curLadderPosition, elementIdx));
         }
         System.out.println();
+    }
+
+    private String elementToString(Boolean isCurPosInRow, LadderPosition curLadderPosition, int i) {
+        String nodeStr = String.format("%4s", nodes[i].toString());
+
+        if(isCurPosition(isCurPosInRow, curLadderPosition, i)) {
+            nodeStr += "*";
+        }
+
+        return nodeStr;
+    }
+
+    private static boolean isCurPosition(Boolean isCurPosInRow, LadderPosition curLadderPosition, int i) {
+        return isCurPosInRow && curLadderPosition.isColPositionSame(Position.of(i));
     }
 
     public int length() {

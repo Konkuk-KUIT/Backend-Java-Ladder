@@ -15,27 +15,29 @@ public class LadderRunner {
         return position.getValue();
     }
 
-    public int runWithLog(Position position) {
+    public int runWithLog(Position curColPos) {
 
-        for(int i = 0; i < rows.length; i++) {
+        int ladderHeight = rows.length;
+
+        for(int curRowIdx = 0; curRowIdx < ladderHeight; curRowIdx++) {
 
             System.out.println("Before");
-            for(int j = 0; j < rows.length; j++) {
-                rows[j].printRow(i == j, LadderPosition.of(Position.of(i), position));
-            }
+            printCurLadderState(LadderPosition.of(Position.of(curRowIdx), curColPos));
 
-
-            position = rows[i].nextPosition(position);
-
-
+            curColPos = rows[curRowIdx].nextPosition(curColPos);
 
             System.out.println("After");
-            for(int j = 0; j < rows.length; j++) {
-                rows[j].printRow(i == j, LadderPosition.of(Position.of(i), position));
-            }
+            printCurLadderState(LadderPosition.of(Position.of(curRowIdx), curColPos));
 
         }
-        return position.getValue();
+
+        return curColPos.getValue();
+    }
+
+    public void printCurLadderState(LadderPosition curLadderPosition) {
+        for(int i = 0; i < rows.length; i++) {
+            rows[i].printRow(curLadderPosition.isRowPositionSame(Position.of(i)), curLadderPosition);
+        }
     }
 
 }
