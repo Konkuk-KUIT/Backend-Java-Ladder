@@ -15,13 +15,14 @@ public class Main {
         PrintLadder.printLadder();
         System.out.println("========사다리 설정 완료=======");
         ladder.ladderCreator(numberOfPerson);
-        PrintLadder.printLadder();
+        //PrintLadder.printLadder();
         System.out.println("==========게임 진행=========");
         System.out.println("==========시 작!=========");
         PrintLadder.printLadder();
         int player1=ladder.run(2);
         System.out.println("p1 : 2\n");
         ladder.printPlayer(2);
+
 
         System.out.println("========게임 최종 결과=======");
         System.out.println("p1 : "+player1);

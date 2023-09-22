@@ -2,8 +2,11 @@ package ladder;
 
 import java.util.Random;
 
+import static ladder.PrintLadder.printPlayerLadder;
+
 public class Ladder {
 
+    Random random = new Random();
     /* 좌표값으로 나타내기위해 이차원 배열 */
     protected static Integer[][] ladder;
     /*인스턴스 생성, 좌표값에해당하는 배열의 값에 CREATED_COLUMN이 들어있으면 가로선 존재 */
@@ -44,9 +47,8 @@ public class Ladder {
         return currentColumn + 1;
     }
 
-    public void ladderCreator(NaturalNumber numberOfPerson){
-        Random random = new Random();
-
+    //구현
+    public void randomSelect(NaturalNumber numberOfPerson){
         for (int i = 0; i < ladder.length; i++) {
             int randomColumn = random.nextInt(numberOfPerson.getNumber());
 
@@ -60,19 +62,33 @@ public class Ladder {
         }
     }
 
+    public void ladderCreator(NaturalNumber numberOfPerson){
+
+        for (int i = 0; i < ladder.length; i++) {
+            int randomColumn = random.nextInt(numberOfPerson.getNumber());
+            //이어서 못만들게 차이가 절댓값 1과 일치하고 열다르게
+            if (i > 0 && Math.abs(ladder[i - 1][randomColumn] - randomColumn) == 1) {
+                randomColumn = (randomColumn + 1) % numberOfPerson.getNumber();
+            }
+
+            ladder[i][randomColumn] = 1;
+        }
+    }
+    /*
+    public static void currentLadder(int value){
+        if (value == Direction.PLAYER_COLUMN.getValue()) {
+            System.out.print("*"+value); // 현재 플레이어 위치 표시
+        } else {
+            System.out.print(value); // 빈 단계 표시
+        }
+    }
+    */
+
     public void printPlayer(int selectedColumn) {
-        LadderValidation.isValidClumn(selectedColumn);
-        //-1을 현재 위치로 대체할거라 복사
-        Integer[][] clonedLadder = new Integer[ladder.length][];
-        PrintLadder.copyLadder(clonedLadder);
         int currentColumn = selectedColumn - 1;
         int currentRow = 0;
         while (currentRow < ladder.length) {
-            // 현재 위치를 반복해서 초기화 켜줌
-            clonedLadder[currentRow][currentColumn] = Direction.PLAYER_COLUMN.getValue();
-            PrintLadder.printCurrentLadder(clonedLadder);
-            // 사다리 지나가면 복구
-            clonedLadder[currentRow][currentColumn] = ladder[currentRow][currentColumn];
+            printPlayerLadder(currentRow,currentColumn);
             //사다리 이동
             currentColumn = LadderMove.moveColumn(currentRow, currentColumn);
             currentRow = LadderMove.moveRow(currentRow, currentColumn);
@@ -80,5 +96,6 @@ public class Ladder {
 
         System.out.println("");
     }
+
 
 }

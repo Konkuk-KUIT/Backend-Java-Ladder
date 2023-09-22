@@ -6,18 +6,18 @@ public class PrintLadder extends Ladder {
         super(numberOfRows, numberOfColumns);
     }
 
-    public static void currentLadder(int value){
-        if (value == Direction.PLAYER_COLUMN.getValue()) {
-            System.out.print("*"+value); // 현재 플레이어 위치 표시
-        } else {
-            System.out.print(value); // 빈 단계 표시
+    public static void printPlayerLadder(int currentRow,int currentColumn){
+        for(int i=0;i<ladder.length;i++) {
+            for(int j=0;j<ladder[0].length;j++){
+                if(i==currentRow&&j==currentColumn){
+                    System.out.print("*"+ladder[i][j]);
+                }else{
+                    System.out.print(ladder[i][j]);
+                }
+            }
+            System.out.println();
         }
-    }
-
-    public static void copyLadder(Integer clonedLadder[][]){
-        for (int i = 0; i < ladder.length; i++) {
-            clonedLadder[i] = ladder[i].clone();
-        }
+        System.out.println();
     }
 
     public static void printLadder(){
@@ -25,20 +25,9 @@ public class PrintLadder extends Ladder {
             for(Integer value : row){
                 System.out.print(value);
             }
-            System.out.println("");
-        }
-        System.out.println("");
-    }
-
-    public static void printCurrentLadder(Integer ladder[][]){
-        for(Integer[] row : ladder){
-            for(Integer value : row){
-                currentLadder(value);
-            }
-            System.out.println("");
+            System.out.println();
         }
         System.out.println();
     }
-
 
 }
