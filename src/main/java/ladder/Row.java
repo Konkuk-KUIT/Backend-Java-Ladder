@@ -18,11 +18,19 @@ public class Row {
         setDirectionAtPosition(startPosition.next(), Direction.LEFT);
     }
 
+    public void selectPrintRow(LadderPosition ladderPosition, int currentRow) {
+        if (ladderPosition.getCurrentRow() == currentRow) {
+            System.out.println(printRow(ladderPosition.getCurrentColumn()));
+        } else {
+            System.out.println(printRow());
+        }
+    }
+
     public String printRow() {
-        StringBuilder result = new StringBuilder(nodes[0].printNode());
-        for (int i = 1; i < nodes.length; i++) {
-            result.append(" ");
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < nodes.length; i++) {
             result.append(nodes[i].printNode());
+            result.append(" ");
         }
         return result.toString();
     }

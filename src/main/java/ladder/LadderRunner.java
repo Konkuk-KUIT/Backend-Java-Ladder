@@ -10,11 +10,7 @@ public class LadderRunner {
 
     public void printLadder(LadderPosition ladderPosition) {
         for (int i = 0; i < rows.length; i++) {
-            if (ladderPosition.getCurrentRow() == i) {
-                System.out.println(rows[i].printRow(ladderPosition.getCurrnetColumn()));
-            } else {
-                System.out.println(rows[i].printRow());
-            }
+            rows[i].selectPrintRow(ladderPosition, i);
         }
     }
 
