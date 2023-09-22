@@ -1,8 +1,6 @@
 package ladder;
 
 public class PrintLadder extends Ladder {
-    public int currentRow;
-    public int currentColumn;
 
     public PrintLadder(int numberOfRows, int numberOfColumns) {
         super(numberOfRows, numberOfColumns);

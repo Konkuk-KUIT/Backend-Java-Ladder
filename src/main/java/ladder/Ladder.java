@@ -9,6 +9,10 @@ public class Ladder {
         initLadder(numberOfRows,numberOfColumns);
     }
 
+    public static int getLadder(int row, int column) {
+        return ladder[row][column];
+    }
+
     private void initLadder(int numberOfRows, int numberOfColumns){
         ladder = new Integer[numberOfRows][numberOfColumns];
         for (int i = 0; i < numberOfRows; i++) {
@@ -36,6 +40,20 @@ public class Ladder {
         }
         /* 리턴값은 1을 더한 값을 반환하여 실제 게임 상의 열을 반환*/
         return currentColumn + 1;
+    }
+
+    public void ladderCreator(int row,int numberOfPlayer){
+        int randColumn=(int)((Math.random()*10000)%(numberOfPlayer-1))+1;
+        int randRow=(int)((Math.random()*10000)%(row-1)+1);
+        int i=0;
+
+        while(i>numberOfPlayer){
+            if(getLadder(randRow,randColumn)!=Direction.CREATED_COLUMN.getValue()){
+                drawLine(row,numberOfPlayer);
+                i++;
+            }
+        }
+
     }
 
     public void printPlayer(int selectedColumn) {
