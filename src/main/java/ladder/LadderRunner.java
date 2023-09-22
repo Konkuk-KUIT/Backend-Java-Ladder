@@ -19,6 +19,8 @@ public class LadderRunner {
 
         int ladderHeight = rows.length;
 
+        System.out.println("********사다리 게임 시작:" + curColPos.getValue());
+
         for(int curRowIdx = 0; curRowIdx < ladderHeight; curRowIdx++) {
 
             System.out.println("Before");
@@ -30,6 +32,8 @@ public class LadderRunner {
             printCurLadderState(LadderPosition.of(Position.of(curRowIdx), curColPos));
 
         }
+
+        System.out.println("*********사다리 게임 결과:" + curColPos.getValue());
 
         return curColPos.getValue();
     }

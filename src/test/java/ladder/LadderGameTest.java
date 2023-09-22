@@ -1,6 +1,7 @@
 package ladder;
 
-import ladder.creator.LadderCreator;
+import ladder.creator.DefaultLadderCreator;
+import ladder.creator.RandomLadderCreator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,7 +15,7 @@ class LadderGameTest {
         NaturalNumber numberOfPerson = NaturalNumber.of(5);
 
         //when
-        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        DefaultLadderCreator ladderCreator = new DefaultLadderCreator(numberOfRow, numberOfPerson);
 
         //then
         assertNotNull(ladderCreator);
@@ -25,7 +26,7 @@ class LadderGameTest {
         //when
         NaturalNumber numberOfRow = NaturalNumber.of(1);
         NaturalNumber numberOfPerson = NaturalNumber.of(3);
-        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        DefaultLadderCreator ladderCreator = new DefaultLadderCreator(numberOfRow, numberOfPerson);
         LadderGame ladderGame = new LadderGame(ladderCreator);
 
         //given
@@ -41,7 +42,7 @@ class LadderGameTest {
         //when
         NaturalNumber numberOfRow = NaturalNumber.of(3);
         NaturalNumber numberOfPerson = NaturalNumber.of(4);
-        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        DefaultLadderCreator ladderCreator = new DefaultLadderCreator(numberOfRow, numberOfPerson);
 
         LadderGame ladderGame = new LadderGame(ladderCreator);
 
@@ -76,7 +77,7 @@ class LadderGameTest {
         //when
         NaturalNumber numberOfRow = NaturalNumber.of(3);
         NaturalNumber numberOfPerson = NaturalNumber.of(4);
-        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        DefaultLadderCreator ladderCreator = new DefaultLadderCreator(numberOfRow, numberOfPerson);
 
         LadderGame ladderGame = new LadderGame(ladderCreator);
 
@@ -104,6 +105,55 @@ class LadderGameTest {
 
         //then
         assertEquals(0, ladderGame.run(position));
+    }
+
+    @Test
+    void 사다리_랜덤_생성_확인() {
+        NaturalNumber numberOfRow = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
+
+        LadderSize ladderSize = new LadderSize(numberOfRow, numberOfPerson);
+
+        //when
+        RandomLadderCreator randomLadderCreator = new RandomLadderCreator(ladderSize);
+
+        //then
+        assertNotNull(randomLadderCreator);
+    }
+
+    @Test
+    void 랜덤_사다리_결과_확인() {
+        //when
+        NaturalNumber numberOfRow = NaturalNumber.of(5);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
+
+        LadderSize ladderSize = new LadderSize(numberOfRow, numberOfPerson);
+
+        LadderGame ladderGame = LadderGameFactory.createRandomLadderGame(ladderSize);
+
+        int nthOfPerson = 0;
+        Position position = Position.of(nthOfPerson);
+
+        //then
+        ladderGame.printLadder(position);
+
+        nthOfPerson = 1;
+        position = Position.of(nthOfPerson);
+
+
+        ladderGame.printLadder(position);
+
+        nthOfPerson = 2;
+        position = Position.of(nthOfPerson);
+
+
+        ladderGame.printLadder(position);
+
+        nthOfPerson = 3;
+        position = Position.of(nthOfPerson);
+
+
+        ladderGame.printLadder(position);
     }
 
 }
