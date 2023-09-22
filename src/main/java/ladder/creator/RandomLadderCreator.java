@@ -9,7 +9,6 @@ import java.util.Set;
 public class RandomLadderCreator implements LadderCreator {
 
     private final Row[] rows;
-    private final int numberOfLines;
 
     public RandomLadderCreator(LadderSize ladderSize) {
         int numberOfRows = ladderSize.getNumberOfRows();
@@ -19,39 +18,31 @@ public class RandomLadderCreator implements LadderCreator {
         for(int i = 0; i < numberOfRows; i++) {
             rows[i] = new Row(NaturalNumber.of(numberOfColums));
         }
-
-        System.out.println("랜덤 사다리의 row개수는 : "+numberOfRows);
-        System.out.println("사다리 게임에 참여할 사람의 수는  : "+ numberOfColums);
-
-        this.numberOfLines = ladderSize.getGeneratedLines();
-
-        System.out.println("만들어질 사다리의 개수는 : "+numberOfLines);
     }
+
     @Override
     public void drawLine() {
-        Set<String> usedPositions = new HashSet<>();
+        Set<String> usedPositions = new HashSet<>(); //그려질 선을 문자열의 집합으로 저장할 HashSet
         Random random = new Random();
 
-        while (usedPositions.size() < numberOfLines) {
+        int numberOfLines = calMaxLineCount(); //만들수 있는 최대 선의 개수 계산
+
+        while (usedPositions.size() < numberOfLines) { //선이 모두 그려질 때까지 반복
             int randomRow = random.nextInt(rows.length);
             int randomCol = random.nextInt(rows[0].length() - 1);
 
-            Position position = Position.of(randomCol);
             String positionKey = randomRow + "-" + randomCol;
 
             if (!usedPositions.contains(positionKey)) {
                 try{
-                    rows[randomRow].drawLine(position);
+                    rows[randomRow].drawLine(Position.of(randomCol)); //Exception 발생시 종료 하지 않고, Row 클래스의 validation 메소드를 그대로 사용하기 위해 try/ catch
                     usedPositions.add(positionKey);
-
-                    System.out.println("사다리 만들기 성공 위치: " + randomRow + ", " + randomCol);
                 } catch (IllegalArgumentException e) {
                     continue;
                 }
             }
         }
     }
-
 
     @Override
     public void drawLine(Position row, Position col) {
@@ -63,5 +54,8 @@ public class RandomLadderCreator implements LadderCreator {
         return rows;
     }
 
+    public int calMaxLineCount() {
+        return rows.length * rows[0].length();
+    }
 
 }

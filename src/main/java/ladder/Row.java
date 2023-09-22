@@ -29,24 +29,24 @@ public class Row {
 
     public void printRow(Boolean isCurPosInRow, LadderPosition curLadderPosition) {
 
-        for(int elementIdx = 0; elementIdx < nodes.length; elementIdx++) {
-            System.out.print(elementToString(isCurPosInRow, curLadderPosition, elementIdx));
+        for(int elementIdx = 0; elementIdx < nodes.length; elementIdx++) { //nodes 의 노드를 순회 하며 출력
+            System.out.print(elementToString(isCurPosInRow, curLadderPosition, elementIdx)); //노드의 내뇽을 string 화
         }
         System.out.println();
     }
 
-    private String elementToString(Boolean isCurPosInRow, LadderPosition curLadderPosition, int i) {
-        String nodeStr = String.format("%4s", nodes[i].toString());
+    private String elementToString(Boolean isCurPosInRow, LadderPosition curLadderPosition, int elementIdx) {
+        String nodeStr = String.format("%4s", nodes[elementIdx].toString());
 
-        if(isCurPosition(isCurPosInRow, curLadderPosition, i)) {
+        if(isCurPosition(isCurPosInRow, curLadderPosition, elementIdx)) { //출력하려는 노드가 현재 내 위치하면
             nodeStr += "*";
         }
 
         return nodeStr;
     }
 
-    private static boolean isCurPosition(Boolean isCurPosInRow, LadderPosition curLadderPosition, int i) {
-        return isCurPosInRow && curLadderPosition.isColPositionSame(Position.of(i));
+    private static boolean isCurPosition(Boolean isCurPosInRow, LadderPosition curLadderPosition, int elementIdx) {
+        return isCurPosInRow && curLadderPosition.isColPositionSame(Position.of(elementIdx));
     }
 
     public int length() {
