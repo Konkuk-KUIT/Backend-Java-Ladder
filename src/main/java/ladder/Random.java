@@ -6,15 +6,16 @@ public class Random {
         this.ladderSize = ladderSize;
     }
 
-    public NaturalNumber lineCount(LadderSize ladderSize) {
-        return NaturalNumber.of((int) (ladderSize.getNumberOfPerson() * ladderSize.getNumberOfRow() * 0.3));
+    public int lineCount(LadderSize ladderSize) {
+//        return NaturalNumber.of((int) (ladderSize.getNumberOfPerson() * ladderSize.getNumberOfRow() * 0.3));
+        return (int) (ladderSize.getNumberOfPerson() * ladderSize.getNumberOfRow() * 0.3);
     }
 
     public Position startRow(LadderSize ladderSize) {
-        return Position.of((int)(Math.random()* (ladderSize.getNumberOfRow()-1)));
+        return Position.of((int) (Math.random() * ladderSize.getNumberOfRow()));
     }
     public Position startPosition(LadderSize ladderSize) {
-        return Position.of((int)(Math.random()* (ladderSize.getNumberOfPerson()-1)));
+        return Position.of((int)(Math.random() * (ladderSize.getNumberOfPerson()-1)));
     }
 }
 
