@@ -2,44 +2,49 @@ package ladder;
 
 public class Row {
 
-    int[] row;
+    Node[] row;
 
     public Row(int numberOfPerson) {
-        this.row = new int[numberOfPerson];
+        this.row = new Node[numberOfPerson];
+        for (int i = 0; i < numberOfPerson; i++) {
+            row[i] = Node.of(Direction.NONE);
+        }
     }
 
-    public boolean isLeft(int position) {
-        return row[position - 1] == Direction.LEFT.getValue();
+    public boolean isLeft(Position position) {
+        return row[position.getValue() - 1].getDirection() == Direction.LEFT;
     }
 
-    public boolean isRight(int position) {
-        return row[position - 1] == Direction.RIGHT.getValue();
+    public boolean isRight(Position position) {
+        return row[position.getValue() - 1].getDirection() == Direction.RIGHT;
     }
 
-    public int nextPosition(int position) {
+    public Position nextPosition(Position position) {
         if (isLeft(position)) {
-            return position + Direction.LEFT.getValue();
+            return position.prev();
         }
         if (isRight(position)) {
-            return position + Direction.RIGHT.getValue();
+            return position.next();
         }
         return position;
     }
 
-    public void drawLine(int selectPosition, Direction direction) {
+    public void drawLine(Position position, Direction direction) {
         //밖으로 그리기 금지
-        if (selectPosition == 1 && direction == Direction .LEFT) {
+        if (position.equals(Position.of(4)) && direction.equals(Direction.RIGHT)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_DIRECTION.getMessage());
         }
-        if (selectPosition == row.length && direction == Direction.RIGHT) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_POSITION.getMessage());
+        if (position.equals(Position.of(1)) && direction.equals(Direction .LEFT)) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_DIRECTION.getMessage());
         }
         //겹치게 그리기 금지
-        if (row[selectPosition - 1] != 0  || row[selectPosition + direction.getValue() - 1] != 0) {
+        if (row[position.getValue() - 1].getDirection() != Direction.NONE
+                || row[position.
+                getValue() + direction.getValue() - 1].getDirection() != Direction.NONE) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_POSITION.getMessage());
         }
         //그리기
-        row[selectPosition - 1] = direction.getValue();
-        row[nextPosition(selectPosition) - 1] = direction.getOppositeValue();
+        row[position.getValue() - 1] = Node.of(direction);
+        row[nextPosition(position).getValue() - 1] = Node.of(direction.getOppositeDirection());
     }
 }

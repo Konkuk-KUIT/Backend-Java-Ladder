@@ -13,11 +13,11 @@ public enum Direction {
         return value;
     }
 
-    public int getOppositeValue() {
+    public Direction getOppositeDirection() {
         if (this.value == LEFT.getValue())
-            return RIGHT.getValue();
+            return RIGHT;
         if (this.value == RIGHT.getValue())
-            return LEFT.getValue();
-        return NONE.getValue();
+            return LEFT;
+        return NONE;
     }
 }
