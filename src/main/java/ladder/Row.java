@@ -27,17 +27,24 @@ public class Row {
         nodes[startPosition.getValue()] = Node.of(direction);
     }
 
-    public void printRow(LadderPosition curLadderPosition) {
+    public void printRow(Boolean isCurPosInRow, LadderPosition curLadderPosition) {
         for(int i = 0; i < nodes.length; i++) {
-            nodes[i].printNode();
-            if(curLadderPosition.isSameCol(Position.of(i))) {
-                System.out.print("*");
+//            nodes[i].printNode();
+            String nodeStr = String.format("%4s", nodes[i].toString());
+
+            if(isCurPosInRow && curLadderPosition.isColPositionSame(Position.of(i))) {
+                nodeStr += "*";
             }
-            System.out.print(" ");
+
+
+            System.out.print(nodeStr);
         }
         System.out.println();
     }
 
+    public int length() {
+        return nodes.length;
+    }
 
     private void validatePosition(Position position) {
         if (position.isBiggerThan(nodes.length - 1) || position.isSmallerThan(0)) {

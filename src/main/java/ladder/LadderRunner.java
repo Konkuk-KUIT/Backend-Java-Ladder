@@ -9,7 +9,7 @@ public class LadderRunner {
     }
 
     public int run(Position position) {
-        for (int i = 0; i < rows.length; i++) {
+        for(int i = 0; i < rows.length; i++) {
             position = rows[i].nextPosition(position);
         }
         return position.getValue();
@@ -17,17 +17,25 @@ public class LadderRunner {
 
     public int runWithLog(Position position) {
 
-        for (int i = 0; i < rows.length; i++) {
-            rows[i].printRow(LadderPosition.of(Position.of(i), position));
-            position = rows[i].nextPosition(position);
-        }
+        for(int i = 0; i < rows.length; i++) {
 
+            System.out.println("Before");
+            for(int j = 0; j < rows.length; j++) {
+                rows[j].printRow(i == j, LadderPosition.of(Position.of(i), position));
+            }
+
+
+            position = rows[i].nextPosition(position);
+
+
+
+            System.out.println("After");
+            for(int j = 0; j < rows.length; j++) {
+                rows[j].printRow(i == j, LadderPosition.of(Position.of(i), position));
+            }
+
+        }
         return position.getValue();
     }
 
-    public void printCurLadder(Position position) {
-        for (int i = 0; i < rows.length; i++) {
-            rows[i].printRow(LadderPosition.of(Position.of(i), position));
-        }
-    }
 }

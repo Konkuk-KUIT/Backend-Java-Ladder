@@ -31,4 +31,9 @@ public class Node {
     public static Node of(Direction direction) {
         return new Node(direction);
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(direction.getValue());
+    }
 }

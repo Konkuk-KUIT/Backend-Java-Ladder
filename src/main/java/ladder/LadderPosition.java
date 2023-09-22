@@ -13,8 +13,12 @@ public class LadderPosition {
         return new LadderPosition(rowPosition, colPosition);
     }
 
-    public boolean isSameCol(Position of) {
-        return colPosition.isSame(of);
+    public boolean isColPositionSame(Position colPosition) {
+        return this.colPosition.isSame(colPosition);
     }
 
+
+    public boolean isReachEnd(int numberOfRow) {
+        return (rowPosition.getValue() == numberOfRow);
+    }
 }
