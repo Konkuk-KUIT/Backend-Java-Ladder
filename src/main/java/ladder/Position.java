@@ -1,7 +1,6 @@
 package ladder;
 
 import static ladder.ExceptionMessage.INVALID_LADDER_START_POSITION;
-import static ladder.ExceptionMessage.INVALID_NATURAL_NUMBER;
 
 public class Position {
 
