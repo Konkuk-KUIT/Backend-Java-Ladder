@@ -50,9 +50,9 @@ public class Ladder {
         for (int i = 0; i < ladder.length; i++) {
             int randomColumn = random.nextInt(numberOfPerson.getNumber());
 
-            // Check if the generated column is consecutive to the previous one
+            //이어서 못만들게 차이가 절댓값 1과 일치하고 열다르게
             if (i > 0 && Math.abs(ladder[i - 1][randomColumn] - randomColumn) == 1) {
-                // If consecutive, generate a new random column
+                //이 부분 어떻게 구현할지..
                 randomColumn = (randomColumn + 1) % numberOfPerson.getNumber();
             }
 
