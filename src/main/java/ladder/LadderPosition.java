@@ -2,16 +2,16 @@ package ladder;
 
 public class LadderPosition {
     private final int currentRow;
-    private final Position currnetColumn;
+    private final Position currentColumn;
     public LadderPosition(int i, Position currentColumn) {
         this.currentRow = i;
-        this.currnetColumn = currentColumn;
+        this.currentColumn = currentColumn;
     }
     public int getCurrentRow() {
         return currentRow;
     }
 
-    public Position getCurrnetColumn() {
-        return currnetColumn;
+    public Position getCurrentColumn() {
+        return currentColumn;
     }
 }
