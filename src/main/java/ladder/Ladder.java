@@ -1,5 +1,7 @@
 package ladder;
 
+import java.util.Random;
+
 public class Ladder {
 
     /* 좌표값으로 나타내기위해 이차원 배열 */
@@ -42,18 +44,20 @@ public class Ladder {
         return currentColumn + 1;
     }
 
-    public void ladderCreator(int row,int numberOfPlayer){
-        int randColumn=(int)((Math.random()*10000)%(numberOfPlayer-1))+1;
-        int randRow=(int)((Math.random()*10000)%(row-1)+1);
-        int i=0;
+    public void ladderCreator(NaturalNumber numberOfPerson){
+        Random random = new Random();
 
-        while(i>numberOfPlayer){
-            if(getLadder(randRow,randColumn)!=Direction.CREATED_COLUMN.getValue()){
-                drawLine(row,numberOfPlayer);
-                i++;
+        for (int i = 0; i < ladder.length; i++) {
+            int randomColumn = random.nextInt(numberOfPerson.getNumber());
+
+            // Check if the generated column is consecutive to the previous one
+            if (i > 0 && Math.abs(ladder[i - 1][randomColumn] - randomColumn) == 1) {
+                // If consecutive, generate a new random column
+                randomColumn = (randomColumn + 1) % numberOfPerson.getNumber();
             }
-        }
 
+            ladder[i][randomColumn] = 1;
+        }
     }
 
     public void printPlayer(int selectedColumn) {
