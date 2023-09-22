@@ -14,13 +14,13 @@ public class LadderPrint {
     }
     private void printRow(NaturalNumber printingRow, NaturalNumber currentRow, Position position) {
         if (printingRow.getNumber() == currentRow.getNumber()) {
-            printRowForCurrentRow(this.rows[printingRow.getNumber() - 1], position);
+            printRowWhenCurrentRow(this.rows[printingRow.getNumber() - 1], position);
         }
         if (printingRow.getNumber() != currentRow.getNumber()) {
-            printRowForOtherRow(this.rows[printingRow.getNumber() - 1]);
+            printRowWhenOtherRow(this.rows[printingRow.getNumber() - 1]);
         }
     }
-    private void printRowForCurrentRow(Row row, Position position) {
+    private void printRowWhenCurrentRow(Row row, Position position) {
         for (int col = 0; col < row.row.length; col++) {
             System.out.print(row.row[col].getDirection().getValue());
             printIfCurrentPosition(NaturalNumber.of(col + 1), NaturalNumber.of(position.getValue()));
@@ -33,7 +33,7 @@ public class LadderPrint {
             System.out.print("*");
         }
     }
-    private void printRowForOtherRow(Row row) {
+    private void printRowWhenOtherRow(Row row) {
         for (int col = 0; col < row.row.length; col++) {
             System.out.print(row.row[col].getDirection().getValue()+"\t");
         }

@@ -31,7 +31,7 @@ public class Row {
 
     public void drawLine(Position position, Direction direction) {
         //밖으로 그리기 금지
-        if (position.equals(Position.of(4)) && direction.equals(Direction.RIGHT)) {
+        if (position.equals(Position.of(this.row.length)) && direction.equals(Direction.RIGHT)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_DIRECTION.getMessage());
         }
         if (position.equals(Position.of(1)) && direction.equals(Direction .LEFT)) {
@@ -39,8 +39,7 @@ public class Row {
         }
         //겹치게 그리기 금지
         if (row[position.getValue() - 1].getDirection() != Direction.NONE
-                || row[position.
-                getValue() + direction.getValue() - 1].getDirection() != Direction.NONE) {
+                || row[position.getValue() + direction.getValue() - 1].getDirection() != Direction.NONE) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_POSITION.getMessage());
         }
         //그리기
