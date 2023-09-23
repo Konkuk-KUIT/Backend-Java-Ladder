@@ -27,25 +27,28 @@ public class RandomLadderCreator implements LadderCreator {
         int numberOfLines = calMaxNumOfLines();
 
         while (usedPositions.size() < numberOfLines) { //선이 모두 그려질 때까지 반복
-            int randomRow = random.nextInt(rows.length);
-            int randomCol = random.nextInt(rows[0].length() - 1);
+            drawValidLines(random, usedPositions);
+        }
+    }
 
-            String positionKey = randomRow + "-" + randomCol;
+    private void drawValidLines(Random random, Set<String> usedPositions) {
+        int randomRow = random.nextInt(rows.length);
+        int randomCol = random.nextInt(rows[0].length() - 1);
 
-            if (!usedPositions.contains(positionKey)) {
-                try{
-                    rows[randomRow].drawLine(Position.of(randomCol)); //Exception 발생시 종료 하지 않고, Row 클래스의 validation 메소드를 그대로 사용하기 위해 try/ catch
-                    usedPositions.add(positionKey);
-                } catch (IllegalArgumentException e) {
-                    continue;
-                }
+        String positionKey = randomRow + "-" + randomCol;
+
+        if (!usedPositions.contains(positionKey)) {
+            try{
+                rows[randomRow].drawLine(Position.of(randomCol)); //Exception 발생시 종료 하지 않고, Row 클래스의 validation 메소드를 그대로 사용하기 위해 try/ catch
+                usedPositions.add(positionKey);
+            } catch (IllegalArgumentException e) {
+                return;
             }
         }
     }
-    @Override
-    public void drawLine(Position row, Position col) {
 
-    }
+    @Override
+    public void drawLine(Position row, Position col) {}
 
     @Override
     public Row[] getRows() {
