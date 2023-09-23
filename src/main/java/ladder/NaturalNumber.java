@@ -11,7 +11,7 @@ public class NaturalNumber {
         this.number = number;
     }
 
-    public int random(int number) {
+    public int random() {
         return (int) (Math.random() * number);
     }
 

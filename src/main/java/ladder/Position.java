@@ -4,7 +4,7 @@ import static ladder.ExceptionMessage.INVALID_LADDER_START_POSITION;
 
 public class Position {
 
-    private int position;
+    private final int position;
 
     private Position(int position) {
         this.position = position;
