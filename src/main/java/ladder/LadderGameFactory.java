@@ -1,8 +1,8 @@
 package ladder;
 
 public abstract class LadderGameFactory {
-    public LadderGame newLadderGame() {
+    public NormalLadderGame newLadderGame() {
         return createLadderGame();
     }
-    protected abstract LadderGame createLadderGame();
+    protected abstract NormalLadderGame createLadderGame();
 }
