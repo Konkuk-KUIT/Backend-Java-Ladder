@@ -34,4 +34,15 @@ public class Node {
         return direction.isNone();
     }
 
+    public void printNode(Boolean isCurrentPosition) {
+        if(isCurrentPosition) {
+            if(direction.isRight()) System.out.print(direction.getValue() + "* ");
+            else System.out.print(direction.getValue() + "*  ");
+        }
+        else {
+            if (direction.isRight()) System.out.print(direction.getValue() + "  ");
+            else System.out.print(direction.getValue() + "   ");
+        }
+    }
+
 }

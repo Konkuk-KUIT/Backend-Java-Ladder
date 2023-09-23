@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class LadderTest {
 
     @Test
-    void 사다리_생성_확인() {
+    void 노멀_사다리_생성_확인() {
         //given
         NaturalNumber numberOfRow = NaturalNumber.of(3);
         NaturalNumber numberOfPerson = NaturalNumber.of(4);
@@ -26,7 +26,7 @@ class LadderTest {
     }
 
     @Test
-    void 사다리_실행_확인() {
+    void 노멀_사다리_실행_확인() {
         //given
         NaturalNumber numberOfRow = NaturalNumber.of(3);
         NaturalNumber numberOfPerson = NaturalNumber.of(4);
@@ -60,4 +60,29 @@ class LadderTest {
         assertNotNull(ladder);
     }
 
+    @Test
+    void LadderGame_생성_확인() {
+        //given
+        NaturalNumber numberOfRow = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
+
+        //when
+        LadderGame ladderGame = LadderGameFactory.createNormalLadderGame(numberOfRow, numberOfPerson);
+
+        //then
+        assertNotNull(ladderGame);
+    }
+
+    @Test
+    void 랜덤_사다리_실행_확인() {
+        //given
+        NaturalNumber numberOfRow = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
+        Position startPosition = Position.of(1);
+
+        //when
+        LadderGame ladderGame = LadderGameFactory.createRandomLadderGame(numberOfRow, numberOfPerson);
+        ladderGame.run(startPosition);
+
+    }
 }

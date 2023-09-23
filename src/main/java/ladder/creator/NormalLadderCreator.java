@@ -8,6 +8,7 @@ public class NormalLadderCreator implements LadderCreator {
 
     private final Row[] rows;
 
+    @Override
     public Row[] getRows() {
         return rows;
     }

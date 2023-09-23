@@ -1,8 +1,7 @@
 package ladder;
 
 import static ladder.Direction.*;
-import static ladder.ExceptionMessage.INVALID_POSITION;
-import static ladder.ExceptionMessage.LINE_DUPLICATION;
+import static ladder.ExceptionMessage.*;
 
 public class Row {
 
@@ -22,6 +21,7 @@ public class Row {
     public void drawLine(Position position) {
         validateLineRange(position);
         validateLineDuplication(position);
+        validateLineContinuity(position);
         setDirectionAtPosition(position, RIGHT);
         setDirectionAtPosition(position.next(), LEFT);
     }
@@ -48,8 +48,26 @@ public class Row {
     }
 
     private void validateLineDuplication(Position position) {
-        if(!nodes[position.getPosition()].isNone() || !nodes[position.getPosition() + 1].isNone()) {
+        if (!nodes[position.getPosition()].isNone() || !nodes[position.getPosition() + 1].isNone()) {
             throw new IllegalArgumentException(LINE_DUPLICATION.getMessage());
+        }
+    }
+
+
+    private void validateLineContinuity(Position position) {
+        validateLeftLineContinuity(position);
+        validateRightLineContinuity(position);
+    }
+
+    private void validateRightLineContinuity(Position position) {
+        if (position.getPosition() + 2 < nodes.length && !nodes[position.getPosition() + 2].isNone()) {
+            throw new IllegalArgumentException(LINE_CONTINUITY.getMessage());
+        }
+    }
+
+    private void validateLeftLineContinuity(Position position) {
+        if (position.getPosition() >= 1 && !nodes[position.getPosition() - 1].isNone()) {
+            throw new IllegalArgumentException(LINE_CONTINUITY.getMessage());
         }
     }
 }
