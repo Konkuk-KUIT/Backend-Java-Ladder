@@ -1,7 +1,6 @@
 package ladder;
 
 public class Ladder {
-
     public static void main(String[] args) {
         Ladder ladder = new Ladder(5, 4);  // 5 rows, 4 columns
         ladder.drawLine(0, 0);
