@@ -20,59 +20,46 @@ class LadderTest {
     }
 
     @Test
-    void 라인_생성_확인() {
-        //given
-        int row = 3;
-        int col = 3;
-
+    void 사다리_사람_예외_처리_확인() {
         //when
-        Ladder ladder = new Ladder(row, col);
-        ladder.drawLine(1, 1);
+        int numberOfPerson = 3;
+        Ladder ladder = new Ladder(1, numberOfPerson);
+
+        //given
+        int nthOfPerson = 4;
 
         //then
-        assertNotNull(ladder.getRows());
-        assertEquals(1, ladder.getRows()[1][1]);
+        assertThrows(IllegalArgumentException.class, ()->ladder.run(nthOfPerson));
     }
 
     @Test
-    void 게임_작동_확인() {
-        //given
-        int row = 3;
-        int col = 3;
-
+    void 사다리_결과_확인() {
         //when
-        Ladder ladder = new Ladder(row, col);
-        ladder.drawLine(1, 1);
+        int numberOfPerson = 4;
+        int row = 3;
+        Ladder ladder = new Ladder(row, numberOfPerson);
+
+        ladder.drawLine(0,0);
+        ladder.drawLine(1,1);
+        ladder.drawLine(2,0);
+
+        //given
+        int nthOfPerson = 0;
 
         //then
-        assertEquals(2, ladder.run(1));
+        assertEquals(2, ladder.run(nthOfPerson));
+
+        //given
+        nthOfPerson = 1;
+
+        //then
+        assertEquals(1, ladder.run(nthOfPerson));
+
+        //given
+        nthOfPerson = 2;
+
+        //then
+        assertEquals(0, ladder.run(nthOfPerson));
     }
 
-    @Test
-    void canDrawLine_범위_밖_확인() {
-        Ladder ladder = new Ladder(3, 4);
-        assertFalse(ladder.canDrawLine(5, 2));
-    }
-
-    @Test
-    void canDrawLine_현재_위치_확인() {
-        Ladder ladder = new Ladder(3, 4);
-        ladder.drawLine(1, 1);
-        assertFalse(ladder.canDrawLine(1, 1));
-    }
-
-    @Test
-    void canDrawLine_왼쪽_오른쪽_확인() {
-        Ladder ladder = new Ladder(3, 4);
-        ladder.drawLine(1, 1);
-        assertFalse(ladder.canDrawLine(1, 0));
-        assertFalse(ladder.canDrawLine(1, 2));
-    }
-
-    @Test
-    void isIncorrectPosition_범위_밖_확인() {
-        Ladder ladder = new Ladder(3, 4);
-        assertTrue(ladder.isIncorrectPosition(5, 2));
-        assertTrue(ladder.isIncorrectPosition(1, 4));
-    }
 }
