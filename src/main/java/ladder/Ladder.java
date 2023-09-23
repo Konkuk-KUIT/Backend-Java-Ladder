@@ -1,12 +1,14 @@
 package ladder;
 
+import static ladder.ExceptionMessage.*;
+
 public class Ladder {
 
     private final Row[] rows;
 
     public Ladder(int numberOfRow, int numberOfPerson) {
-        if (numberOfRow<=0 || numberOfPerson<=0) { //범위 체크
-            throw new RuntimeException();
+        if (numberOfPerson<=0) { //범위 체크
+            throw new IllegalArgumentException(INVALID_NUMBER_OF_PERSION.getMessage());
         }
         rows = new Row[numberOfRow];
         for (int i=0; i< numberOfRow; i++){
@@ -27,8 +29,8 @@ public class Ladder {
     }
 
     private void checkRowRange(int row) {
-        if (row-1 > rows.length-1) { //범위 체크
-            throw new RuntimeException();
+        if (row-1 >= rows.length || row-1 < 0) { //범위 체크
+            throw new IllegalArgumentException(INVALID_POSITION.getMessage());
         }
     }
 }
