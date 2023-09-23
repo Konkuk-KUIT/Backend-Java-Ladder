@@ -1,6 +1,8 @@
 package ladder;
 
 import ladder.creator.LadderCreator;
+import ladder.creator.NormalLadderCreator;
+import ladder.creator.RandomLadderCreator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +19,7 @@ class LadderTest {
 
         //when
         //Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
-        LadderCreator ladder = new LadderCreator(numberOfRow, numberOfPerson);
+        LadderCreator ladder = new NormalLadderCreator(numberOfRow, numberOfPerson);
 
         //then
         assertNotNull(ladder);
@@ -31,7 +33,7 @@ class LadderTest {
 
         //when
         //Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
-        LadderCreator ladder = new LadderCreator(numberOfRow, numberOfPerson);
+        LadderCreator ladder = new NormalLadderCreator(numberOfRow, numberOfPerson);
         LadderGame ladderGame = new LadderGame(ladder);
 
         ladder.drawLine(Position.of(0),Position.of(0));
@@ -43,6 +45,19 @@ class LadderTest {
         assertEquals(0, ladderGame.run(Position.of(1)));
         assertEquals(3, ladderGame.run(Position.of(2)));
         assertEquals(1, ladderGame.run(Position.of(3)));
+    }
+
+    @Test
+    void 랜덤_사다리_생성_확인() {
+        //given
+        NaturalNumber numberOfRow = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(4);
+
+        //when
+        LadderCreator ladder = new RandomLadderCreator(numberOfRow, numberOfPerson);
+
+        //then
+        assertNotNull(ladder);
     }
 
 }

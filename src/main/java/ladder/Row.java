@@ -43,7 +43,7 @@ public class Row {
     }
 
     private void validateIndex(Position position) {
-        if (position.getPosition() >= row.length) {
+        if (position.getPosition() >= row.length - 1) {
             throw new IllegalArgumentException(INVALID_POSITION.getMessage());
         }
     }
