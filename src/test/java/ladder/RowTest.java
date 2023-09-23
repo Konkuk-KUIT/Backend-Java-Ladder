@@ -10,30 +10,30 @@ class RowTest {
     void checkDrawable_이어서_그릴_경우() {
 
         //given
-        int numberOfRow = 3;
-        int numberOfPerson = 5;
+        NaturalNumber numberOfRow = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(5);
 
         //when
         Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
-        ladder.drawLine(1, 1);
+        ladder.drawLine(Position.of(1), Position.of(1));
 
         //then
-        assertThrows(Exception.class, ()->ladder.drawLine(2, 1));
+        assertThrows(Exception.class, ()->ladder.drawLine(Position.of(2), Position.of(1)));
     }
 
     @Test
     void checkDrawable_중복으로_그릴_경우() {
 
         //given
-        int numberOfRow = 3;
-        int numberOfPerson = 5;
+        NaturalNumber numberOfRow = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(5);
 
         //when
         Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
-        ladder.drawLine(1, 1);
+        ladder.drawLine(Position.of(1), Position.of(1));
 
         //then
-        assertThrows(Exception.class, ()->ladder.drawLine(1, 1));
+        assertThrows(Exception.class, ()->ladder.drawLine(Position.of(1), Position.of(1)));
     }
 
 }

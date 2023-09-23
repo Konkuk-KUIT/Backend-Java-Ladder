@@ -6,26 +6,23 @@ public class Ladder {
 
     private final Row[] rows;
 
-    public Ladder(int numberOfRow, int numberOfPerson) {
-        if (numberOfPerson<=0) { //범위 체크
-            throw new IllegalArgumentException(INVALID_NUMBER_OF_PERSION.getMessage());
-        }
-        rows = new Row[numberOfRow];
-        for (int i=0; i< numberOfRow; i++){
+    public Ladder(NaturalNumber numberOfRow, NaturalNumber numberOfPerson) {
+        rows = new Row[numberOfRow.getNumber()];
+        for (int i=0; i< numberOfRow.getNumber(); i++){
             rows[i] = new Row(numberOfPerson);
         }
     }
 
-    public int run(int i) {
+    public int run(Position position) {
         for (int level=0; level< rows.length; level++){
-            i = rows[level].nextLevel(i);
+            position = rows[level].nextLevel(position);
         }
-        return i;
+        return position.getValue();
     }
 
-    public void drawLine(int startColumn, int row) {
-        checkRowRange(row);
-        rows[row-1].drawLine(startColumn);
+    public void drawLine(Position row, Position startColumn) {
+        checkRowRange(row.getValue());
+        rows[row.getValue()-1].drawLine(startColumn);
     }
 
     private void checkRowRange(int row) {
