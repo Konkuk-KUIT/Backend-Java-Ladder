@@ -24,8 +24,7 @@ public class RandomLadderCreator implements LadderCreator {
     public void drawLine() {
         Set<String> usedPositions = new HashSet<>(); //그려질 선을 문자열의 집합으로 저장할 HashSet
         Random random = new Random();
-
-        int numberOfLines = calMaxLineCount(); //만들수 있는 최대 선의 개수 계산
+        int numberOfLines = calMaxNumOfLines();
 
         while (usedPositions.size() < numberOfLines) { //선이 모두 그려질 때까지 반복
             int randomRow = random.nextInt(rows.length);
@@ -43,7 +42,6 @@ public class RandomLadderCreator implements LadderCreator {
             }
         }
     }
-
     @Override
     public void drawLine(Position row, Position col) {
 
@@ -54,8 +52,10 @@ public class RandomLadderCreator implements LadderCreator {
         return rows;
     }
 
-    public int calMaxLineCount() {
-        return rows.length * rows[0].length();
+
+    private int calMaxNumOfLines() {
+        return (int) (rows.length * rows[0].length() * 0.3);
     }
+
 
 }
