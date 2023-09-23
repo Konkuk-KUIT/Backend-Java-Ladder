@@ -17,8 +17,8 @@ public class Row {
         String row = "";
         for(int i=0; i<nodes.length; i++){
             LadderPosition drawladderPosition = new LadderPosition(Position.of(i), Position.of(nth_call));
-            row += nodes[i].GetDirection().getValue();
-            row += nodes[i].is_current(LadderPosition.PositionisEquall(current_ladderPosition, drawladderPosition));
+            //row += nodes[i].GetDirection().getValue();
+            row += nodes[i].PrintDot(LadderPosition.PositionisEquall(current_ladderPosition, drawladderPosition));
 //            if(x.getValue() == i && yb.getValue() == y.getValue()){ // 외부에서 따로 뺄 수 있도록 하기
 //                row += "*";
 //            }

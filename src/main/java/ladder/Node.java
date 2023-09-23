@@ -12,11 +12,11 @@ public class Node {
         return this.direction;
     }
 
-    public String is_current(boolean is_current){
+    public String PrintDot(boolean is_current){
         if(is_current){
-            return "*";
+            return GetDirection().getValue() + "*";
         }
-        return "";
+        return GetDirection().getValue() + "";
     }
 
     public Position move(Position position) {
