@@ -17,8 +17,8 @@ public class RowTest {
         row.drawLine(Position.of(0));
 
         //then
-        assertEquals(1, row.getRow()[0]);
-        assertEquals(-1, row.getRow()[1]);
+        assertEquals(true, row.getNodes()[0].isRight());
+        assertEquals(true, row.getNodes()[1].isLeft());
     }
 
     @Test

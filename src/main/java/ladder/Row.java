@@ -6,50 +6,49 @@ import static ladder.ExceptionMessage.LINE_DUPLICATION;
 
 public class Row {
 
-    private final int[] row;
+    private final Node[] nodes;
 
     public Row(NaturalNumber numberOfPerson) {
-        this.row = new int[numberOfPerson.getNumber()];
+        this.nodes = new Node[numberOfPerson.getNumber()];
+        for (int i = 0; i < numberOfPerson.getNumber(); i++) {
+            nodes[i] = Node.of(NONE);
+        }
     }
 
-    public int[] getRow() {
-        return row;
+    public Node[] getNodes() {
+        return nodes;
     }
 
     public void drawLine(Position position) {
-        validateIndex(position);
+        validateLineRange(position);
         validateLineDuplication(position);
         setDirectionAtPosition(position, RIGHT);
         setDirectionAtPosition(position.next(), LEFT);
     }
 
     private void setDirectionAtPosition(Position position, Direction direction) {
-        row[position.getPosition()] = direction.getValue();
+        nodes[position.getPosition()] = Node.of(direction);
     }
 
     public Position moveLine(Position currentPosition) {
         validateIndex(currentPosition);
-        if (isRight(currentPosition)) return currentPosition.next();
-        if (isLeft(currentPosition)) return currentPosition.prev();
-        return currentPosition;
-    }
-
-    private boolean isLeft(Position position) {
-        return row[position.getPosition()] == LEFT.getValue();
-    }
-
-    private boolean isRight(Position position) {
-        return row[position.getPosition()] == RIGHT.getValue();
+        return nodes[currentPosition.getPosition()].move(currentPosition);
     }
 
     private void validateIndex(Position position) {
-        if (position.getPosition() >= row.length - 1) {
+        if (position.getPosition() >= nodes.length) {
+            throw new IllegalArgumentException(INVALID_POSITION.getMessage());
+        }
+    }
+
+    private void validateLineRange(Position position) {
+        if (position.getPosition() >= nodes.length - 1) {
             throw new IllegalArgumentException(INVALID_POSITION.getMessage());
         }
     }
 
     private void validateLineDuplication(Position position) {
-        if (row[position.getPosition()] != 0 || row[position.getPosition() + 1] != 0) {
+        if(!nodes[position.getPosition()].isNone() || !nodes[position.getPosition() + 1].isNone()) {
             throw new IllegalArgumentException(LINE_DUPLICATION.getMessage());
         }
     }
