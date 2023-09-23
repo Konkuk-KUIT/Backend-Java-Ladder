@@ -4,7 +4,7 @@ public class NaturalNumber {
 
     private final int number;
 
-    public NaturalNumber(int number) {
+    private NaturalNumber(int number) {
         validate(number);
         this.number = number;
     }
