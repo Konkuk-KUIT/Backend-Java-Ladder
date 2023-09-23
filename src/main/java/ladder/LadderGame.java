@@ -10,13 +10,9 @@ public class LadderGame {
         this.ladderCreator = ladderCreator;
     }
 
-    public void print(){
-        Row[] rows = ladderCreator.getRows();
-        for(Row r : rows){
-            System.out.println(r.getLine());
-        }
+    public LadderCreator getLadderCreator() {
+        return ladderCreator;
     }
-
 
     public int run(Position position) {
         LadderRunner ladderRunner = new LadderRunner(ladderCreator.getRows());

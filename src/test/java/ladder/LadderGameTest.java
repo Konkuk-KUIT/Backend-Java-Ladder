@@ -17,6 +17,12 @@ class LadderGameTest {
         LadderSize ladderSize = new LadderSize(numberOfRow, numberOfPerson);
 
         LadderGame ladderHumanGame = LadderGameFactory.getLadderHumanGame(ladderSize);
+        LadderHumanCreator ladderHumanCreator = (LadderHumanCreator) ladderHumanGame.getLadderCreator();
+        ladderHumanCreator.drawLine(Position.of(1),Position.of(1));
+        ladderHumanCreator.drawLine(Position.of(0),Position.of(0));
+        ladderHumanCreator.drawLine(Position.of(2),Position.of(2));
+        ;
+
         ladderHumanGame.run(Position.of(1));
 
     }

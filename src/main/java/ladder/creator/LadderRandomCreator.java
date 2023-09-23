@@ -43,13 +43,6 @@ public class LadderRandomCreator implements LadderCreator{
         return positionsize;
     }
 
-    public boolean vaildDuplication(HashSet<PositionSize> hashSet, PositionSize positionsize) {
-        if(hashSet.contains(positionsize))
-            return false;
-        else
-            return true;
-    }
-
     @Override
     public void drawLine(Position row, Position col) {
         rows[row.getValue()].drawLine(col);
