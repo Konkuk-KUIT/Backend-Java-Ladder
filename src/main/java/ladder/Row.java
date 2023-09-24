@@ -6,9 +6,8 @@ public class Row {
 
     int[] row;
 
-    public Row(int numberOfPerson) {
-        validateNumberOfPerson(numberOfPerson);
-        row = new int[numberOfPerson];
+    public Row(NaturalNumber numberOfPerson) {
+        row = new int[numberOfPerson.getNumber()];
     }
 
     public void drawLine(int col) {
@@ -29,13 +28,6 @@ public class Row {
         }
         return position;
     }
-
-    private void validateNumberOfPerson(int numberOfPerson) {
-        if (numberOfPerson <= 0) {
-            throw new IllegalArgumentException(INVALID_NUMBER_OF_PERSON.getMessage());
-        }
-    }
-
 
     private void validateDrawLinePosition(int startPosition) {
         if (startPosition >= row.length - 1 || startPosition < 0 || row[startPosition] == Direction.LEFT.getValue() || row[startPosition + 1] == Direction.RIGHT.getValue()) {

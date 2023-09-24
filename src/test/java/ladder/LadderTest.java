@@ -9,8 +9,8 @@ class LadderTest {
     @Test
     void 사다리_생성_확인() {
         //given
-        int numberOfRow = 3;
-        int numberOfPerson = 5;
+        NaturalNumber numberOfRow = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(5);
 
         //when
         Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
@@ -22,8 +22,8 @@ class LadderTest {
     @Test
     void 결과_확인() {
         //given
-        int numberOfRow = 3;
-        int numberOfPerson = 2;
+        NaturalNumber numberOfRow = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(2);
 
         //when
         Ladder ladder = new Ladder(numberOfRow, numberOfPerson);

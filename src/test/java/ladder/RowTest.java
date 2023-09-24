@@ -9,14 +9,15 @@ public class RowTest {
 
     @Test
     void 사람_수_오류_확인() { // validateNumberOfPerson
+
         // Then
-        assertThrows(IllegalArgumentException.class, () -> new Row(0));
+        assertThrows(IllegalArgumentException.class, () -> new Row(NaturalNumber.of(0)));
     }
 
     @Test
     void 위치_오류_확인() { // validatePosition
         // Given
-        int numberOfPerson = 3;
+        NaturalNumber numberOfPerson = NaturalNumber.of(3);
         Row row = new Row(numberOfPerson);
 
         // When
@@ -30,7 +31,7 @@ public class RowTest {
     @Test
     void 사다리_그리기_위치_초과_예외() {
         //when
-        int numberOfPerson = 3;
+        NaturalNumber numberOfPerson = NaturalNumber.of(3);
         Row row = new Row(numberOfPerson);
 
         //given
@@ -43,7 +44,7 @@ public class RowTest {
     @Test
     void 사다리_그리기_위치_미만_예외() {
         //when
-        int numberOfPerson = 3;
+        NaturalNumber numberOfPerson = NaturalNumber.of(3);
         Row row = new Row(numberOfPerson);
 
         //given
@@ -56,7 +57,7 @@ public class RowTest {
     @Test
     void 사다리_그리기_좌측_선_중복_예외() {
         //when
-        int numberOfPerson = 3;
+        NaturalNumber numberOfPerson = NaturalNumber.of(3);
         Row row = new Row(numberOfPerson);
         row.drawLine(0);
 
@@ -67,7 +68,7 @@ public class RowTest {
     @Test
     void 사다리_그리기_우측_선_중복_예외() {
         //when
-        int numberOfPerson = 3;
+        NaturalNumber numberOfPerson = NaturalNumber.of(3);
         Row row = new Row(numberOfPerson);
         row.drawLine(1);
 
