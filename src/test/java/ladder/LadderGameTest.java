@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.creator.LadderCreator;
+import ladder.creator.RandomLadderCreator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -84,5 +85,15 @@ class LadderGameTest {
 
         ladderGame.print(Position.of(0));
         assertEquals(2, ladderGame.run(Position.of(0)));
+    }
+
+    @Test
+    void 램덤_사다리_생성_확인(){
+        NaturalNumber numberOfRow = NaturalNumber.of(4);
+        NaturalNumber numberOfPerson = NaturalNumber.of(5);
+        LadderCreator ladderCreator = new RandomLadderCreator(numberOfRow, numberOfPerson);
+
+        LadderGame ladderGame = new LadderGame(ladderCreator);
+        ladderGame.print(Position.of(0));
     }
 }
