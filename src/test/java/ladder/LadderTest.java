@@ -3,6 +3,7 @@ package ladder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static ladder.Ladder.rows;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
