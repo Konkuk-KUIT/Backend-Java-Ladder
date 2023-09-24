@@ -89,7 +89,7 @@ class LadderTest {
 
         //then
         assertThrows(IllegalArgumentException.class, () -> ladder.drawLine(Position.of(0),Position.of(6)));
-//        assertThrows(IllegalArgumentException.class, () -> ladder.drawLine(Position.of(3),Position.of(1))); // numberOfRow보다 큰 값이 drawline에 입력으로 들어왔을
+//        assertThrows(IllegalArgumentException.class, () -> ladder.drawLine(Position.of(3),Position.of(1))); // numberOfRow보다 큰 값이 drawline에 입력으로 들어왔을때
         assertThrows(IllegalArgumentException.class, () -> ladder.drawLine(Position.of(1),Position.of(0)));
     }
 
