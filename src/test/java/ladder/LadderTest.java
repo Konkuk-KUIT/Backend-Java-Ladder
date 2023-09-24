@@ -24,17 +24,17 @@ class LadderTest {
     @Test
     void drawLine_테스트(){
         //given
-        int numberOfRow = 3;
-        int numberOfPerson = 5;
+        int numberOfPerson = 2;
 
-        Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
+        Row row = new Row(numberOfPerson);
 
         //when
-        ladder.drawLine(1,1);
+        row.drawLine(1);
 
         //then
-        assertThat(ladder.getRowsValue(0,0)).isEqualTo(1);
-        assertThat(ladder.getRowsValue(0,1)).isEqualTo(-1);
+        assertThat(row.nextPosition(1)).isEqualTo(2);
+        assertThat(row.nextPosition(2)).isEqualTo(1);
+
     }
 
     @Test
@@ -59,10 +59,10 @@ class LadderTest {
         Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
 
         //when
-        ladder.drawLine(1,1);
-        ladder.drawLine(2, 2);
+        ladder.drawLine(0,1);
+        ladder.drawLine(1, 2);
+        ladder.drawLine(1, 4);
         ladder.drawLine(2, 4);
-        ladder.drawLine(3, 4);
 
         //then
         assertThat(ladder.run(1)).isEqualTo(3);
@@ -92,11 +92,9 @@ class LadderTest {
         //when
 
         //then
-        assertThrows(RuntimeException.class, () -> ladder.drawLine(2, 5));
-        assertThrows(RuntimeException.class, () -> ladder.drawLine(4, 2));
-        assertThrows(RuntimeException.class, () -> ladder.drawLine(0, 1));
+        assertThrows(RuntimeException.class, () -> ladder.drawLine(0, 6));
+        assertThrows(RuntimeException.class, () -> ladder.drawLine(3, 1));
         assertThrows(RuntimeException.class, () -> ladder.drawLine(1, 0));
-//        assertThrows(RuntimeException.class, () -> ladder.drawLine(3, 4)); // 실패
     }
 
     @Test
