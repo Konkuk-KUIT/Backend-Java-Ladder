@@ -67,4 +67,26 @@ class NodeTest {
         assertFalse(rightNode.isLeft());
         assertFalse(noneNode.isLeft());
     }
+
+    @Test
+    void 오른쪽_노드_심볼_추가() {
+        StringBuilder sb = new StringBuilder();
+        rightNode.appendSymbol(sb);
+        assertEquals("1", sb.toString());
+    }
+
+    @Test
+    void 왼쪽_노드_심볼_추가() {
+        StringBuilder sb = new StringBuilder();
+        leftNode.appendSymbol(sb);
+        assertEquals("-1", sb.toString());
+    }
+
+    @Test
+    void 노드_심볼_추가() {
+        StringBuilder sb = new StringBuilder();
+        noneNode.appendSymbol(sb);
+        assertEquals("0", sb.toString());
+    }
+
 }

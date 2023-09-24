@@ -70,5 +70,4 @@ class LadderGameTest {
         //then
         assertEquals(0, ladderGame.run(position));
     }
-
 }

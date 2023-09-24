@@ -161,4 +161,48 @@ class RowTest {
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(Position.of(0)));
     }
+
+    @Test
+    void 선_없는_행_생성_확인() {
+        //when
+        NaturalNumber numberOfPerson = NaturalNumber.of(3);
+        Row row = new Row(numberOfPerson);
+        StringBuilder sb = new StringBuilder();
+
+        //given
+        row.generateRow(sb, Position.of(0), Position.of(1), Position.of(1));
+
+        //then
+        assertEquals("0 0 0 \n", sb.toString());
+    }
+
+    @Test
+    void 선_있는_행_생성_확인() {
+        //when
+        NaturalNumber numberOfPerson = NaturalNumber.of(3);
+        Row row = new Row(numberOfPerson);
+        row.drawLine(Position.of(0));
+        StringBuilder sb = new StringBuilder();
+
+        //given
+        row.generateRow(sb, Position.of(0), Position.of(1), Position.of(1));
+
+        //then
+        assertEquals("1 -1 0 \n", sb.toString());
+    }
+
+    @Test
+    void 현재_위치_행_생성_확인() {
+        //when
+        NaturalNumber numberOfPerson = NaturalNumber.of(3);
+        Row row = new Row(numberOfPerson);
+        row.drawLine(Position.of(0));
+        StringBuilder sb = new StringBuilder();
+
+        //given
+        row.generateRow(sb, Position.of(0), Position.of(0), Position.of(0));
+
+        //then
+        assertEquals("1* -1 0 \n", sb.toString());
+    }
 }

@@ -29,4 +29,8 @@ public class Node {
     public static Node of(Direction direction) {
         return new Node(direction);
     }
+
+    public void appendSymbol(StringBuilder sb) {
+        sb.append(direction.getValue());
+    }
 }

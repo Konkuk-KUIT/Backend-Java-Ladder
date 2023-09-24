@@ -45,4 +45,15 @@ public class Row {
     private boolean isInvalidDrawPosition(Position position) {
         return position.isBiggerThan(nodes.length - 1) || position.isSmallerThan(0);
     }
+
+    public void generateRow(StringBuilder sb, Position DrawingRow, Position currentRow, Position currentCol) {
+        for (int i = 0; i < nodes.length; i++) {
+            nodes[i].appendSymbol(sb);
+            if (currentRow.equals(DrawingRow) && currentCol.equals(Position.of(i))) {
+                sb.append("*");
+            }
+            sb.append(" ");
+        }
+        sb.append("\n");
+    }
 }

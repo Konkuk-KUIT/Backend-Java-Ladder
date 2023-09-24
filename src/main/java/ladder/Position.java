@@ -43,4 +43,14 @@ public class Position {
     private static boolean isPosition(int position) {
         return position >= 0;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Position)) return false;
+
+        Position that = (Position) o;
+
+        return position == that.position;
+    }
 }
