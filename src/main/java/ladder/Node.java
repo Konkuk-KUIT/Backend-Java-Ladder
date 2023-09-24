@@ -35,6 +35,6 @@ public class Node {
     }
 
     public void printWithStar() {
-        System.out.printf("%d%-2c", direction.getValue(), '*');
+        System.out.printf("%-2d%c", direction.getValue(), '*');
     }
 }
