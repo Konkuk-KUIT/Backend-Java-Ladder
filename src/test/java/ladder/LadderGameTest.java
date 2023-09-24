@@ -1,11 +1,12 @@
 package ladder;
 
 import ladder.creator.LadderCreator;
-import org.assertj.core.api.Assertions;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-
+import ladder.creator.StaticLadderCreator;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class LadderGameTest {
 
@@ -16,7 +17,7 @@ class LadderGameTest {
         NaturalNumber numberOfPerson =  NaturalNumber.of(5);
 
         //when
-        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        LadderCreator ladderCreator = new StaticLadderCreator(numberOfRow, numberOfPerson);
 
         //then
         assertNotNull(ladderCreator);
@@ -110,3 +111,4 @@ class LadderGameTest {
     }
 
 }
+
