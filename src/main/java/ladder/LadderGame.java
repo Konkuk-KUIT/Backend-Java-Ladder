@@ -1,13 +1,14 @@
 package ladder;
 
 import creator.LadderCreator;
+import creator.RandomLadderCreator;
 
 public class LadderGame {
 
-    private final LadderCreator ladderCreator;
+    private final RandomLadderCreator ladderCreator;
 
 
-    public LadderGame(LadderCreator ladderCreator) {
+    public LadderGame(RandomLadderCreator ladderCreator) {
         this.ladderCreator = ladderCreator;
     }
 

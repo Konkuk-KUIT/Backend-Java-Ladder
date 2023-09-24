@@ -29,7 +29,10 @@ public class Row {
         nodes[startColumn.getValue()] = Node.of(Direction.LEFT);
     }
 
-    private void checkDrawable(Position startColumn) { //선을 그릴 수 있는 상황인지 체크
+    public void checkDrawable(Position startColumn) { //선을 그릴 수 있는 상황인지 체크
+        if(startColumn.getValue() >= nodes.length){
+            throw new IllegalArgumentException(INVALID_DRAW_POSITION.getMessage());
+        }
         if (!(nodes[startColumn.getValue()-1].isNone() && nodes[startColumn.getValue()].isNone())){
             throw new IllegalArgumentException(INVALID_DRAW_POSITION.getMessage());
         }
@@ -38,7 +41,7 @@ public class Row {
     public void printRow(boolean printStar, Position position) {
         for (int i=0; i<nodes.length; i++){
             boolean printStar2 =false;
-            if (printStar && i==position.getValue()){
+            if (printStar && i==position.getValue()-1){
                 printStar2 = true;
             }
             nodes[i].printNode(printStar2);

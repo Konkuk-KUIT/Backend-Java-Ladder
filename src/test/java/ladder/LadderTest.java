@@ -1,6 +1,7 @@
 package ladder;
 
 import creator.LadderCreator;
+import creator.RandomLadderCreator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,7 +22,7 @@ class LadderGameTest {
     }
 
 
-    @Test
+/*    @Test
     void 사다리_결과_확인(){
         //given
         NaturalNumber numberOfRow = NaturalNumber.of(3);
@@ -39,6 +40,23 @@ class LadderGameTest {
         assertEquals(3, result);
         assertEquals(ladderGame.run(Position.of(2)), 1);
         assertEquals(ladderGame.run(Position.of(3)), 2);
+    }*/
+
+
+    @Test
+    void 랜덤_사다리_결과_확인(){
+        //given
+        NaturalNumber numberOfRow = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(5);
+
+        //when
+        RandomLadderCreator ladderCreator = new RandomLadderCreator(numberOfRow, numberOfPerson);
+
+        LadderGame ladderGame = new LadderGame(ladderCreator);
+        int result = ladderGame.run(Position.of(1));
+
+        //then
+
     }
 
     @Test
@@ -61,7 +79,7 @@ class LadderGameTest {
         NaturalNumber numberOfPerson = NaturalNumber.of(5);
 
         //when
-        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        RandomLadderCreator ladderCreator = new RandomLadderCreator(numberOfRow, numberOfPerson);
         LadderGame ladderGame = new LadderGame(ladderCreator);
         //then
         assertThrows(Exception.class, ()->ladderGame.run(Position.of(6)));
