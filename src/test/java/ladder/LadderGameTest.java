@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.creator.LadderCreator;
+import ladder.creator.LadderRandomCreator;
 import ladder.creator.LadderSize;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ class LadderGameTest {
         int numberOfPerson = 5;
 
         //when
-        LadderCreator ladderCreator = new LadderCreator(NaturalNumber.of(numberOfPerson),NaturalNumber.of(numberOfPerson));
+        LadderRandomCreator ladderCreator = new LadderRandomCreator(NaturalNumber.of(numberOfPerson),NaturalNumber.of(numberOfPerson));
 
         //then
         assertNotNull(ladderCreator);
@@ -34,11 +34,11 @@ class LadderGameTest {
 
     @Test
     void 사다리_줄_생성_테스트_AND_RUN() {
-        NaturalNumber numberOfRow = NaturalNumber.of(10);
-        NaturalNumber numberOfPerson = NaturalNumber.of(10);
-        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        NaturalNumber numberOfRow = NaturalNumber.of(6);
+        NaturalNumber numberOfPerson = NaturalNumber.of(6);
+        LadderRandomCreator ladderCreator = new LadderRandomCreator(numberOfRow, numberOfPerson);
 
-        ladderCreator.autoDrawLine();
+        ladderCreator.drawLine(NaturalNumber.of(1), Position.of(1), Direction.NONE);
 
         LadderGame ladderGame = new LadderGame(ladderCreator);
 

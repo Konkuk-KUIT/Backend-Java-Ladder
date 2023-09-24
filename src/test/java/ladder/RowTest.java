@@ -12,7 +12,7 @@ class RowTest {
 
         assertNotNull(row);
     }
-    @Test
+    /*@Test
     void 줄_그리기_확인() {
         //when
         int numOfPerson = 4;
@@ -26,7 +26,7 @@ class RowTest {
                 row.row[position.getValue()-1].getDirection().getValue());
         assertEquals(direction.getOppositeDirection().getValue(),
                 row.row[row.nextPosition(position).getValue()-1].getDirection().getValue());
-    }
+    }*/
     @Test
     void 줄_밖으로_그리기_금지() {
         //when

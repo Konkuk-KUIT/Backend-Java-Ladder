@@ -2,23 +2,26 @@ package ladder;
 
 public class LadderRunner {
     private final Row[] rows;
-    private final LadderPrint ladderPrint;
 
     public LadderRunner(Row[] rows) {
         this.rows = rows;
-        this.ladderPrint = new LadderPrint(rows);
     }
 
     public Position run(Position position) {
         for (int row = 0; row < this.rows.length; row++) {
             System.out.println("Before");
-            ladderPrint.printLadder(NaturalNumber.of(row + 1), position);
+            printLadder(position, row);
 
             position = this.rows[row].nextPosition(position);
 
             System.out.println("After");
-            ladderPrint.printLadder(NaturalNumber.of(row + 1), position);
+            printLadder(position, row);
         }
         return position;
+    }
+    public void printLadder(Position currentPosition, int currentRow) {
+        for (int row = 0; row < this.rows.length; row++) {
+            rows[row].printRow(currentPosition, currentRow == row);
+        }
     }
 }

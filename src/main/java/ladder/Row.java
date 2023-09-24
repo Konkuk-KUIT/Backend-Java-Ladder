@@ -12,11 +12,11 @@ public class Row {
     }
 
     public boolean isLeft(Position position) {
-        return row[position.getValue() - 1].getDirection() == Direction.LEFT;
+        return row[position.getValue() - 1].isLEFT();
     }
 
     public boolean isRight(Position position) {
-        return row[position.getValue() - 1].getDirection() == Direction.RIGHT;
+        return row[position.getValue() - 1].isRIGHT();
     }
 
     public Position nextPosition(Position position) {
@@ -38,12 +38,19 @@ public class Row {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_DIRECTION.getMessage());
         }
         //겹치게 그리기 금지
-        if (row[position.getValue() - 1].getDirection() != Direction.NONE
-                || row[position.getValue() + direction.getValue() - 1].getDirection() != Direction.NONE) {
+        if (!row[position.getValue() - 1].isNONE()
+                || !row[position.getValue() + direction.getValue() - 1].isNONE()) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_POSITION.getMessage());
         }
         //그리기
         row[position.getValue() - 1] = Node.of(direction);
         row[nextPosition(position).getValue() - 1] = Node.of(direction.getOppositeDirection());
+    }
+
+    public void printRow(Position currentPosition, Boolean isCurrentRow) {
+        for (int i = 0; i < row.length; i++) {
+            row[i].printNode(isCurrentRow ? i + 1 == currentPosition.getValue() : false);
+        }
+        System.out.println();
     }
 }
