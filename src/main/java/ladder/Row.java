@@ -18,6 +18,22 @@ public class Row {
         setDirectionAtPosition(startPosition.next(), Direction.LEFT);
     }
 
+    @Override
+    public String toString() {
+        String result = "";
+        for (Node node : nodes) {
+            if (node.isLeft()) {
+                result += "-1";
+            } else if (node.isRight()) {
+                result += "1";
+            } else {
+                result += "0";
+            }
+            result += " ";
+        }
+        return result;
+    }
+
     public Position nextPosition(Position currentPosition) {
         validatePosition(currentPosition);
         return nodes[currentPosition.getValue()].move(currentPosition);
@@ -44,5 +60,20 @@ public class Row {
 
     private boolean isInvalidDrawPosition(Position position) {
         return position.isBiggerThan(nodes.length - 1) || position.isSmallerThan(0);
+    }
+
+    public int getNodesLength() {
+        return nodes.length;
+    }
+
+    public String getNodeValue(int index) {
+        Node node = nodes[index];
+        if (node.isLeft()) {
+            return "-1";
+        } else if (node.isRight()) {
+            return "1";
+        } else {
+            return "0";
+        }
     }
 }

@@ -1,7 +1,6 @@
 package ladder;
 
 public class Node {
-
     private Direction direction;
 
     private Node(Direction direction) {
