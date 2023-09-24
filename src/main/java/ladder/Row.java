@@ -10,32 +10,31 @@ public class Row {
         row = new int[numberOfPerson.getNumber()];
     }
 
-    public void drawLine(int col) {
-//        validateDrawLine(col);
+    public void drawLine(Position col) {
         validateDrawLinePosition(col);
-        row[col] = Direction.RIGHT.getValue(); //오른쪽
-        row[col + 1] = Direction.LEFT.getValue(); //왼쪽
+        row[col.getPosition()] = Direction.RIGHT.getValue(); //오른쪽
+        row[col.getPosition() + 1] = Direction.LEFT.getValue(); //왼쪽
     }
 
-    public int nextPosition(int position) {
+    public Position nextPosition(Position position) {
         validatePosition(position);
 
-        if (row[position] == Direction.RIGHT.getValue()) {
-            return position + 1;
+        if (row[position.getPosition()] == Direction.RIGHT.getValue()) {
+            return position.next();
         }
-        if (row[position] == Direction.LEFT.getValue()) {
-            return position - 1;
+        if (row[position.getPosition()] == Direction.LEFT.getValue()) {
+            return position.prev();
         }
         return position;
     }
 
-    private void validateDrawLinePosition(int startPosition) {
-        if (startPosition >= row.length - 1 || startPosition < 0 || row[startPosition] == Direction.LEFT.getValue() || row[startPosition + 1] == Direction.RIGHT.getValue()) {
+    private void validateDrawLinePosition(Position startPosition) {
+        if (startPosition.isBiggerThan(row.length - 2) || startPosition.isSmallerThan(0) || row[startPosition.getPosition()] == Direction.LEFT.getValue() || row[startPosition.getPosition() + 1] == Direction.RIGHT.getValue()) {
             throw new IllegalArgumentException(INVALID_DRAWLINE.getMessage());
         }
     }
-    private void validatePosition(int position) {
-        if (position < 0 || position >= row.length) {
+    private void validatePosition(Position position) {
+        if (position.isSmallerThan(0) || position.isBiggerThan(row.length-1)) {
             throw new IllegalArgumentException(INVALID_POSITION.getMessage());
         }
     }

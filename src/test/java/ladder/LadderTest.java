@@ -27,13 +27,13 @@ class LadderTest {
 
         //when
         Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
-        ladder.drawLine(1, 0);
+        ladder.drawLine(1, Position.of(0));
 //        ladder.drawLine(1, 1); // validateDrawLine 체크
 
 
         //then
-        assertEquals(1, ladder.run(0));
-        assertEquals(0, ladder.run(1));
+        assertEquals(1, ladder.run(Position.of(0)));
+        assertEquals(0, ladder.run(Position.of(1)));
     }
 
 

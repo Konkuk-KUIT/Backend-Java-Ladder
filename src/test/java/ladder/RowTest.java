@@ -21,7 +21,7 @@ public class RowTest {
         Row row = new Row(numberOfPerson);
 
         // When
-        int position = 4;
+        Position position = Position.of(4);
 
         // Then
         assertThrows(IllegalArgumentException.class, () -> row.nextPosition(position));
@@ -35,7 +35,7 @@ public class RowTest {
         Row row = new Row(numberOfPerson);
 
         //given
-        int position = 3;
+        Position position = Position.of(3);
 
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(position));
@@ -51,7 +51,7 @@ public class RowTest {
         int position = -1;
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(position));
+        assertThrows(IllegalArgumentException.class, () -> row.drawLine(Position.of(position)));
     }
 
     @Test
@@ -59,10 +59,10 @@ public class RowTest {
         //when
         NaturalNumber numberOfPerson = NaturalNumber.of(3);
         Row row = new Row(numberOfPerson);
-        row.drawLine(0);
+        row.drawLine(Position.of(0));
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(1));
+        assertThrows(IllegalArgumentException.class, () -> row.drawLine(Position.of(1)));
     }
 
     @Test
@@ -70,10 +70,10 @@ public class RowTest {
         //when
         NaturalNumber numberOfPerson = NaturalNumber.of(3);
         Row row = new Row(numberOfPerson);
-        row.drawLine(1);
+        row.drawLine(Position.of(1));
 
         //then
-        assertThrows(IllegalArgumentException.class, () -> row.drawLine(0));
+        assertThrows(IllegalArgumentException.class, () -> row.drawLine(Position.of(0)));
     }
 
 }
