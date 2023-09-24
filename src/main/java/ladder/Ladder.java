@@ -4,22 +4,23 @@ public class Ladder {
 
     private final Row[] rows;
 
-    public Ladder(int numberOfRow, NaturalNumber numberOfPerson) {
-        rows = new Row[numberOfRow];
-        for (int i = 0; i < numberOfRow; i++) {
+    public Ladder(NaturalNumber numberOfRow, NaturalNumber numberOfPerson) {
+        rows = new Row[numberOfRow.getNumber()];
+        for (int i = 0; i < numberOfRow.getNumber(); i++) {
             rows[i] = new Row(numberOfPerson);
         }
     }
 
-    public void drawLine(int row, int col) {
-        rows[row].drawLine(col);
+    public void drawLine(Position row, Position col) {
+        //row 배열안에 numberOfRow보다 큰 값이 들어왔을 때 예외처리..?
+        rows[row.getValue()].drawLine(col);
     }
 
-    public int run(int position) {
+    public int run(Position position) {
         for (int i = 0; i < rows.length; i++) {
             position = rows[i].nextPosition(position);
         }
-        return position;
+        return position.getValue();
     }
 
 }

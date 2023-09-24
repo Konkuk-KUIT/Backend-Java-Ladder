@@ -10,40 +10,40 @@ public class Row {
         row = new int[numberOfPerson.getNumber()+1];
     }
 
-    public void drawLine(int startPosition) {
+    public void drawLine(Position startPosition) {
         validateDrawLinePosition(startPosition);
-        row[startPosition] = 1;
-        row[startPosition + 1] = -1;
+        row[startPosition.getValue()] = 1;
+        row[startPosition.getValue() + 1] = -1;
     }
 
-    public int nextPosition(int position) {
-        validatePosition(position);
+    public Position nextPosition(Position currentPosition) {
+        validatePosition(currentPosition);
 
-        if (isRight(position)) {
-            return position + 1;
+        if (isRight(currentPosition)) {
+            return currentPosition.next();
         }
-        if (isLeft(position)) {
-            return position - 1;
+        if (isLeft(currentPosition)) {
+            return currentPosition.prev();
         }
-        return position;
+        return currentPosition;
     }
 
-    private boolean isLeft(int position) {
-        return row[position] == Direction.LEFT.getValue();
+    private boolean isLeft(Position position) {
+        return row[position.getValue()] == Direction.LEFT.getValue();
     }
 
-    private boolean isRight(int position) {
-        return row[position] == Direction.RIGHT.getValue();
+    private boolean isRight(Position position) {
+        return row[position.getValue()] == Direction.RIGHT.getValue();
     }
 
-    private void validateDrawLinePosition(int startPosition) {
-        if (startPosition > row.length -1 || startPosition < 1 || row[startPosition] == Direction.LEFT.getValue() || row[startPosition + 1] == Direction.RIGHT.getValue()) {
+    private void validateDrawLinePosition(Position startPosition) {
+        if (startPosition.getValue() > row.length -1 || startPosition.getValue() < 1 || row[startPosition.getValue()] == Direction.LEFT.getValue() || row[startPosition.getValue() + 1] == Direction.RIGHT.getValue()) {
             throw new IllegalArgumentException(INVALID_DRAW_POSITION.getMessage());
         }
     }
 
-    private void validatePosition(int position) {
-        if (position >= row.length || position < 0) {
+    private void validatePosition(Position position) {
+        if (position.isBiggerThan(row.length) || position.isSmallerThan(1)) {
             throw new IllegalArgumentException(INVALID_POSITION.getMessage());
         }
     }
