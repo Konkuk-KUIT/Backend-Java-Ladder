@@ -43,7 +43,7 @@ public class Ladder {
             checkOverlapping(position);
         } catch (LadderPositionOutOfBoundsException e) {
             System.out.println(e.getMessage());
-            throw new RuntimeException(e);
+            throw e;
         }
     }
 

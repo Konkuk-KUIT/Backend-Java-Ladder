@@ -13,8 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderSumulationTest {
 
-    private Ladder ladder;
-    private LadderRunner ladderRunner;
+    private LadderGame ladderGame;
 
     /*  LEFT : -1,  RIGHT : 1
     {{0, 0, 0, 0, 0},
@@ -25,14 +24,12 @@ public class LadderSumulationTest {
      */
     @BeforeEach
     void setup_ladder(){
-        LadderCreator ladderCreator = new LadderCreator();
-        ladder = ladderCreator.createLadder(5, 5);
-        ladderCreator.drawLine(ladder, LadderPosition.of(1, 1), Direction.LEFT);
-        ladderCreator.drawLine(ladder, LadderPosition.of(1, 2), Direction.RIGHT);
-        ladderCreator.drawLine(ladder, LadderPosition.of(2, 3), Direction.RIGHT);
-        ladderCreator.drawLine(ladder, LadderPosition.of(3, 2), Direction.LEFT);
-        ladderCreator.drawLine(ladder, LadderPosition.of(4, 3), Direction.LEFT);
-        ladderRunner = LadderRunner.of(ladder);
+        ladderGame = new LadderGame(5, 5);
+        ladderGame.drawLine(1, 1, Direction.LEFT);
+        ladderGame.drawLine(1, 2, Direction.RIGHT);
+        ladderGame.drawLine(2, 3, Direction.RIGHT);
+        ladderGame.drawLine(3, 2, Direction.LEFT);
+        ladderGame.drawLine(4, 3, Direction.LEFT);
     }
 
 
@@ -46,7 +43,7 @@ public class LadderSumulationTest {
         // when
         int[] results = new int[5];
         for (int idx = 0; idx < players.length; idx++){
-            results[idx] = ladderRunner.run(players[idx]);
+            results[idx] = ladderGame.runGame(players[idx]);
         }
 
         // then

@@ -15,8 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LadderCreationTest {
 
-    private Ladder ladder;
-    private LadderCreator ladderCreator;
+    private LadderGame ladderGame;
 
     // 이 메서드는 private 필드에 접근하기 위한 유틸리티 메서드입니다.
     private Object getPrivateField(Object object, String fieldName) {
@@ -32,8 +31,7 @@ class LadderCreationTest {
 
     @BeforeEach
     void setup_ladder(){
-        ladderCreator = new LadderCreator();
-        ladder = ladderCreator.createLadder(5, 5);
+        ladderGame = new LadderGame(5, 5);
     }
 
     @Test
@@ -66,22 +64,22 @@ class LadderCreationTest {
     @DisplayName("사다리에 다리 생성 성공")
     void draw_ladder_leg_success() {
         //given
-        LadderPosition legPoint_1 = LadderPosition.of(2, 3);
+        Point legPoint_1 = new Point(3, 2);
         Direction direction_1 = Direction.RIGHT;
-        LadderPosition legPoint_2 = LadderPosition.of(4, 4);
+        Point legPoint_2 = new Point(4, 4);
         Direction direction_2 = Direction.LEFT;
 
         // when
-        ladderCreator.drawLine(ladder, legPoint_1, direction_1);
-        ladderCreator.drawLine(ladder, legPoint_2, direction_2);
-        Node[][] drawed_ladder = (Node[][])getPrivateField(ladder, "ladder");
+        ladderGame.drawLine(legPoint_1.y, legPoint_1.x, direction_1);
+        ladderGame.drawLine(legPoint_2.y, legPoint_2.x, direction_2);
+        Ladder drawed_ladder = (Ladder)getPrivateField(ladderGame, "ladder");
 
 
         // then
-        assertThat(drawed_ladder[2][3].is_NONE()).isFalse();
-        assertThat(drawed_ladder[2][4].is_NONE()).isFalse();
-        assertThat(drawed_ladder[4][4].is_NONE()).isFalse();
-        assertThat(drawed_ladder[4][3].is_NONE()).isFalse();
+        assertThat(drawed_ladder.getNodeByPosition(LadderPosition.of(2, 3)).is_NONE()).isFalse();
+        assertThat(drawed_ladder.getNodeByPosition(LadderPosition.of(2, 4)).is_NONE()).isFalse();
+        assertThat(drawed_ladder.getNodeByPosition(LadderPosition.of(4, 4)).is_NONE()).isFalse();
+        assertThat(drawed_ladder.getNodeByPosition(LadderPosition.of(4, 3)).is_NONE()).isFalse();
     }
 
     @Test
@@ -94,7 +92,7 @@ class LadderCreationTest {
         //when
 
         // then
-        assertThatThrownBy(() -> ladderCreator.drawLine(ladder, point, direction))
+        assertThatThrownBy(() -> ladderGame.drawLine(point.getY(), point.getX(), direction))
                 .isInstanceOf(LadderPositionOutOfBoundsException.class)
                 .hasMessage(ErrorMessage.LADDER_HEIGHT_OUT_OF_BOUND_EXCEPTION.getErrorMessage())
                 .extracting(ex -> (LadderPositionOutOfBoundsException) ex)
@@ -113,7 +111,7 @@ class LadderCreationTest {
         //when
 
         // then
-        assertThatThrownBy(() -> ladderCreator.drawLine(ladder, point, direction))
+        assertThatThrownBy(() -> ladderGame.drawLine(point.getY(), point.getX(), direction))
                 .isInstanceOf(LadderPositionOutOfBoundsException.class)
                 .hasMessage(ErrorMessage.LADDER_WIDTH_OUT_OF_BOUND_EXCEPTION.getErrorMessage())
                 .extracting(ex -> (LadderPositionOutOfBoundsException) ex)
@@ -132,9 +130,9 @@ class LadderCreationTest {
         //when
 
         // then
-        assertThatThrownBy(() -> ladderCreator.drawLine(ladder, point, direction))
+        assertThatThrownBy(() -> ladderGame.drawLine(point.getY(), point.getX(), direction))
                 .isInstanceOf(LadderPositionOutOfBoundsException.class)
-                .hasMessage(ErrorMessage.LADDER_HEIGHT_OUT_OF_BOUND_EXCEPTION.getErrorMessage())
+                .hasMessage(ErrorMessage.LADDER_ZERO_OUT_OF_BOUND_EXCEPTION.getErrorMessage())
                 .extracting(ex -> (LadderPositionOutOfBoundsException) ex)
                 .satisfies( ex -> {
                     assertThat(ex.getErrorCode()).isEqualTo(ErrorCode.LADDER_ZERO_OUT_OF_BOUND_EXCEPTION.getCode());

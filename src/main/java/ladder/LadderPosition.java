@@ -19,7 +19,6 @@ public class LadderPosition {
             initialize_validation(y, x);
         } catch (LadderPositionOutOfBoundsException e) {
             System.out.println(e.getMessage());
-            throw new RuntimeException(e);
         }
         return new LadderPosition(y, x);
     }

@@ -1,6 +1,6 @@
 package ladder.Exception;
 
-public class LadderPositionOutOfBoundsException extends Exception{
+public class LadderPositionOutOfBoundsException extends RuntimeException{
 
     private int error_code;
     public LadderPositionOutOfBoundsException(ErrorCode errCode, ErrorMessage errMessage) {
