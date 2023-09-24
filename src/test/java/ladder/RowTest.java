@@ -18,7 +18,7 @@ class RowTest {
         ladder.drawLine(Position.of(1), Position.of(1));
 
         //then
-        assertThrows(Exception.class, ()->ladder.drawLine(Position.of(2), Position.of(1)));
+        assertThrows(Exception.class, ()->ladder.drawLine(Position.of(1), Position.of(2)));
     }
 
     @Test

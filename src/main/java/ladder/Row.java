@@ -3,45 +3,34 @@ package ladder;
 import static ladder.ExceptionMessage.*;
 
 public class Row {
-    private final int[] row;
+    private final Node[] nodes;
 
     public Row(NaturalNumber numberOfPerson) {
-        this.row = new int[numberOfPerson.getNumber()];
+        nodes = new Node[numberOfPerson.getNumber()];
+        for(int i=0; i< numberOfPerson.getNumber(); i++){
+            nodes[i] = Node.of(Direction.NONE);
+        }
     }
 
     public Position nextLevel(Position currentPosition) { // 사다리타고 내려가기
         checkColRange(currentPosition);
-        if(isRight(currentPosition)){
-            return currentPosition.next();
-        }
-        if(isLeft(currentPosition)){
-            return currentPosition.prev();
-        }
-        return currentPosition;
-    }
-
-    private boolean isLeft(Position position) {
-        return row[position.getValue()-1] == Direction.LEFT.getValue();
-    }
-
-    private boolean isRight(Position position) {
-        return row[position.getValue()-1] == Direction.RIGHT.getValue();
+        return nodes[currentPosition.getValue()-1].move(currentPosition);
     }
 
     private void checkColRange(Position position) { //범위 체크
-        if (position.isBiggerThan(row.length-1) || position.isSmallerThan(0)) {
+        if (position.isBiggerThan(nodes.length-1) || position.isSmallerThan(0)) {
             throw new IllegalArgumentException(INVALID_DRAW_POSITION.getMessage());
         }
     }
 
     public void drawLine(Position startColumn) {
         checkDrawable(startColumn);
-        row[startColumn.getValue()-1] = Direction.RIGHT.getValue();
-        row[startColumn.getValue()] = Direction.LEFT.getValue();
+        nodes[startColumn.getValue()-1] = Node.of(Direction.RIGHT);
+        nodes[startColumn.getValue()] = Node.of(Direction.LEFT);
     }
 
     private void checkDrawable(Position startColumn) { //선을 그릴 수 있는 상황인지 체크
-        if (row[startColumn.getValue()-1]!=0 || row[startColumn.getValue()]!=0){
+        if (!(nodes[startColumn.getValue()-1].isNone() && nodes[startColumn.getValue()].isNone())){
             throw new IllegalArgumentException(INVALID_DRAW_POSITION.getMessage());
         }
     }

@@ -25,6 +25,10 @@ public class Node {
         return direction == Direction.LEFT;
     }
 
+    public boolean isNone() {
+        return direction == Direction.NONE;
+    }
+
     //정적 팩토리 메소드 of
     public static Node of(Direction direction){
         return new Node(direction);
