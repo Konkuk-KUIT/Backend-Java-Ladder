@@ -33,4 +33,13 @@ public class Node {
     public static Node of(Direction direction){
         return new Node(direction);
     }
+
+    public void printNode(boolean printStar2) {
+        if(printStar2){
+            System.out.print(direction.getValue()+"*  ");
+        }
+        if(!printStar2){
+            System.out.print(direction.getValue()+"   ");
+        }
+    }
 }

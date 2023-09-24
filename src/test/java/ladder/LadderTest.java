@@ -68,3 +68,22 @@ class LadderGameTest {
     }
 
 }
+
+class LadderRunnerTest {
+    @Test
+    void printLadder_test() {
+        //given
+        NaturalNumber numberOfRow = NaturalNumber.of(3);
+        NaturalNumber numberOfPerson = NaturalNumber.of(5);
+        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+
+        LadderRunner ladderRunner = new LadderRunner(ladderCreator.getRows());
+
+        //when
+        ladderRunner.run(Position.of(1));
+
+        //then
+        //콘솔창
+
+    }
+}

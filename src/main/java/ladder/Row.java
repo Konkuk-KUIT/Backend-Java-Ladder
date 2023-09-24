@@ -13,7 +13,6 @@ public class Row {
     }
 
     public Position nextLevel(Position currentPosition) { // 사다리타고 내려가기
-        System.out.println("currentPosition = " + currentPosition);
         checkColRange(currentPosition);
         return nodes[currentPosition.getValue()-1].move(currentPosition);
     }
@@ -34,5 +33,16 @@ public class Row {
         if (!(nodes[startColumn.getValue()-1].isNone() && nodes[startColumn.getValue()].isNone())){
             throw new IllegalArgumentException(INVALID_DRAW_POSITION.getMessage());
         }
+    }
+
+    public void printRow(boolean printStar, Position position) {
+        for (int i=0; i<nodes.length; i++){
+            boolean printStar2 =false;
+            if (printStar && i==position.getValue()){
+                printStar2 = true;
+            }
+            nodes[i].printNode(printStar2);
+        }
+        System.out.println();
     }
 }
