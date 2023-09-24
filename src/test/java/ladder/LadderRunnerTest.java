@@ -30,7 +30,8 @@ public class LadderRunnerTest {
         //given
         NaturalNumber numberOfRow = NaturalNumber.of(4);
         NaturalNumber numberOfPerson = NaturalNumber.of(4);
-        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        LadderSize ladderSize = LadderSize.of(numberOfRow, numberOfPerson);
+        LadderCreator ladderCreator = new LadderCreator(ladderSize);
         LadderRunner ladderRunner = new LadderRunner(ladderCreator.getRows());
 
         Position currentRow = Position.of(2);
@@ -53,7 +54,8 @@ public class LadderRunnerTest {
         //given
         NaturalNumber numberOfRow = NaturalNumber.of(4);
         NaturalNumber numberOfPerson = NaturalNumber.of(4);
-        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        LadderSize ladderSize = LadderSize.of(numberOfRow, numberOfPerson);
+        LadderCreator ladderCreator = new LadderCreator(ladderSize);
         LadderRunner ladderRunner = new LadderRunner(ladderCreator.getRows());
 
         Position currentRow = Position.of(2);

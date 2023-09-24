@@ -1,5 +1,6 @@
 package ladder.creator;
 
+import ladder.LadderSize;
 import ladder.NaturalNumber;
 import ladder.Position;
 import ladder.Row;
@@ -8,10 +9,10 @@ public class LadderCreator {
 
     private final Row[] rows;
 
-    public LadderCreator(NaturalNumber numberOfRow, NaturalNumber numberOfPerson) {
-        rows = new Row[numberOfRow.getNumber()];
-        for (int i = 0; i < numberOfRow.getNumber(); i++) {
-            rows[i] = new Row(numberOfPerson);
+    public LadderCreator(LadderSize ladderSize) {
+        rows = new Row[ladderSize.getHeight()];
+        for (int i = 0; i < ladderSize.getHeight(); i++) {
+            rows[i] = new Row(NaturalNumber.of(ladderSize.getWidth()));
         }
     }
 
