@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.position.LadderPosition;
+import ladder.position.Position;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

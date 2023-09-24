@@ -1,9 +1,9 @@
 package ladder.creator;
 
-import ladder.LadderPosition;
-import ladder.LadderSize;
-import ladder.NaturalNumber;
-import ladder.Row;
+import ladder.position.LadderPosition;
+import ladder.core.LadderSize;
+import ladder.utils.NaturalNumber;
+import ladder.core.Row;
 
 public class CustomLadderCreator implements LadderCreator {
 
