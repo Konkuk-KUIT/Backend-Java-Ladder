@@ -1,5 +1,11 @@
 package ladder;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import ladder.core.LadderGame;
+import ladder.core.LadderGameFactory;
+import ladder.core.LadderSize;
+import ladder.position.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,26 +16,11 @@ public class RandomTest {
         //given
         NaturalNumber numberOfRow = NaturalNumber.of(4);
         NaturalNumber numberOfPerson = NaturalNumber.of(5);
-        NormalLadderCreator normalLadderCreator = new NormalLadderCreator(numberOfRow, numberOfPerson);
-        NormalLadderGame normalLadderGame = new NormalLadderGame(normalLadderCreator);
-
         LadderSize ladderSize = new LadderSize(numberOfRow, numberOfPerson);
-        Random random = new Random(ladderSize);
-        //when
-        for (int i = 0; i < random.lineCount(ladderSize); i++) {
-            try {
-                normalLadderCreator.drawLine(random.startRow(ladderSize), random.startPosition(ladderSize));
-            } catch (IllegalArgumentException e1) {
-                i--;
-            }
-        }
-        //then
-        normalLadderGame.run(Position.of(0));
+        LadderGame ladderGame = LadderGameFactory.randomLadderGame(ladderSize);
 
-//        NormalLadderGame normalLadderGame = new NormalLadderGame(normalLadderCreator);
-//
-//        normalLadderCreator.drawLine(Position.of(0), Position.of(0));
-//        normalLadderCreator.drawLine(Position.of(1), Position.of(1));
-//        normalLadderCreator.drawLine(Position.of(2), Position.of(0));
+        ladderGame.run(Position.of(0));
+
+        assertNotNull(ladderGame);
     }
 }

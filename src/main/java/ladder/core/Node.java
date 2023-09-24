@@ -1,4 +1,6 @@
-package ladder;
+package ladder.core;
+
+import ladder.position.Position;
 
 public class Node {
     private final Direction direction;

@@ -1,10 +1,12 @@
-package ladder;
+package ladder.core;
+
+import ladder.NaturalNumber;
 
 public class LadderSize {
     NaturalNumber numberOfRow;
     NaturalNumber numberOfPerson;
 
-    LadderSize(NaturalNumber numberOfRow, NaturalNumber numberOfPerson) {
+    public LadderSize(NaturalNumber numberOfRow, NaturalNumber numberOfPerson) {
         this.numberOfRow = numberOfRow;
         this.numberOfPerson = numberOfPerson;
     }

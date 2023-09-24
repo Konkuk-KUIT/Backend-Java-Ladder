@@ -1,5 +1,9 @@
 package ladder;
 
+import ladder.core.LadderSize;
+import ladder.position.LadderPosition;
+import ladder.position.Position;
+
 public class Random {
     LadderSize ladderSize;
     public Random(LadderSize ladderSize) {
@@ -11,8 +15,11 @@ public class Random {
         return (int) (ladderSize.getNumberOfPerson() * ladderSize.getNumberOfRow() * 0.3);
     }
 
-    public Position startRow(LadderSize ladderSize) {
-        return Position.of((int) (Math.random() * ladderSize.getNumberOfRow()));
+    public LadderPosition randomPosition(LadderSize ladderSize) {
+        return new LadderPosition(startRow(ladderSize), startPosition(ladderSize));
+    }
+    public int startRow(LadderSize ladderSize) {
+        return (int) (Math.random() * ladderSize.getNumberOfRow());
     }
     public Position startPosition(LadderSize ladderSize) {
         return Position.of((int)(Math.random() * (ladderSize.getNumberOfPerson()-1)));

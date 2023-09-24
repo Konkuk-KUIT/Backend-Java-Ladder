@@ -1,6 +1,6 @@
 package ladder;
 
-import static ladder.ExceptionMessage.INVALID_NATURAL_NUMBER;
+import static ladder.exception.ExceptionMessage.INVALID_NATURAL_NUMBER;
 
 public class NaturalNumber {
 
@@ -10,11 +10,6 @@ public class NaturalNumber {
         validate(number);
         this.number = number;
     }
-
-    public int random() {
-        return (int) (Math.random() * number);
-    }
-
     public int getNumber() {
         return number;
     }

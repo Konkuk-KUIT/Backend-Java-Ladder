@@ -1,6 +1,10 @@
-package ladder;
+package ladder.core;
 
-import static ladder.ExceptionMessage.*;
+import static ladder.exception.ExceptionMessage.*;
+
+import ladder.NaturalNumber;
+import ladder.position.LadderPosition;
+import ladder.position.Position;
 
 public class Row {
     private final Node[] nodes;
@@ -28,8 +32,8 @@ public class Row {
 
     public String printRow() {
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < nodes.length; i++) {
-            result.append(nodes[i].printNode());
+        for (Node node : nodes) {
+            result.append(node.printNode());
             result.append(" ");
         }
         return result.toString();

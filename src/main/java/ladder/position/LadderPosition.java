@@ -1,4 +1,4 @@
-package ladder;
+package ladder.position;
 
 public class LadderPosition {
     private final int currentRow;
