@@ -12,7 +12,7 @@ class LadderTest {
     void 사다리_생성_확인() {
         //given
         int numberOfRow = 3;
-        int numberOfPerson = 5;
+        NaturalNumber numberOfPerson =  NaturalNumber.of(5);
 
         //when
         Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
@@ -24,7 +24,7 @@ class LadderTest {
     @Test
     void drawLine_테스트(){
         //given
-        int numberOfPerson = 2;
+        NaturalNumber numberOfPerson =  NaturalNumber.of(2);
 
         Row row = new Row(numberOfPerson);
 
@@ -41,7 +41,7 @@ class LadderTest {
     void run_테스트_빈_사다리(){
         //given
         int numberOfRow = 3;
-        int numberOfPerson = 5;
+        NaturalNumber numberOfPerson =  NaturalNumber.of(5);
 
         //when
         Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
@@ -55,7 +55,7 @@ class LadderTest {
     public void run_테스트_라인_있을때(){
         //given
         int numberOfRow = 3;
-        int numberOfPerson = 5;
+        NaturalNumber numberOfPerson =  NaturalNumber.of(5);
         Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
 
         //when
@@ -74,19 +74,15 @@ class LadderTest {
 
     @Test
     public void 인원_예외_테스트(){
-        //given
-        int numberOfRow = 5;
-        int numberOfPerson = 0;
-        //when
-
-        //then
-        assertThrows(RuntimeException.class, () -> new Ladder(numberOfRow, numberOfPerson));
+        assertThrows(IllegalArgumentException.class, () -> new NaturalNumber(0));
+        assertThrows(IllegalArgumentException.class, () -> new Row(NaturalNumber.of(0)));
     }
+
     @Test
     public void drawLine_예외_테스트_배열에_맞는값(){
         //given
         int numberOfRow = 3;
-        int numberOfPerson = 5;
+        NaturalNumber numberOfPerson =  NaturalNumber.of(5);
 
         Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
         //when
@@ -101,7 +97,7 @@ class LadderTest {
     public void drawLine_예외_테스트_이미_값이_존재(){
         //given
         int numberOfRow = 3;
-        int numberOfPerson = 5;
+        NaturalNumber numberOfPerson =  NaturalNumber.of(5);
 
         Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
 

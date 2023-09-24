@@ -6,9 +6,8 @@ public class Row {
 
     private final int[] row;
 
-    public Row(int numberOfPerson) {
-        validateNumberOfPerson(numberOfPerson);
-        row = new int[numberOfPerson+1];
+    public Row(NaturalNumber numberOfPerson) {
+        row = new int[numberOfPerson.getNumber()+1];
     }
 
     public void drawLine(int startPosition) {
@@ -49,9 +48,4 @@ public class Row {
         }
     }
 
-    private void validateNumberOfPerson(int numberOfPerson) {
-        if (numberOfPerson < 1) {
-            throw new RuntimeException(INVALID_NUMBER_OF_PERSON.getMessage());
-        }
-    }
 }
