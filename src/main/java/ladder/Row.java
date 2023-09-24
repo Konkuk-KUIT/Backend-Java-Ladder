@@ -4,20 +4,17 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 
+import static ladder.ExceptionMessage.*;
+
 public class Row {
     public int[] row;
 
-    public Row(int height){
+    public Row(NaturalNumber height){
 
-        checkHeight(height);
-        row = new int[height];
+        row = new int[height.getNumber()];
         initializeRow(row);
     }
 
-    private void checkHeight(int height) {
-        if(height < 0)
-            throw new RuntimeException();
-    }
 
     private void initializeRow(int @NotNull [] line) {
         for(int i=0; i<line.length; i++){
@@ -27,13 +24,13 @@ public class Row {
 
     public void drawLine(int position) {
         validateDrawLinePosition(position);
-        row[position] = 1;
-        row[position + 1] = -1;
+        row[position] = Direction.RIGHT.getValue();
+        row[position + 1] = Direction.LEFT.getValue();
     }
 
     private void validateDrawLinePosition(int position) {
-        if(position >= row.length -1 || position < 0 || row[position] == -1 || row[position + 1] == 1){
-            throw new IllegalArgumentException("사다리를 그릴 수 없는 위치힙니다.");
+        if(position >= row.length -1 || position < 0 || row[position] == Direction.LEFT.getValue() || row[position + 1] == Direction.RIGHT.getValue()){
+            throw new IllegalArgumentException(INVALID_DRAW_POSITION.getMessage());
         }
     }
 
@@ -55,9 +52,9 @@ public class Row {
         }
     }
 
-    private boolean isRight(int position) { return row[position] == 1; }
+    private boolean isRight(int position) { return row[position] == Direction.RIGHT.getValue(); }
 
-    private boolean isLeft(int position) { return row[position] == -1; }
+    private boolean isLeft(int position) { return row[position] == Direction.LEFT.getValue(); }
 
 
 //    public void printRow() {

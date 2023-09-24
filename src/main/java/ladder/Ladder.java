@@ -5,22 +5,12 @@ public class Ladder {
     private Row[] rows;
 
 
-    public Ladder(int numOfPerson, int height){
-
-        checkNumOfPerson(numOfPerson);
-
-        rows = new Row[numOfPerson];
-        for (int i =0; i< numOfPerson; i++){
+    public Ladder(NaturalNumber numOfPerson, NaturalNumber height){
+        rows = new Row[numOfPerson.getNumber()];
+        for (int i =0; i< numOfPerson.getNumber(); i++){
             rows[i]= new Row(height);
         }
     }
-
-    private void checkNumOfPerson(int numOfPerson) {
-        if(numOfPerson < 0)
-            throw new RuntimeException();
-    }
-//rows의 length는 가로길이를 의미 (열의 개수)
-//row의 length는 세로길이를 의미 (행의 개수)
 
     public void printLadder(int currentRow, int currentCol){
         for(int i =0;i<rows.length; i++)
@@ -54,10 +44,8 @@ public class Ladder {
 //        System.out.println();
 //    }
 
-    public void drawLine(int x, int y){
-        checkXRange(x);
-        checkYRange(y);
-        rows[x].drawLine(y);
+    public void drawLine(Position x, Position y){
+        rows[x.getValue()].drawLine(y.getValue());
     }
 
     private void checkXRange(int x) {
@@ -65,18 +53,13 @@ public class Ladder {
             throw new RuntimeException("잘못된 행을 입력하여, 사다리 범위를 벗어났습니다.");
         }
     }
-    private void checkYRange(int y) {
-        if(y <= 0 || y > rows[0].row.length) {
-            throw new RuntimeException("잘못된 열을 입력하여, 사다리 범위를 벗어났습니다.");
-        }
-    }
 
 
-    public int run(int position) {
+    public int run(Position position) {
         for(int i=0; i< rows.length; i++){
-            position = rows[i].nextPosition(position);
+            //position = rows[i].nextPosition(position);
         }
-        return position;
+        return position.getValue();
 
     }
 
