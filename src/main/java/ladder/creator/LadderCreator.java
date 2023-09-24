@@ -1,9 +1,6 @@
 package ladder.creator;
 
-import ladder.LadderSize;
-import ladder.NaturalNumber;
-import ladder.Position;
-import ladder.Row;
+import ladder.*;
 
 public class LadderCreator {
 
@@ -17,8 +14,8 @@ public class LadderCreator {
     }
 
 
-    public void drawLine(Position row, Position col) {
-        rows[row.getValue()].drawLine(col);
+    public void drawLine(LadderPosition ladderPosition) {
+        rows[ladderPosition.getRowPosition()].drawLine(ladderPosition.getCol());
     }
 
     public Row[] getRows() {

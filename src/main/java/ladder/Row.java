@@ -46,10 +46,10 @@ public class Row {
         return position.isBiggerThan(nodes.length - 1) || position.isSmallerThan(0);
     }
 
-    public void generateRow(StringBuilder sb, Position DrawingRow, Position currentRow, Position currentCol) {
+    public void generateRow(StringBuilder sb, Position DrawingRow, LadderPosition currentPosition) {
         for (int i = 0; i < nodes.length; i++) {
             nodes[i].appendSymbol(sb);
-            if (currentRow.equals(DrawingRow) && currentCol.equals(Position.of(i))) {
+            if (currentPosition.equals(LadderPosition.of(DrawingRow, Position.of(i)))) {
                 sb.append("*");
             }
             sb.append(" ");

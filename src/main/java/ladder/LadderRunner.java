@@ -10,24 +10,24 @@ public class LadderRunner {
 
     public int run(Position position) {
         for (int i = 0; i < rows.length; i++) {
-            printLadder(Position.of(i), position, "Before");
+            printLadder(LadderPosition.of(Position.of(i), position), "Before");
             position = rows[i].nextPosition(position);
-            printLadder(Position.of(i), position, "After");
+            printLadder(LadderPosition.of(Position.of(i), position), "After");
         }
         return position.getValue();
     }
 
-    public String generate(Position currentRow, Position currentCol) {
+    public String generate(LadderPosition currentPosition) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < rows.length; i++) {
-            rows[i].generateRow(sb, Position.of(i), currentRow, currentCol);
+            rows[i].generateRow(sb, Position.of(i), currentPosition);
         }
         return sb.toString();
     }
 
-    public void printLadder(Position currentRow, Position currentCol, String label) {
+    public void printLadder(LadderPosition currentPosition, String label) {
         System.out.println(label);
-        String ladder = generate(currentRow, currentCol);
+        String ladder = generate(currentPosition);
         System.out.println(ladder);
     }
 }

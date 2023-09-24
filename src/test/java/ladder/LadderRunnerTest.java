@@ -36,9 +36,10 @@ public class LadderRunnerTest {
 
         Position currentRow = Position.of(2);
         Position currentCol = Position.of(1);
+        LadderPosition currentPosition = LadderPosition.of(currentRow, currentCol);
 
         //when
-        String ladderRepresentation = ladderRunner.generate(currentRow, currentCol);
+        String ladderRepresentation = ladderRunner.generate(currentPosition);
 
         //then
         String expected =
@@ -60,10 +61,11 @@ public class LadderRunnerTest {
 
         Position currentRow = Position.of(2);
         Position currentCol = Position.of(1);
+        LadderPosition currentPosition = LadderPosition.of(currentRow, currentCol);
         String label = "Test Label";
 
         //when
-        ladderRunner.printLadder(currentRow, currentCol, label);
+        ladderRunner.printLadder(currentPosition, label);
 
         //then
         String expectedOutput =
