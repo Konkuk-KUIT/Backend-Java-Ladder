@@ -1,53 +1,46 @@
 package ladder;
 
 public class Position {
+
     private int position;
 
-    private Position(int position) {
+    public Position(int position) {
+        validatePosition(position);
         this.position = position;
     }
 
-    public int getPosition() {
+    public int getValue() {
         return position;
     }
 
-    public void moveRight() {
-        position += 1;
-    }
-
-    public void moveLeft() {
-        position -= 1;
-    }
-
-    public static Position setPosition(int position) {
-        validatePosition(position);
+    public static Position of(int position) {
         return new Position(position);
     }
 
-    private static void validatePosition(int num) {
-        if (!isPosition(num)) {
-            throw new IllegalArgumentException();
-        }
+    public Position prev() {
+        return new Position(position - 1);
     }
 
-    public static boolean isPosition(int num) {
-        return num >= 0;
+    public Position next() {
+        return new Position(position + 1);
     }
 
-    public boolean isSmaller(int position) {
+    public boolean isSmallerThan(int position) {
         return this.position < position;
     }
 
-    public boolean isBigger(int position) {
+    public boolean isBiggerThan(int position) {
         return this.position > position;
     }
 
-    public boolean isBiggerOrEqual(int position) {
-        return this.position >= position;
+    private static void validatePosition(int position) {
+        if (!isPosition(position)) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LADDER_POSITION.getMessage());
+        }
     }
 
-    public boolean isSmallerOrEqual(int position){
-        return this.position <= position;
+    private static boolean isPosition(int position) {
+        return position >= 0;
     }
 
 }
