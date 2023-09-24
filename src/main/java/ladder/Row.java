@@ -13,6 +13,7 @@ public class Row {
     }
 
     public Position nextLevel(Position currentPosition) { // 사다리타고 내려가기
+        System.out.println("currentPosition = " + currentPosition);
         checkColRange(currentPosition);
         return nodes[currentPosition.getValue()-1].move(currentPosition);
     }

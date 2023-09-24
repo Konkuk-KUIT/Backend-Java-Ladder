@@ -1,10 +1,11 @@
 package ladder;
 
+import creator.LadderCreator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LadderTest {
+class LadderGameTest {
 
     @Test
     void 사다리_생성_확인() {
@@ -13,10 +14,10 @@ class LadderTest {
         NaturalNumber numberOfPerson = NaturalNumber.of(5);
 
         //when
-        Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
+        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
 
         //then
-        assertNotNull(ladder);
+        assertNotNull(ladderCreator);
     }
 
 
@@ -27,15 +28,17 @@ class LadderTest {
         NaturalNumber numberOfPerson = NaturalNumber.of(5);
 
         //when
-        Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
-        ladder.drawLine(Position.of(1), Position.of(1)); //시작 사다리, 높이(위쪽이 1, 아래로 갈수록 증가)
-        ladder.drawLine(Position.of(2), Position.of(2));
-        int result = ladder.run(Position.of(1));
+        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        ladderCreator.drawLine(Position.of(1), Position.of(1)); //시작 사다리, 높이(위쪽이 1, 아래로 갈수록 증가)
+        ladderCreator.drawLine(Position.of(2), Position.of(2));
+
+        LadderGame ladderGame = new LadderGame(ladderCreator);
+        int result = ladderGame.run(Position.of(1));
 
         //then
-        assertEquals(result, 3);
-        assertEquals(ladder.run(Position.of(2)), 1);
-        assertEquals(ladder.run(Position.of(3)), 2);
+        assertEquals(3, result);
+        assertEquals(ladderGame.run(Position.of(2)), 1);
+        assertEquals(ladderGame.run(Position.of(3)), 2);
     }
 
     @Test
@@ -45,10 +48,10 @@ class LadderTest {
         NaturalNumber numberOfPerson = NaturalNumber.of(5);
 
         //when
-        Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
+        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
 
         //then
-        assertThrows(Exception.class, ()->ladder.drawLine(Position.of(5), Position.of(1)));
+        assertThrows(Exception.class, ()->ladderCreator.drawLine(Position.of(5), Position.of(1)));
     }
 
     @Test
@@ -58,10 +61,10 @@ class LadderTest {
         NaturalNumber numberOfPerson = NaturalNumber.of(5);
 
         //when
-        Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
-
+        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        LadderGame ladderGame = new LadderGame(ladderCreator);
         //then
-        assertThrows(Exception.class, ()->ladder.run(Position.of(6)));
+        assertThrows(Exception.class, ()->ladderGame.run(Position.of(6)));
     }
 
 }
