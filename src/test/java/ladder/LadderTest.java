@@ -1,12 +1,13 @@
 package ladder;
 
+import ladder.creator.LadderCreator;
 import org.assertj.core.api.Assertions;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class LadderTest {
+class LadderGameTest {
 
     @Test
     void 사다리_생성_확인() {
@@ -15,10 +16,10 @@ class LadderTest {
         NaturalNumber numberOfPerson =  NaturalNumber.of(5);
 
         //when
-        Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
+        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
 
         //then
-        assertNotNull(ladder);
+        assertNotNull(ladderCreator);
     }
 
     @Test
