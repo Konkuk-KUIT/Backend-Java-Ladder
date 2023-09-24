@@ -15,12 +15,23 @@ public class Node {
     private boolean is_RIGHT() {return this.direction == Direction.RIGHT;}
     private boolean is_LEFT() {return this.direction == Direction.LEFT;}
 
-    public void move(LadderPosition position){
-        if (is_RIGHT()) position.move_right();
-        if (is_LEFT()) position.move_left();
+    public boolean move(LadderPosition position){
+        if (is_RIGHT()) {
+            position.move_right();
+            return true;
+        }
+        if (is_LEFT()) {
+            position.move_left();
+            return true;
+        }
+        return false;
     }
 
     public static Node of(Direction direction){
         return new Node(direction);
+    }
+
+    public void print_Node(){
+        System.out.printf("%d", this.direction.getDirection());
     }
 }

@@ -7,12 +7,13 @@ import org.junit.jupiter.api.Test;
 import java.awt.*;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
+import java.io.PrintStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LadderSumulationTest {
 
-    private Node[][] ladder;
+    private Ladder ladder;
     private LadderRunner ladderRunner;
 
     /*  LEFT : -1,  RIGHT : 1
@@ -24,14 +25,14 @@ public class LadderSumulationTest {
      */
     @BeforeEach
     void setup_ladder(){
-        LadderCreator ladderCreator = new LadderCreator(5, 5);
-        ladderCreator.drawLine(LadderPosition.of(1, 1), Direction.LEFT);
-        ladderCreator.drawLine(LadderPosition.of(1, 2), Direction.RIGHT);
-        ladderCreator.drawLine(LadderPosition.of(2, 3), Direction.RIGHT);
-        ladderCreator.drawLine(LadderPosition.of(3, 2), Direction.LEFT);
-        ladderCreator.drawLine(LadderPosition.of(4, 3), Direction.LEFT);
-        ladder = ladderCreator.getLadder();
-        ladderRunner = new LadderRunner(ladder);
+        LadderCreator ladderCreator = new LadderCreator();
+        ladder = ladderCreator.createLadder(5, 5);
+        ladderCreator.drawLine(ladder, LadderPosition.of(1, 1), Direction.LEFT);
+        ladderCreator.drawLine(ladder, LadderPosition.of(1, 2), Direction.RIGHT);
+        ladderCreator.drawLine(ladder, LadderPosition.of(2, 3), Direction.RIGHT);
+        ladderCreator.drawLine(ladder, LadderPosition.of(3, 2), Direction.LEFT);
+        ladderCreator.drawLine(ladder, LadderPosition.of(4, 3), Direction.LEFT);
+        ladderRunner = LadderRunner.of(ladder);
     }
 
 
@@ -58,47 +59,70 @@ public class LadderSumulationTest {
 //        // given
 //        int start = 0;
 //        OutputStream out = new ByteArrayOutputStream();
+//        System.setOut(new PrintStream(out));
 //        final String ladder_print =
-//                        "0*  0   0  0  0 \n" +
-//                        "1  -1  1  -1  0 \n" +
-//                        "0   0   0   1  -1 \n" +
-//                        "0   0   0   0  0 \n" +
-//                        "\n" +
-//                        "1  -1*  0  0  0 \n" +
-//                        "0   1  -1  0  0 \n" +
-//                        "0   0   0  0  0 \n" +
-//                        "0   0   0  0  0 \n" +
-//                        "\n" +
-//                        "1  -1   0  0  0 \n" +
-//                        "0   1* -1  0  0 \n" +
-//                        "0   0   0  0  0 \n" +
-//                        "0   0   0  0  0 \n" +
-//                        "\n" +
-//                        "1  -1   0  0  0 \n" +
-//                        "0   1  -1* 0  0 \n" +
-//                        "0   0   0  0  0 \n" +
-//                        "0   0   0  0  0 \n" +
-//                        "\n" +
-//                        "1  -1   0  0  0 \n" +
-//                        "0   1  -1  0  0 \n" +
-//                        "0   0   0* 0  0 \n" +
-//                        "0   0   0  0  0 \n" +
-//                        "\n" +
-//                        "1  -1   0  0  0 \n" +
-//                        "0   1  -1  0  0 \n" +
-//                        "0   0   0  0* 0 \n" +
-//                        "0   0   0  0  0 \n" +
-//                        "\n" +
-//                        "1  -1   0  0  0 \n" +
-//                        "0   1  -1  0  0 \n" +
-//                        "0   0   0  0  0 \n" +
-//                        "0   0   0  0* 0 \n";
+//                        "-------- 사다리 게임 시작 ---------\n" +
+//                                "0* 0  0  0  0\n" +
+//                                "1  -1  1  -1  0\n" +
+//                                "0  0  0  1  -1\n" +
+//                                "0  1  -1  0  0\n" +
+//                                "0  0  1  -1  0\n" +
+//                                "\n" +
+//                                "0  0  0  0  0\n" +
+//                                "1* -1  1  -1  0\n" +
+//                                "0  0  0  1  -1\n" +
+//                                "0  1  -1  0  0\n" +
+//                                "0  0  1  -1  0\n" +
+//                                "\n" +
+//                                "0  0  0  0  0\n" +
+//                                "1  -1* 1  -1  0\n" +
+//                                "0  0  0  1  -1\n" +
+//                                "0  1  -1  0  0\n" +
+//                                "0  0  1  -1  0\n" +
+//                                "\n" +
+//                                "0  0  0  0  0\n" +
+//                                "1  -1  1  -1  0\n" +
+//                                "0  0* 0  1  -1\n" +
+//                                "0  1  -1  0  0\n" +
+//                                "0  0  1  -1  0\n" +
+//                                "\n" +
+//                                "0  0  0  0  0\n" +
+//                                "1  -1  1  -1  0\n" +
+//                                "0  0  0  1  -1\n" +
+//                                "0  1* -1  0  0\n" +
+//                                "0  0  1  -1  0\n" +
+//                                "\n" +
+//                                "0  0  0  0  0\n" +
+//                                "1  -1  1  -1  0\n" +
+//                                "0  0  0  1  -1\n" +
+//                                "0  1  -1* 0  0\n" +
+//                                "0  0  1  -1  0\n" +
+//                                "\n" +
+//                                "0  0  0  0  0\n" +
+//                                "1  -1  1  -1  0\n" +
+//                                "0  0  0  1  -1\n" +
+//                                "0  1  -1  0  0\n" +
+//                                "0  0  1* -1  0\n" +
+//                                "\n" +
+//                                "0  0  0  0  0\n" +
+//                                "1  -1  1  -1  0\n" +
+//                                "0  0  0  1  -1\n" +
+//                                "0  1  -1  0  0\n" +
+//                                "0  0  1  -1* 0\n" +
+//                                "\n" +
+//                                "0  0  0  0  0\n" +
+//                                "1  -1  1  -1  0\n" +
+//                                "0  0  0  1  -1\n" +
+//                                "0  1  -1  0  0\n" +
+//                                "0  0  1  -1  0";
 //
 //
 //        // when
-//        int result = ladder.run(start);
+//        ladderRunner.run(start);
+//        String output = out.toString();
 //
 //        // then
-//
+//        assertThat(output).isEqualTo(ladder_print);
 //    }
+
 }
