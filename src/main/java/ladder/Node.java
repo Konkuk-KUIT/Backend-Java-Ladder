@@ -32,4 +32,8 @@ public class Node {
     public static Node of(Direction direction) {
         return new Node(direction);
     }
+
+    public Direction getDirection() {
+        return direction;
+    }
 }

@@ -37,6 +37,6 @@ class NodeTest {
     void 방향_없을_때_방향_위치_이동_확인() {
         Position position = Position.of(1);
         Position nextPosition = noneNode.move(position);
-        assertEquals(0, nextPosition.getValue());
+        assertEquals(1, nextPosition.getValue());
     }
 }

@@ -1,14 +1,12 @@
 package ladder;
 
-import static ladder.ExceptionMessage.INVALID_DRAW_POSITION;
-import static ladder.ExceptionMessage.INVALID_POSITION;
+import static ladder.ExceptionMessage.*;
 
 public class Row {
-    Node[] nodes;
+    private Node[] nodes;
 
     public Row(NaturalNumber numberOfPerson) {
         nodes = new Node[numberOfPerson.getNumber()];
-
         for (int i = 0; i < numberOfPerson.getNumber(); i++) {
             nodes[i] = Node.of(Direction.NONE);
         }
@@ -16,13 +14,8 @@ public class Row {
 
     public void drawLine(Position startPosition) {
         validateDrawLinePosition(startPosition);
-
         setDirectionAtPosition(startPosition, Direction.RIGHT);
         setDirectionAtPosition(startPosition.next(), Direction.LEFT);
-    }
-
-    private void setDirectionAtPosition(Position startPosition, Direction direction) {
-        nodes[startPosition.getValue()] = Node.of(direction);
     }
 
     public Position nextPosition(Position currentPosition) {
@@ -30,6 +23,9 @@ public class Row {
         return nodes[currentPosition.getValue()].move(currentPosition);
     }
 
+    private void setDirectionAtPosition(Position startPosition, Direction direction) {
+        nodes[startPosition.getValue()] = Node.of(direction);
+    }
 
     private void validatePosition(Position position) {
         if (position.isBiggerThan(nodes.length - 1) || position.isSmallerThan(0)) {
@@ -40,15 +36,26 @@ public class Row {
     private void validateDrawLinePosition(Position startPosition) {
         if (isInvalidDrawPosition(startPosition)
                 || nodes[startPosition.getValue()].isRight()
-                || nodes[startPosition.getValue()].isLeft()
-                || nodes[startPosition.next().getValue()].isRight()) {
+                || nodes[startPosition.next().getValue()].isRight()
+                || nodes[startPosition.getValue()].isLeft()) {
             throw new IllegalArgumentException(INVALID_DRAW_POSITION.getMessage());
         }
     }
 
     private boolean isInvalidDrawPosition(Position position) {
-        return position.isSmallerThan(0) || position.isBiggerThan(nodes.length - 1);
+        return position.isBiggerThan(nodes.length - 1) || position.isSmallerThan(0);
     }
 
+    public String printOneRow(LadderPosition ladderPosition, Position curRow) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < nodes.length; i++) {
+            sb.append(nodes[i].getDirection().getValue());
+            if (ladderPosition.getRow().getValue() == curRow.getValue() && ladderPosition.getCol().getValue() == i) {
+                sb.append("*");
+            }
+            sb.append("\t");
+        }
+        return sb.toString();
+    }
 
 }

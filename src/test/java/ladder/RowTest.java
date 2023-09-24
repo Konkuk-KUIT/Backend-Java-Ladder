@@ -146,4 +146,14 @@ class RowTest {
         //then
         assertThrows(IllegalArgumentException.class, () -> row.drawLine(Position.of(0)));
     }
+
+    @Test
+    void 사다리_출력_한_칸(){
+        NaturalNumber numberofPerson = NaturalNumber.of(3);
+        Row row = new Row(numberofPerson);
+        row.drawLine(Position.of(1));
+
+//        row.printOneRow();
+
+    }
 }
