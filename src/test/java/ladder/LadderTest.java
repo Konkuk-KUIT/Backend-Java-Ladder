@@ -2,8 +2,7 @@ package ladder;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
 
@@ -29,16 +28,12 @@ class LadderTest {
         //when
         Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
         ladder.drawLine(1, 0);
+//        ladder.drawLine(1, 1); // validateDrawLine 체크
 
 
         //then
         assertEquals(1, ladder.run(0));
         assertEquals(0, ladder.run(1));
-    }
-
-    @Test
-    void 범위_오류_확인() {
-        //
     }
 
 
