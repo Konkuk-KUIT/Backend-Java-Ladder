@@ -11,8 +11,8 @@ public class Ladder {
         }
     }
 
-    public void drawLine(int row, Position col) {
-        rows[row].drawLine(col);
+    public void drawLine(Position row, Position col) {
+        rows[row.getPosition()].drawLine(col);
     }
 
     public int run(Position position) {

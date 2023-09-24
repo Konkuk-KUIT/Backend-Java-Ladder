@@ -27,7 +27,7 @@ class LadderTest {
 
         //when
         Ladder ladder = new Ladder(numberOfRow, numberOfPerson);
-        ladder.drawLine(1, Position.of(0));
+        ladder.drawLine(Position.of(1), Position.of(0));
 //        ladder.drawLine(1, 1); // validateDrawLine 체크
 
 

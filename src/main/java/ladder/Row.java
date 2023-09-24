@@ -4,37 +4,47 @@ import static ladder.ExceptionMessage.*;
 
 public class Row {
 
-    int[] row;
+    private Node[] nodes;
 
     public Row(NaturalNumber numberOfPerson) {
-        row = new int[numberOfPerson.getNumber()];
+        nodes = new Node[numberOfPerson.getNumber()];
+        for (int i=0; i<numberOfPerson.getNumber(); i++) {
+            nodes[i] = Node.of(Direction.NONE);
+        }
     }
 
     public void drawLine(Position col) {
         validateDrawLinePosition(col);
-        row[col.getPosition()] = Direction.RIGHT.getValue(); //오른쪽
-        row[col.getPosition() + 1] = Direction.LEFT.getValue(); //왼쪽
+        nodes[col.getPosition()] = Node.of(Direction.RIGHT);
+        nodes[col.next().getPosition()] = Node.of(Direction.LEFT);
     }
 
     public Position nextPosition(Position position) {
         validatePosition(position);
 
-        if (row[position.getPosition()] == Direction.RIGHT.getValue()) {
+        if (nodes[position.getPosition()].isRight()) {
             return position.next();
         }
-        if (row[position.getPosition()] == Direction.LEFT.getValue()) {
+        if (nodes[position.getPosition()].isLeft()) {
             return position.prev();
         }
         return position;
     }
 
     private void validateDrawLinePosition(Position startPosition) {
-        if (startPosition.isBiggerThan(row.length - 2) || startPosition.isSmallerThan(0) || row[startPosition.getPosition()] == Direction.LEFT.getValue() || row[startPosition.getPosition() + 1] == Direction.RIGHT.getValue()) {
-            throw new IllegalArgumentException(INVALID_DRAWLINE.getMessage());
+        if (isInvalidDrawPosition(startPosition)
+                || nodes[startPosition.getPosition()].isRight()
+                || nodes[startPosition.next().getPosition()].isRight()
+                || nodes[startPosition.getPosition()].isLeft()) {
+            throw new IllegalArgumentException(INVALID_DRAW_POSITION.getMessage());
         }
     }
+
+    private boolean isInvalidDrawPosition(Position position) {
+        return position.isBiggerThan(nodes.length - 1) || position.isSmallerThan(0);
+    }
     private void validatePosition(Position position) {
-        if (position.isSmallerThan(0) || position.isBiggerThan(row.length-1)) {
+        if (position.isSmallerThan(0) || position.isBiggerThan(nodes.length-1)) {
             throw new IllegalArgumentException(INVALID_POSITION.getMessage());
         }
     }
