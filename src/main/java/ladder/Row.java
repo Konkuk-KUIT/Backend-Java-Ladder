@@ -12,17 +12,17 @@ public class Row {
     public void drawLine(int col) {
 //        validateDrawLine(col);
         validateDrawLinePosition(col);
-        row[col] = 1; //오른쪽
-        row[col + 1] = -1; //왼쪽
+        row[col] = Direction.RIGHT.getValue(); //오른쪽
+        row[col + 1] = Direction.LEFT.getValue(); //왼쪽
     }
 
     public int nextPosition(int position) {
         validatePosition(position);
 
-        if (row[position] == 1) {
+        if (row[position] == Direction.RIGHT.getValue()) {
             return position + 1;
         }
-        if (row[position] == -1) {
+        if (row[position] == Direction.LEFT.getValue()) {
             return position - 1;
         }
         return position;
@@ -36,7 +36,7 @@ public class Row {
 
 
     private void validateDrawLinePosition(int startPosition) {
-        if (startPosition >= row.length - 1 || startPosition < 0 || row[startPosition] == -1 || row[startPosition + 1] == 1) {
+        if (startPosition >= row.length - 1 || startPosition < 0 || row[startPosition] == Direction.LEFT.getValue() || row[startPosition + 1] == Direction.RIGHT.getValue()) {
             throw new IllegalArgumentException("사다리를 그릴 수 없는 위치입니다.");
         }
     }
