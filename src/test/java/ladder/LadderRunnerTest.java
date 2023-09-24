@@ -1,5 +1,6 @@
 package ladder;
 
+import ladder.creator.CustomLadderCreator;
 import ladder.creator.LadderCreator;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,7 @@ public class LadderRunnerTest {
         NaturalNumber numberOfRow = NaturalNumber.of(4);
         NaturalNumber numberOfPerson = NaturalNumber.of(4);
         LadderSize ladderSize = LadderSize.of(numberOfRow, numberOfPerson);
-        LadderCreator ladderCreator = new LadderCreator(ladderSize);
+        LadderCreator ladderCreator = new CustomLadderCreator(ladderSize);
         LadderRunner ladderRunner = new LadderRunner(ladderCreator.getRows());
 
         Position currentRow = Position.of(2);
@@ -56,7 +57,7 @@ public class LadderRunnerTest {
         NaturalNumber numberOfRow = NaturalNumber.of(4);
         NaturalNumber numberOfPerson = NaturalNumber.of(4);
         LadderSize ladderSize = LadderSize.of(numberOfRow, numberOfPerson);
-        LadderCreator ladderCreator = new LadderCreator(ladderSize);
+        LadderCreator ladderCreator = new CustomLadderCreator(ladderSize);
         LadderRunner ladderRunner = new LadderRunner(ladderCreator.getRows());
 
         Position currentRow = Position.of(2);

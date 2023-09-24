@@ -28,22 +28,30 @@ public class Row {
     }
 
     private void validatePosition(Position position) {
-        if (position.isBiggerThan(nodes.length - 1) || position.isSmallerThan(0)) {
+        if (isInvalidDrawPosition(position)) {
             throw new IllegalArgumentException(INVALID_POSITION.getMessage());
         }
     }
 
     private void validateDrawLinePosition(Position startPosition) {
         if (isInvalidDrawPosition(startPosition)
-                || nodes[startPosition.getValue()].isRight()
-                || nodes[startPosition.next().getValue()].isRight()
-                || nodes[startPosition.getValue()].isLeft()) {
+                || isDuplicatedDrawPosition(startPosition)) {
             throw new IllegalArgumentException(INVALID_DRAW_POSITION.getMessage());
         }
     }
 
     private boolean isInvalidDrawPosition(Position position) {
-        return position.isBiggerThan(nodes.length - 1) || position.isSmallerThan(0);
+        return position.isBiggerThan(nodes.length - 2) || position.isSmallerThan(0);
+    }
+
+    private boolean isDuplicatedDrawPosition(Position position) {
+        return (nodes[position.getValue()].isRight()
+                || nodes[position.next().getValue()].isRight()
+                || nodes[position.getValue()].isLeft());
+    }
+
+    public boolean isDrawable(Position position) {
+        return !isInvalidDrawPosition(position) && !isDuplicatedDrawPosition(position);
     }
 
     public void generateRow(StringBuilder sb, Position DrawingRow, LadderPosition currentPosition) {
@@ -55,5 +63,9 @@ public class Row {
             sb.append(" ");
         }
         sb.append("\n");
+    }
+
+    public boolean isLineDrawn(int j) {
+        return nodes[j].isRight();
     }
 }

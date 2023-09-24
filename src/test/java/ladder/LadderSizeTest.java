@@ -12,5 +12,4 @@ class LadderSizeTest {
         assertEquals(1,ladderSize.getHeight());
         assertEquals(1,ladderSize.getWidth());
     }
-
 }

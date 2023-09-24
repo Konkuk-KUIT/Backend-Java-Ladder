@@ -2,23 +2,10 @@ package ladder.creator;
 
 import ladder.*;
 
-public class LadderCreator {
+public interface LadderCreator {
 
-    private final Row[] rows;
+    void drawLine(LadderPosition ladderPosition);
 
-    public LadderCreator(LadderSize ladderSize) {
-        rows = new Row[ladderSize.getHeight()];
-        for (int i = 0; i < ladderSize.getHeight(); i++) {
-            rows[i] = new Row(NaturalNumber.of(ladderSize.getWidth()));
-        }
-    }
+    Row[] getRows();
 
-
-    public void drawLine(LadderPosition ladderPosition) {
-        rows[ladderPosition.getRowPosition()].drawLine(ladderPosition.getCol());
-    }
-
-    public Row[] getRows() {
-        return rows;
-    }
 }

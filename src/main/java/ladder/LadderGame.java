@@ -15,4 +15,8 @@ public class LadderGame {
         LadderRunner ladderRunner = new LadderRunner(ladderCreator.getRows());
         return ladderRunner.run(position);
     }
+
+    public boolean isLineDrawn(int i, int j) {
+        return ladderCreator.getRows()[i].isLineDrawn(j);
+    }
 }
