@@ -23,6 +23,8 @@ public class LadderSpecificCreator implements LadderCreator {
     public void drawLine(NaturalNumber row, Position position, Direction direction) {
         rows[row.getNumber() - 1].drawLine(position, direction);
     }
+    @Override
+    public void drawLine() {}
 
     @Override
     public Row[] getRow() {

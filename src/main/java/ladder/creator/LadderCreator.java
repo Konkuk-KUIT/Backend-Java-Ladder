@@ -8,5 +8,7 @@ import ladder.Row;
 public interface LadderCreator {
     void drawLine(NaturalNumber row, Position position, Direction direction);
 
+    void drawLine();
+
     public Row[] getRow();
 }

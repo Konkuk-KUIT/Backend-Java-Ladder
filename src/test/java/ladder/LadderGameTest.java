@@ -41,7 +41,7 @@ class LadderGameTest {
 
         LadderRandomCreator ladderCreator = new LadderRandomCreator(numberOfRow, numberOfPerson);
 
-        ladderCreator.drawLine(NaturalNumber.of(1), Position.of(1), Direction.NONE);
+        ladderCreator.drawLine();
 
         LadderGame ladderGame = new LadderGame(ladderCreator);
 

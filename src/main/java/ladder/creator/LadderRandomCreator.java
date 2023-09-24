@@ -19,12 +19,14 @@ public class LadderRandomCreator implements LadderCreator {
     }
 
     @Override
-    public void drawLine(NaturalNumber row, Position position, Direction direction) {
+    public void drawLine() {
         int numberOfDrewLines = 0; // 0부터라 NaturalNumber를 못 썼음.
         while (numberOfDrewLines < ladderSize.getNumberOfLineToDraw().getNumber()) {
             numberOfDrewLines += autoDrawALine();
         }
     }
+    @Override
+    public void drawLine(NaturalNumber row, Position position, Direction direction) {}
 
     private int autoDrawALine() {
         Random random = new Random();
