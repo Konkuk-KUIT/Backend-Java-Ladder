@@ -6,7 +6,7 @@ public class Row {
 
     public Row(int numberOfPerson) {
         validateNumberOfPerson(numberOfPerson);
-        row = new int[numberOfPerson];
+        row = new int[numberOfPerson+1];
     }
 
     public void drawLine(int startPosition) {
@@ -36,7 +36,7 @@ public class Row {
     }
 
     private void validateDrawLinePosition(int startPosition) {
-        if (startPosition >= row.length - 1 || startPosition < 0 || row[startPosition] == Direction.LEFT.getValue() || row[startPosition + 1] == Direction.RIGHT.getValue()) {
+        if (startPosition > row.length -1 || startPosition < 1 || row[startPosition] == Direction.LEFT.getValue() || row[startPosition + 1] == Direction.RIGHT.getValue()) {
             throw new IllegalArgumentException("사다리를 그릴 수 없는 위치입니다.");
         }
     }
