@@ -29,4 +29,12 @@ public class Node {
     public static Node of(Direction direction) {
         return new Node(direction);
     }
+
+    public void print() {
+        System.out.printf("%-3d", direction.getValue());
+    }
+
+    public void printWithStar() {
+        System.out.printf("%d%-2c", direction.getValue(), '*');
+    }
 }

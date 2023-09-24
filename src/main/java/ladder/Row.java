@@ -46,4 +46,22 @@ public class Row {
     private boolean isInvalidDrawPosition(Position position) {
         return position.isBiggerThan(nodes.length - 1) || position.isSmallerThan(0);
     }
+
+    public void print() {
+        for (int i =0; i < nodes.length; i++) {
+            nodes[i].print();
+        }
+        System.out.println();
+    }
+
+    public void printWithStar(Position col) {
+        for (int i =0; i < nodes.length; i++) {
+            if (i == col.getValue()) {
+                nodes[i].printWithStar();
+                continue;
+            }
+            nodes[i].print();
+        }
+        System.out.println();
+    }
 }
