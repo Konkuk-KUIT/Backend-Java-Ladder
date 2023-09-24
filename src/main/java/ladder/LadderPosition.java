@@ -1,6 +1,8 @@
 package ladder;
 
-public class LadderPosition {
+import java.util.Objects;
+
+public class LadderPosition{
 
     private Position x;
     private Position y;
@@ -12,5 +14,6 @@ public class LadderPosition {
 
     public static boolean PositionisEquall(LadderPosition a, LadderPosition b){
         return (a.x.getValue() == b.x.getValue()) && (a.y.getValue() == b.y.getValue());
+        //return a.equals(b);
     }
 }

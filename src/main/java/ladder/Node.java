@@ -14,9 +14,9 @@ public class Node {
 
     public String PrintDot(boolean is_current){
         if(is_current){
-            return GetDirection().getValue() + "*";
+            return GetDirection().getValue() + "* ";
         }
-        return GetDirection().getValue() + "";
+        return GetDirection().getValue() + " ";
     }
 
     public Position move(Position position) {

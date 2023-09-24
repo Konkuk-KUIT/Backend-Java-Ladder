@@ -22,7 +22,7 @@ public class Row {
 //            if(x.getValue() == i && yb.getValue() == y.getValue()){ // 외부에서 따로 뺄 수 있도록 하기
 //                row += "*";
 //            }
-            row += " ";
+//            row += " ";
 
         }
         return row;

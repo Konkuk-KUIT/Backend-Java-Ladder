@@ -4,7 +4,7 @@ import ladder.*;
 
 import java.util.HashSet;
 
-public class LadderCreator implements Draw {
+public class LadderCreator implements LadderCreatorInterface {
 
     private final Row[] rows;
     private LadderSize ladderSize;
@@ -16,6 +16,10 @@ public class LadderCreator implements Draw {
         for (int i = 0; i < numberOfRow.getNumber(); i++) {
             rows[i] = new Row(numberOfPerson);
         }
+    }
+
+    public LadderSize getLadderSize(){
+        return ladderSize;
     }
 
 
