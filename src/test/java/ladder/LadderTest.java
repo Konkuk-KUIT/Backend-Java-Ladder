@@ -1,5 +1,6 @@
 package ladder;
 
+import creator.CustomLadderCreator;
 import creator.LadderCreator;
 import creator.RandomLadderCreator;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ class LadderGameTest {
         NaturalNumber numberOfPerson = NaturalNumber.of(5);
 
         //when
-        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        LadderCreator ladderCreator = new CustomLadderCreator(numberOfRow, numberOfPerson);
 
         //then
         assertNotNull(ladderCreator);
@@ -50,7 +51,7 @@ class LadderGameTest {
         NaturalNumber numberOfPerson = NaturalNumber.of(5);
 
         //when
-        RandomLadderCreator ladderCreator = new RandomLadderCreator(numberOfRow, numberOfPerson);
+        LadderCreator ladderCreator = new RandomLadderCreator(numberOfRow, numberOfPerson);
 
         LadderGame ladderGame = new LadderGame(ladderCreator);
         int result = ladderGame.run(Position.of(1));
@@ -66,10 +67,10 @@ class LadderGameTest {
         NaturalNumber numberOfPerson = NaturalNumber.of(5);
 
         //when
-        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        LadderCreator ladderCreator = new CustomLadderCreator(numberOfRow, numberOfPerson);
 
         //then
-        assertThrows(Exception.class, ()->ladderCreator.drawLine(Position.of(5), Position.of(1)));
+        assertThrows(Exception.class, ()-> ladderCreator.drawLine(Position.of(5), Position.of(1)));
     }
 
     @Test
@@ -79,7 +80,7 @@ class LadderGameTest {
         NaturalNumber numberOfPerson = NaturalNumber.of(5);
 
         //when
-        RandomLadderCreator ladderCreator = new RandomLadderCreator(numberOfRow, numberOfPerson);
+        LadderCreator ladderCreator = new RandomLadderCreator(numberOfRow, numberOfPerson);
         LadderGame ladderGame = new LadderGame(ladderCreator);
         //then
         assertThrows(Exception.class, ()->ladderGame.run(Position.of(6)));
@@ -93,9 +94,9 @@ class LadderRunnerTest {
         //given
         NaturalNumber numberOfRow = NaturalNumber.of(3);
         NaturalNumber numberOfPerson = NaturalNumber.of(5);
-        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        CustomLadderCreator customLadderCreator = new CustomLadderCreator(numberOfRow, numberOfPerson);
 
-        LadderRunner ladderRunner = new LadderRunner(ladderCreator.getRows());
+        LadderRunner ladderRunner = new LadderRunner(customLadderCreator.getRows());
 
         //when
         ladderRunner.run(Position.of(1));

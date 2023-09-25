@@ -5,10 +5,10 @@ import creator.RandomLadderCreator;
 
 public class LadderGame {
 
-    private final RandomLadderCreator ladderCreator;
+    private final LadderCreator ladderCreator;
 
 
-    public LadderGame(RandomLadderCreator ladderCreator) {
+    public LadderGame(LadderCreator ladderCreator) {
         this.ladderCreator = ladderCreator;
     }
 

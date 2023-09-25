@@ -10,7 +10,7 @@ import java.util.Random;
 
 import static ladder.ExceptionMessage.INVALID_POSITION;
 
-public class RandomLadderCreator {
+public class RandomLadderCreator implements LadderCreator {
 
     private final Row[] rows;
 
