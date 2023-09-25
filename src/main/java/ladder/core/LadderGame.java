@@ -6,12 +6,13 @@ import ladder.LadderPosition;
 
 public class LadderGame {
 
-    private final CustomLadderCreator customLadderCreator = new CustomLadderCreator();
+    private final LadderCreator ladderCreator;
     private final Ladder ladder;
     private LadderRunner ladderRunner;
 
-    public LadderGame(int numberOfRow, int numberOfPerson){
-        this.ladder = customLadderCreator.createLadder(numberOfRow, numberOfPerson);
+    public LadderGame(LadderCreator ladderCreator, int numberOfRow, int numberOfPerson){
+        this.ladderCreator = ladderCreator;
+        this.ladder = ladderCreator.createLadder(numberOfRow, numberOfPerson);
         this.ladderRunner = LadderRunner.of(ladder);
     }
 
@@ -21,6 +22,6 @@ public class LadderGame {
 
     public void drawLine(int y, int x, Direction direction) {
         LadderPosition position = LadderPosition.of(y, x);
-        customLadderCreator.drawLine(ladder, position, direction);
+        ladderCreator.drawLine(ladder, position, direction);
     }
 }
