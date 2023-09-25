@@ -11,7 +11,13 @@ public class LadderRunner {
     public int run(Position position) {
         for (int level=0; level< rows.length; level++){
             printLadder(level, position);
+
+            // 이동했을 때만 출력되게 하고 싶었는데 코드를 다 갈아엎어야할 거 같아서 임시방편으로 이렇게 구현해둠
+            Position prevPosition = position;
             position = rows[level].nextLevel(position);
+            if(prevPosition.getValue() != position.getValue()){
+                printLadder(level, position);
+            }
         }
         return position.getValue();
     }
