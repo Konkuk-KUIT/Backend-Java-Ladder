@@ -28,59 +28,50 @@ public class RandomLadderCreator implements LadderCreator{
             rows[i] = new Row(numberOfPerson);
         }
 
-        int ladderSize = (int) numberOfPerson.getNumber()/3;
+        int ladderSize = numberOfPerson.getNumber()/3;
         for (int i = 0; i < numberOfRow.getNumber(); i++) {
             HashSet<Integer> numberList = getRandomNumberList(ladderSize, numberOfPerson.getNumber()+1);
             drawLine(i, numberList);
         }
+    }
 
+    private HashSet<Integer> getRandomNumberList(int ladderSize, int maxSize) {
+        int[] checkDrawable = new int[maxSize];
+
+        for (int i = 0; i < maxSize; i++) {
+            checkDrawable[i] = 0;
+        }
+
+        HashSet<Integer> numberList = new HashSet<>();
+
+        while (numberList.size() < ladderSize) {
+            int number = getRandomNumber(1, maxSize-1);
+            if(validateRandomNumber(number, checkDrawable)){
+                numberList.add(number);
+                checkDrawable[number] = 1;
+            }
+        }
+        return numberList;
+    }
+
+    public int getRandomNumber(int min, int max) {
+        return (int) (Math.random() * (max - min + 1)) + min;
+    }
+
+    private boolean validateRandomNumber(int number, int[] checkDrawble) {
+        if (number == 1) {
+            return (checkDrawble[2] != 1);
+        }
+        if (number == checkDrawble.length-1) {
+            return false;
+        }
+        return (checkDrawble[number - 1] != 1 && checkDrawble[number + 1] != 1);
     }
 
     private void drawLine(int i, HashSet<Integer> numberList) {
         for (Integer number : numberList) {
             drawLine(Position.of(i),Position.of(number));
         }
-    }
-
-    private HashSet<Integer> getRandomNumberList(int ladderSize, int maxSize) {
-        HashSet<Integer> numberList = new HashSet<>();
-        int[] check = new int[maxSize];
-        for (int i = 0; i < maxSize; i++) {
-            check[i] = 0;
-        }
-
-        int cnt = 0;
-        while (cnt < ladderSize) {
-            int number = getRandomNumber(1, maxSize-1);
-            cnt = addNumber(numberList, check, cnt, number);
-        }
-        return numberList;
-    }
-
-    private int addNumber(HashSet<Integer> numberList, int[] check, int cnt, int number) {
-        if(validateRandomNumber(number, check)){
-            numberList.add(number);
-            check[number] = 1;
-            cnt +=1;
-        }
-        return cnt;
-    }
-
-    private boolean validateRandomNumber(int number, int[] check) {
-        if (number == 1) {
-            return (check[2] != 1);
-        }
-        if (number == check.length-1) {
-            return false;
-        }
-        if (number == check.length-2) {
-            return (check[number-1] != 1);
-        }
-        return (check[number - 1] != 1 && check[number + 1] != 1);
-    }
-
-    public int getRandomNumber(int min, int max) {
-        return (int) (Math.random() * (max - min + 1)) + min;
     }
 
     @Override
@@ -91,12 +82,5 @@ public class RandomLadderCreator implements LadderCreator{
     @Override
     public Row[] getRows() {
         return rows;
-    }
-
-    @Override
-    public String toString() {
-        return "RandomLadderCreator{" +
-                "rows=" + Arrays.toString(rows) +
-                '}';
     }
 }
