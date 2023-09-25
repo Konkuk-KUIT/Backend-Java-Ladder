@@ -76,7 +76,7 @@ public class RandomLadderCreator implements LadderCreator{
         if (number == check.length-2) {
             return (check[number-1] != 1);
         }
-        return (check[number - 1] != 1 || check[number + 1] != 1);
+        return (check[number - 1] != 1 && check[number + 1] != 1);
     }
 
     public int getRandomNumber(int min, int max) {
