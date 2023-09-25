@@ -53,8 +53,10 @@ class LadderGameTest {
         //when
         LadderCreator ladderCreator = new RandomLadderCreator(numberOfRow, numberOfPerson);
 
-        LadderGame ladderGame = new LadderGame(ladderCreator);
-        int result = ladderGame.run(Position.of(1));
+        //팩토리 메소드가 이게 맞나..?
+        LadderGame ladderGame1 = LadderGameFactory.createRandomLadderGame((RandomLadderCreator) ladderCreator);
+        LadderGame ladderGame2 = new LadderGame(ladderCreator);
+        int result = ladderGame1.run(Position.of(1));
 
         //then
 
