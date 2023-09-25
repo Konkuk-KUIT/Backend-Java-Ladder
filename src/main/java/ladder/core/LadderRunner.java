@@ -1,6 +1,8 @@
-package ladder;
+package ladder.core;
 
-import java.awt.*;
+import ladder.Ladder;
+import ladder.LadderPosition;
+import ladder.Node;
 
 public class LadderRunner {
 

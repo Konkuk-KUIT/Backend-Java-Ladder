@@ -1,8 +1,10 @@
-package ladder;
+package ladder.core;
 
-import java.awt.*;
+import ladder.Direction;
+import ladder.Ladder;
+import ladder.LadderPosition;
 
-public class LadderCreator {
+public class CustomLadderCreator {
 
     public Ladder createLadder(int numberOfRow, int numberOfPerson){
         return Ladder.of(numberOfRow, numberOfPerson);

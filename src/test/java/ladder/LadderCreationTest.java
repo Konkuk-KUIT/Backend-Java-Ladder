@@ -3,6 +3,8 @@ package ladder;
 import ladder.Exception.ErrorCode;
 import ladder.Exception.ErrorMessage;
 import ladder.Exception.LadderPositionOutOfBoundsException;
+import ladder.core.CustomLadderCreator;
+import ladder.core.LadderGame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +13,6 @@ import java.awt.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LadderCreationTest {
 
@@ -42,7 +43,7 @@ class LadderCreationTest {
         int numberOfPerson = 5;
 
         //when
-        LadderCreator new_ladder_creator = new LadderCreator();
+        CustomLadderCreator new_ladder_creator = new CustomLadderCreator();
         Ladder new_ladder_obj = new_ladder_creator.createLadder(numberOfRow, numberOfPerson);
         Node[][] new_ladder = (Node[][])getPrivateField(new_ladder_obj, "ladder");
 

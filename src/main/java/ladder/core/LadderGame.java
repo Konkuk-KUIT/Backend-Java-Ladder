@@ -1,13 +1,17 @@
-package ladder;
+package ladder.core;
+
+import ladder.Direction;
+import ladder.Ladder;
+import ladder.LadderPosition;
 
 public class LadderGame {
 
-    private final LadderCreator ladderCreator = new LadderCreator();
+    private final CustomLadderCreator customLadderCreator = new CustomLadderCreator();
     private final Ladder ladder;
     private LadderRunner ladderRunner;
 
     public LadderGame(int numberOfRow, int numberOfPerson){
-        this.ladder = ladderCreator.createLadder(numberOfRow, numberOfPerson);
+        this.ladder = customLadderCreator.createLadder(numberOfRow, numberOfPerson);
         this.ladderRunner = LadderRunner.of(ladder);
     }
 
@@ -17,6 +21,6 @@ public class LadderGame {
 
     public void drawLine(int y, int x, Direction direction) {
         LadderPosition position = LadderPosition.of(y, x);
-        ladderCreator.drawLine(ladder, position, direction);
+        customLadderCreator.drawLine(ladder, position, direction);
     }
 }
