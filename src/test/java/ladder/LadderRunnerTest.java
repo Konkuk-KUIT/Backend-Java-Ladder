@@ -10,11 +10,11 @@ public class LadderRunnerTest {
     @Test
     void 게임_결과_출력() {
         NaturalNumber numberOfRow = new NaturalNumber(10);
-        NaturalNumber numberOfPerson = new NaturalNumber(10);
+        NaturalNumber numberOfPerson = new NaturalNumber(5);
 
         LadderCreator ladderCreator = new RandomLadderCreator(numberOfRow, numberOfPerson);
-        LadderRunner ladderRunner = new LadderRunner(ladderCreator.getRows());
+        LadderGame ladderGame = new LadderGame(ladderCreator);
 
-        ladderRunner.PrintLadder();
+        ladderGame.RunLadderGame();
     }
 }
