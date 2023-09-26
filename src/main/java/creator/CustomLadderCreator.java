@@ -1,23 +1,20 @@
-package ladder;
+package creator;
 
-import static ladder.ExceptionMessage.*;
+import ladder.NaturalNumber;
+import ladder.Position;
+import ladder.Row;
 
-public class Ladder {
+import static ladder.ExceptionMessage.INVALID_POSITION;
+
+public class CustomLadderCreator implements LadderCreator {
 
     private final Row[] rows;
 
-    public Ladder(NaturalNumber numberOfRow, NaturalNumber numberOfPerson) {
+    public CustomLadderCreator(NaturalNumber numberOfRow, NaturalNumber numberOfPerson) {
         rows = new Row[numberOfRow.getNumber()];
         for (int i=0; i< numberOfRow.getNumber(); i++){
             rows[i] = new Row(numberOfPerson);
         }
-    }
-
-    public int run(Position position) {
-        for (int level=0; level< rows.length; level++){
-            position = rows[level].nextLevel(position);
-        }
-        return position.getValue();
     }
 
     public void drawLine(Position row, Position startColumn) {
@@ -29,5 +26,9 @@ public class Ladder {
         if (row-1 >= rows.length || row-1 < 0) { //범위 체크
             throw new IllegalArgumentException(INVALID_POSITION.getMessage());
         }
+    }
+
+    public Row[] getRows() {
+        return rows;
     }
 }
