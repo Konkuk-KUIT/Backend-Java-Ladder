@@ -10,13 +10,8 @@ public class LadderGame {
         this.ladderCreator = ladderCreator;
     }
 
-
-    public int run(Position position) {
+    public void RunLadderGame() {
         LadderRunner ladderRunner = new LadderRunner(ladderCreator.getRows());
-        ladderRunner.run(position);
-
-        return position.getValue();
+        ladderRunner.PrintLadderGameResult();
     }
-
-
 }

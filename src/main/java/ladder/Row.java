@@ -13,6 +13,10 @@ public class Row {
         }
     }
 
+    public int size() {
+        return nodes.length;
+    }
+
     public void drawLine(Position startPosition) {
         validateDrawLinePosition(startPosition);
         setDirectionAtPosition(startPosition, Direction.RIGHT);
@@ -46,7 +50,7 @@ public class Row {
     }
 
     private void validatePosition(Position position) {
-        if (position.isBiggerThan(nodes.length) || position.isSmallerThan(1)) {
+        if (position.isBiggerThan(nodes.length-1) || position.isSmallerThan(1)) {
             throw new IllegalArgumentException(INVALID_POSITION.getMessage());
         }
     }
