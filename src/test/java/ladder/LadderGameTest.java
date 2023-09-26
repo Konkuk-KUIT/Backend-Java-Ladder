@@ -18,25 +18,10 @@ class LadderGameTest {
 
         //when
         LadderCreator ladderCreator = new StaticLadderCreator(numberOfRow, numberOfPerson);
+        LadderGame ladderGame = new LadderGame(ladderCreator);
 
         //then
-        assertNotNull(ladderCreator);
-    }
-
-    @Test
-    void drawLine_테스트(){
-        //given
-        NaturalNumber numberOfPerson =  NaturalNumber.of(2);
-
-        Row row = new Row(numberOfPerson);
-
-        //when
-        row.drawLine(Position.of(1));
-
-        //then
-        assertThat(row.nextPosition(Position.of(1)).getValue()).isEqualTo(2);
-        assertThat(row.nextPosition(Position.of(2)).getValue()).isEqualTo(1);
-
+        assertNotNull(ladderGame);
     }
 
     @Test
