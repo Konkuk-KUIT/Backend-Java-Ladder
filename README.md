@@ -1,5 +1,5 @@
 # Backend-Java-Ladder
-KUIT 서버 파트 - 1, 2주차 미션 수행을 위한 레포지토리입니다.
+건국대학교 동아리 KUIT 서버 파트의 1, 2주차 미션 수행을 위한 레포지토리입니다.
 
 ## 미션
 - 미션은 [Backend-Java-Ladder](https://github.com/KUIT-2/Backend-Java-Ladder) 저장소를 Fork & Clone해 시작
